@@ -1,10 +1,11 @@
-import { Route, Routes, useLocation } from "react-router-dom";
-import { useEffect } from "react";
-import About from "../pages/About";
-import HomePage from "../pages/HomePage";
-import { Navbar } from "../components/Navbar/Navbar";
-import { Footer } from "../components/Footer/Footer";
-import Login from "../pages/Login";
+import { Route, Routes, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import About from '../pages/About';
+import HomePage from '../pages/HomePage';
+import { Navbar } from '../components/Navbar/Navbar';
+import { Footer } from '../components/Footer/Footer';
+import Login from '../pages/Login';
+import { Test } from '../pages/Test';
 
 export default function AppRoutes() {
   const location = useLocation();
@@ -14,7 +15,7 @@ export default function AppRoutes() {
       window.requestAnimationFrame(() => {
         window.scrollTo({
           top: 0,
-          behavior: "smooth",
+          behavior: 'smooth',
         });
       });
     };
@@ -26,7 +27,7 @@ export default function AppRoutes() {
     return () => clearTimeout(timer);
   }, [location]);
 
-  const noNavbarFooterRoutes = [""];
+  const noNavbarFooterRoutes = [''];
 
   const hideNavbarFooter = noNavbarFooterRoutes.includes(location.pathname);
 
@@ -35,8 +36,9 @@ export default function AppRoutes() {
       {!hideNavbarFooter && <Navbar />}
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login/>} />
+        <Route path="/login" element={<Login />} />
         <Route path="/about" element={<About />} />
+        <Route path="/test" element={<Test />} />
       </Routes>
       {!hideNavbarFooter && <Footer />}
     </>
