@@ -49,7 +49,7 @@ export const HowItWorks = () => {
               />
             </div>
             <h1 className="text-xl  font-medium  mt-8 mb-4">Room Booking</h1>
-            <p>
+            <p className="text-center">
               We handle all your hostel bookings, ensuring a smooth and
               hassle-free experience.
             </p>
@@ -67,7 +67,7 @@ export const HowItWorks = () => {
             <h1 className="text-xl  font-medium  mt-8 mb-4">
               Stay Preparation
             </h1>
-            <p>
+            <p className="text-center">
               We take care of your accommodation details, from roommate matching
               to amenity preferences.
             </p>
@@ -85,7 +85,7 @@ export const HowItWorks = () => {
             <h1 className="text-xl  font-medium  mt-8 mb-4">
               Living Experience
             </h1>
-            <p>
+            <p className="text-center">
               We provide you with the best hostel experience, offering comfort
               and a sense of community during your stay.
             </p>
