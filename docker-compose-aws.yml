@@ -1,0 +1,104 @@
+version: '3.8'
+
+services:
+  nginx-api-gateway:
+    build: ./api-gateway
+    ports:
+      - '80:80'
+    depends_on:
+      - user-microservice
+      - hostel-microservice
+      - model-microservice
+    networks:
+      - hackathon
+    restart: unless-stopped
+
+  user-microservice:
+    build: ./user-microservice
+    ports:
+      - '3000:3000'
+    networks:
+      - hackathon
+    environment:
+      - DB_HOST=${RDS_HOST}
+      - DB_PORT=${RDS_PORT}
+      - DB_USER=${RDS_USER}
+      - DB_PASSWORD=${RDS_PASSWORD}
+      - DB_NAME=${RDS_DB_NAME}
+    depends_on:
+      - rabbitmq-user
+    restart: unless-stopped
+
+  hostel-microservice:
+    build: ./hostel-microservice
+    ports:
+      - '3001:3001'
+    depends_on:
+      - rabbitmq-hostel
+    networks:
+      - hackathon
+    environment:
+      - DB_HOST=${RDS_HOST}
+      - DB_PORT=${RDS_PORT}
+      - DB_USER=${RDS_USER}
+      - DB_PASSWORD=${RDS_PASSWORD}
+      - DB_NAME=${RDS_DB_NAME}
+    restart: unless-stopped
+
+  model-microservice:
+    build: ./model-microservice
+    ports:
+      - '3002:3002'
+    networks:
+      - hackathon
+    environment:
+      - DB_HOST=${RDS_HOST}
+      - DB_PORT=${RDS_PORT}
+      - DB_USER=${RDS_USER}
+      - DB_PASSWORD=${RDS_PASSWORD}
+      - DB_NAME=${RDS_DB_NAME}
+    restart: unless-stopped
+
+  rabbitmq-user:
+    image: rabbitmq:management
+    ports:
+      - '15672:15672'
+      - '5672:5672'
+    volumes:
+      - ~/.docker-conf/rabbitmq-user/data:/var/lib/rabbitmq
+      - ~/.docker-conf/rabbitmq-user/log:/var/log/rabbitmq
+    networks:
+      - hackathon
+    environment:
+      - 'RABBITMQ_DEFAULT_PASS=guest'
+      - 'RABBITMQ_DEFAULT_USER=guest'
+    restart: unless-stopped
+
+  rabbitmq-hostel:
+    image: rabbitmq:management
+    ports:
+      - '15673:15672'
+      - '5673:5672'
+    volumes:
+      - ~/.docker-conf/rabbitmq-hostel/data:/var/lib/rabbitmq
+      - ~/.docker-conf/rabbitmq-hostel/log:/var/log/rabbitmq
+    networks:
+      - hackathon
+    environment:
+      - 'RABBITMQ_DEFAULT_PASS=guest'
+      - 'RABBITMQ_DEFAULT_USER=guest'
+    restart: unless-stopped
+
+  mongoserver:
+    image: mongo:5
+    volumes:
+      - ~/mongodata:/data/db
+    ports:
+      - '27017:27017'
+    networks:
+      - hackathon
+    restart: unless-stopped
+
+networks:
+  hackathon:
+    driver: bridge

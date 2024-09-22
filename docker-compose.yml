@@ -1,0 +1,144 @@
+version: '3.8'
+
+services:
+  nginx-api-gateway:
+    build: ./api-gateway
+    ports:
+      - '80:80'
+    depends_on:
+      - user-microservice
+      - hostel-microservice
+      - model-microservice
+    networks:
+      - hackathon
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - '5173:5173'
+    depends_on:
+      - user-microservice
+      - hostel-microservice
+      - model-microservice
+    networks:
+      - hackathon
+    restart: unless-stopped
+
+  user-microservice:
+    build: ./user-microservice
+    ports:
+      - '3000:3000'
+    environment:
+      - DATABASE_URL="mysql://root:secret@db:3306/my-database"
+    networks:
+      - hackathon
+    depends_on:
+      - rabbitmq-user
+      - db
+      - redis
+    restart: unless-stopped
+
+  hostel-microservice:
+    build: ./hostel-microservice
+    ports:
+      - '3001:3001'
+    depends_on:
+      - rabbitmq-hostel
+      - db
+      - redis
+      - mongoserver
+    networks:
+      - hackathon
+
+    restart: unless-stopped
+
+  model-microservice:
+    build: ./model-microservice
+    ports:
+      - '3002:3002'
+    networks:
+      - hackathon
+    restart: unless-stopped
+
+  rabbitmq-user:
+    image: rabbitmq:management
+    ports:
+      - '15672:15672'
+      - '5672:5672'
+    volumes:
+      - ./rabbitmq-user/data:/var/lib/rabbitmq
+      - ./rabbitmq-user/log:/var/log/rabbitmq
+    networks:
+      - hackathon
+    environment:
+      - 'RABBITMQ_DEFAULT_PASS=guest'
+      - 'RABBITMQ_DEFAULT_USER=guest'
+    restart: unless-stopped
+
+  rabbitmq-hostel:
+    image: rabbitmq:management
+    ports:
+      - '15673:15672'
+      - '5673:5672'
+    volumes:
+      - ./rabbitmq-hostel/data:/var/lib/rabbitmq
+      - ./rabbitmq-hostel/log:/var/log/rabbitmq
+    networks:
+      - hackathon
+    environment:
+      - 'RABBITMQ_DEFAULT_PASS=guest'
+      - 'RABBITMQ_DEFAULT_USER=guest'
+    restart: unless-stopped
+
+  mongoserver:
+    image: mongo:5
+    volumes:
+      - ./mongodata:/data/db
+    ports:
+      - '27020:27017'
+
+    networks:
+      - hackathon
+    restart: unless-stopped
+
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: my_database
+    restart: always
+    volumes:
+      - db_data:/var/lib/mysql
+    env_file: .env
+    ports:
+      - '33066:3306'
+    networks:
+      - hackathon
+
+  adminer:
+    image: adminer
+    environment:
+      ADMINER_DEFAULT_SERVER: db
+    ports:
+      - '5001:8080'
+    networks:
+      - hackathon
+
+  redis:
+    image: redis:6
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+    networks:
+      - hackathon
+    restart: unless-stopped
+
+volumes:
+  db_data:
+  redis_data:
+
+networks:
+  hackathon:
+    driver: bridge
