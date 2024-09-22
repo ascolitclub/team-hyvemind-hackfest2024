@@ -6,6 +6,7 @@ import PopularHostel from "../components/popularhostel/PopularHostel";
 import OurFeatures from "../components/features/OurFeatures";
 import { HowItWorks } from "../components/features/HowItWorks";
 import { QualityAssuarance } from "../components/features/QualityAssuarance";
+import { Banner } from "../components/features/Banner";
 
 export default function HomePage() {
   useEffect(() => {
@@ -22,6 +23,7 @@ export default function HomePage() {
       <PopularHostel />
       <HowItWorks />
       <QualityAssuarance />
+      <Banner />
     </>
   );
 }

@@ -73,7 +73,7 @@ export const HeroSection = () => {
             </select>
           </div>
           <div>
-            <button className="w-full text-2xl bg-[--btn-primary] py-4 rounded-xl font-semibold text-white hover:bg-[--btn-secondary] transition-all active:translate-y-0.5">
+            <button className="w-full text-2xl bg-[--btn-primary] py-4 rounded-xl font-medium text-white hover:bg-[--btn-secondary] transition-all active:translate-y-0.5">
               Search
             </button>
           </div>

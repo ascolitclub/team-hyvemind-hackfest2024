@@ -6,7 +6,7 @@ export const QualityAssuarance = () => {
           <div className="left-section w-full col-span-4">
             <h2
               data-aos="fade-up"
-              className="text-7xl font-bold mb-20"
+              className="text-7xl font-bold mb-16"
               style={{ fontFamily: "Oswald" }}
             >
               Only The Best Quality For You
