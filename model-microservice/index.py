@@ -1,9 +1,12 @@
 from flask import Flask,jsonify
-
-from queues.producer.nodeProducer import send_to_node_microservice
+from flask_smorest import Api
+from flask_cors import CORS
+from resources.Hostel import blp as HostelBluePrint
 
 
 app = Flask(__name__)
+CORS(app, origins="http://localhost:5173")  # Allow requests from Vite frontend
+
 
 app.config['PROPAGATE_EXCEPTIONS'] = True
 app.config['API_TITLE'] = 'Model Rest Api'
@@ -13,13 +16,9 @@ app.config['OPENAPI_URL_PREFIX'] = '/'
 app.config['OPENAPI_SWAGGER_UI_PATH'] = '/swagger-ui'
 app.config['OPENAPI_SWAGGER_UI_URL'] = 'https://cdn.jsdelivr.net/npm/swagger-ui-dist/'
 
+api = Api(app=app)
 
-@app.get('/model')
-def run():
-    result = [{"id":1}]
-    return jsonify(result)
-    
-
+api.register_blueprint(HostelBluePrint)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port=str(3002),debug=True)
