@@ -109,14 +109,16 @@ export const Navbar = () => {
 
   return (
     <>
-      <div className="bg-gray-700 w-full">
+      <div className="bg-gray-700 w-full sticky top-0 z-50">
         <div className="container mx-auto px-12 navbar flex items-center justify-between text-white">
           <div className="logo">
-            <img
-              className="h-14 w-auto"
-              src="/assets/mhmlogo.png"
-              alt="mero hostel mate logo"
-            />
+            <NavLink to="/">
+              <img
+                className="h-8 my-2 w-auto flex-shrink-0"
+                src="/assets/mhmlogo.png"
+                alt="mero hostel mate logo"
+              />
+            </NavLink>
           </div>
           <div className="nav-elements justify-self-end">
             <ul className="flex gap-20 justify-between">
@@ -148,7 +150,7 @@ export const Navbar = () => {
                 {isBlogHover && (
                   <div
                     onMouseLeave={handleBlogMouseLeave}
-                    className="absolute top-full mt-4 -left-12 bg-white text-black p-4 rounded-md px-12"
+                    className="absolute top-full mt-3 -left-12 bg-white text-black p-4 rounded-md px-12"
                   >
                     <ul className="flex flex-col items-start gap-2">
                       <li className="hover:text-[--primary-color]">

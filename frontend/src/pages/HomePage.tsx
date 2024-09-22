@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { HeroSection } from "../components/Hero Section/HeroSection";
 
 export default function HomePage() {
   useEffect(() => {
@@ -12,9 +13,7 @@ export default function HomePage() {
   }, []);
   return (
     <>
-      <div className="h-[80vh] w-full flex flex-shrink-0 items-center justify-center overflow-hidden">
-        <img className="object-cover" src="/assets/7.webp" alt="background" />
-      </div>
+      <HeroSection />
     </>
   );
 }
