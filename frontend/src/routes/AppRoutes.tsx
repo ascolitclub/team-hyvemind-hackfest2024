@@ -3,8 +3,10 @@ import { useEffect } from "react";
 import About from "../pages/About";
 import HomePage from "../pages/HomePage";
 import { Navbar } from "../components/Navbar/Navbar";
-import { Footer } from "../components/Footer/Footer";
 import Login from "../pages/Login";
+import Footer from "../components/Footer/Footer";
+import HostelDetails from "../pages/HostelDetails";
+import Hostel from "../pages/Hostel";
 
 export default function AppRoutes() {
   const location = useLocation();
@@ -37,6 +39,8 @@ export default function AppRoutes() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login/>} />
         <Route path="/about" element={<About />} />
+        <Route path="/hostel" element={<Hostel />} />
+        <Route path="/hostel/:title" element={<HostelDetails />} />
       </Routes>
       {!hideNavbarFooter && <Footer />}
     </>
