@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { HeroSection } from "../components/Hero Section/HeroSection";
+import PopularHostel from "../components/popularhostel/PopularHostel";
+import OurFeatures from "../components/features/OurFeatures";
 
 export default function HomePage() {
   useEffect(() => {
@@ -14,6 +16,8 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <OurFeatures />
+      <PopularHostel />
     </>
   );
 }

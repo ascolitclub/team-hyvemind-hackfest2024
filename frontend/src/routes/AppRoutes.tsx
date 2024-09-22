@@ -26,7 +26,7 @@ export default function AppRoutes() {
     return () => clearTimeout(timer);
   }, [location]);
 
-  const noNavbarFooterRoutes = ["/login"];
+  const noNavbarFooterRoutes = [""];
 
   const hideNavbarFooter = noNavbarFooterRoutes.includes(location.pathname);
 
