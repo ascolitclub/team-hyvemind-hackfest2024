@@ -91,6 +91,11 @@ export default function Login() {
             className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
           />
           <input
+            type="number"
+            placeholder="Phone Number"
+            className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
+          />
+          <input
             type="email"
             placeholder="Email"
             className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
