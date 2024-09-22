@@ -25,10 +25,7 @@ services:
     restart: unless-stopped
 
   node-microservice:
-    build:
-      context: ./node-microservice
-      dockerfile: dockerfile
-
+    build: ./node-microservice
     ports:
       - '3000:3000'
     environment:
