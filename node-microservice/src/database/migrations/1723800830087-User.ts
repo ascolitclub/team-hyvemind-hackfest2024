@@ -21,8 +21,7 @@ export class CreateUserTable1695394785210 implements MigrationInterface {
           },
           {
             name: 'password',
-            type: 'varchar',
-            length: '50',
+            type: 'text',
             isNullable: false,
           },
           {
@@ -55,7 +54,7 @@ export class CreateUserTable1695394785210 implements MigrationInterface {
             onUpdate: 'CURRENT_TIMESTAMP',
           },
         ],
-      }),
+      })
     );
   }
 

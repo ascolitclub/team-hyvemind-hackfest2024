@@ -8,6 +8,7 @@ import { Check } from 'typeorm';
 
 class AuthService {
   static registerUser = async (data: Partial<RegisterUserBody>) => {
+    console.log('This is the register user', data);
     const checkData = Object.values(data).length === 0;
     if (checkData) {
       throw new BadRequestException(null, 'Data Object Is Empty');
