@@ -60,19 +60,23 @@ export default function PopularHostel() {
       <div className="h-auto w-screen container mx-auto mb-5">
         <div className="relative flex items-center justify-center">
           <h1
+            data-aos="fade-up"
             className="text-[150px] text-gray-100 font-mono font-semibold"
             style={{ fontFamily: "Oswald" }}
           >
             HOSTELS
           </h1>
-          <h2 className="absolute tracking-widest text-center text-xl top-[47%] text-[--primary-color] font-sans uppercase">
+          <h2
+            data-aos="fade-up"
+            className="absolute tracking-widest text-center text-xl top-[47%] text-[--primary-color] font-sans uppercase"
+          >
             Popular Hostels
           </h2>
         </div>
-        <p className="text-center mb-8">
+        <p data-aos="fade-up" className="text-center mb-8">
           Take a detour at our most popular hostel for this season
         </p>
-        <div className="flex justify-center flex-wrap gap-5">
+        <div data-aos="fade-up" className="flex justify-center flex-wrap gap-5">
           <button className="px-3 py-1 rounded-3xl bg-[#0cafff] text-white">
             All
           </button>
@@ -83,7 +87,10 @@ export default function PopularHostel() {
             Girls
           </button>
         </div>
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-5 py-10 px-16 ">
+        <div
+          data-aos="fade-up"
+          className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-5 py-10 px-16 "
+        >
           {hostelData.map((hostel, index) => (
             <Link to={`/hostel/${hostel.title}`} key={index}>
               <div
@@ -118,7 +125,7 @@ export default function PopularHostel() {
             </Link>
           ))}
         </div>
-        <div className="flex justify-center">
+        <div data-aos="fade-up" className="flex justify-center">
           <button className="bg-white text-lg shadow-2xl px-6 py-3 rounded-lg font-semibold text-[--primary-color] hover:text-white hover:bg-[--btn-primary] border border-[--btn-primary] transition-all active:translate-y-0.5">
             View all Hostels
           </button>

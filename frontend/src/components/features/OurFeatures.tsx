@@ -37,6 +37,7 @@ export default function OurFeatures() {
         <div className="grid grid-cols-4 gap-4">
           {featureList.map((feature, index) => (
             <div
+              data-aos="fade-up"
               key={index}
               className="feature-item text-center py-4"
               onMouseEnter={() => setHoveredIndex(index)}

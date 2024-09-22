@@ -8,12 +8,16 @@ export const HowItWorks = () => {
       <div className="how-it-works my-28 py-4 h-auto bg-gray-100 pb-32">
         <div className="relative flex flex-col items-center justify-center ">
           <h1
+            data-aos="fade-up"
             className="text-[150px] text-white font-mono font-semibold"
             style={{ fontFamily: "Oswald" }}
           >
             PROCESS
           </h1>
-          <h2 className="absolute tracking-widest text-center text-xl top-[47%] text-[--primary-color] font-sans uppercase">
+          <h2
+            data-aos="fade-up"
+            className="absolute tracking-widest text-center text-xl top-[47%] text-[--primary-color] font-sans uppercase"
+          >
             How It Works
           </h2>
         </div>
