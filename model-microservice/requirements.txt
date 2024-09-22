@@ -3,4 +3,3 @@ flask
 flask_smorest
 numpy
 pika
-requests
