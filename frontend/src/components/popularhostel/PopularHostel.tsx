@@ -1,57 +1,57 @@
-import { Link } from "react-router-dom";
-import hostel1 from "/public/hostel1.jpg";
-import hostel2 from "/public/hostel2.jpg";
-import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
-import { RenderStar } from "../dynamic renderer/RenderStar";
+import { Link } from 'react-router-dom';
+import hostel1 from '/public/hostel1.jpg';
+import hostel2 from '/public/hostel2.jpg';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import { RenderStar } from '../dynamic renderer/RenderStar';
 
 export default function PopularHostel() {
   const hostelData = [
     {
       img: hostel1,
-      title: "Hostel1",
-      location: "kapan,kathmandu",
+      title: 'Hostel1',
+      location: 'kapan,kathmandu',
       rating: 5,
     },
     {
       img: hostel2,
-      title: "Hostel2",
-      location: "kapan,kathmandu",
+      title: 'Hostel2',
+      location: 'kapan,kathmandu',
       rating: 4,
     },
     {
       img: hostel1,
-      title: "Hostel3",
-      location: "kapan,kathmandu",
+      title: 'Hostel3',
+      location: 'kapan,kathmandu',
       rating: 5,
     },
     {
       img: hostel2,
-      title: "Hostel4",
-      location: "kapan,kathmandu",
+      title: 'Hostel4',
+      location: 'kapan,kathmandu',
       rating: 3,
     },
     {
       img: hostel1,
-      title: "Hostel5",
-      location: "kapan,kathmandu",
+      title: 'Hostel5',
+      location: 'kapan,kathmandu',
       rating: 5,
     },
     {
       img: hostel2,
-      title: "Hostel6",
-      location: "kapan,kathmandu",
+      title: 'Hostel6',
+      location: 'kapan,kathmandu',
       rating: 4,
     },
     {
       img: hostel1,
-      title: "Hostel7",
-      location: "kapan,kathmandu",
+      title: 'Hostel7',
+      location: 'kapan,kathmandu',
       rating: 3,
     },
     {
       img: hostel2,
-      title: "Hostel8",
-      location: "kapan,kathmandu",
+      title: 'Hostel8',
+      location: 'kapan,kathmandu',
       rating: 4,
     },
   ];
@@ -84,10 +84,10 @@ export default function PopularHostel() {
                 className="shadow-lg border border-gray-200 rounded-2xl cursor-pointer overflow-hidden hover:-translate-y-2 transition-transform"
                 onMouseEnter={(e) => {
                   e.currentTarget.style.boxShadow =
-                    "0px 4px 8px rgba(0, 0, 0, 0.4)";
+                    '0px 4px 8px rgba(0, 0, 0, 0.4)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = "";
+                  e.currentTarget.style.boxShadow = '';
                 }}
               >
                 <div className="object-cover bg-red-500">
