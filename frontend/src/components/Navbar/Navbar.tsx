@@ -141,17 +141,28 @@ export const Navbar = () => {
                 </NavLink>
               </li>
               <li
-                className="relative hover:text-[--primary-text-color]"
+                className="relative hover:text-[--primary-text-color] cursor-pointer"
                 onMouseEnter={handleBlogMouseEnter}
               >
-                <NavLink
-                  to="/blog"
-                  className={({ isActive }) =>
-                    isActive ? "text-[--primary-color]" : ""
-                  }
-                >
-                  Blog
-                </NavLink>
+                Blog
+                {isBlogHover && (
+                  <div
+                    onMouseLeave={handleBlogMouseLeave}
+                    className="absolute top-full mt-4 -left-12 bg-white text-black p-4 rounded-md px-12"
+                  >
+                    <ul className="flex flex-col items-start gap-2">
+                      <li className="hover:text-[--primary-color]">
+                        <NavLink to="/news">News</NavLink>
+                      </li>
+                      <li className="hover:text-[--primary-color]">
+                        <NavLink to="/reviews">Reviews</NavLink>
+                      </li>
+                      <li className="hover:text-[--primary-color]">
+                        <NavLink to="/faqs">FAQs</NavLink>
+                      </li>
+                    </ul>
+                  </div>
+                )}
               </li>
               <li className="hover:text-[--primary-text-color]">
                 <NavLink
@@ -165,6 +176,7 @@ export const Navbar = () => {
               </li>
             </ul>
           </div>
+
           <div className="buttons flex gap-4">
             <button className="text-[--third-text-color] bg-[--btn-primary] px-4 py-1 rounded-3xl font-semibold hover:text-[--primary-text-color] hover:bg-[--btn-secondary] border border-[--primary-color] transition-all active:translate-y-0.5">
               Login
@@ -175,24 +187,6 @@ export const Navbar = () => {
           </div>
         </div>
       </div>
-      {isBlogHover && (
-        <div className=" w-[100vh] bg-white p-4 rounded-md">
-          <ul
-            onMouseLeave={handleBlogMouseLeave}
-            className="flex flex-col items-start gap-2"
-          >
-            <li>
-              <NavLink to="/news">News</NavLink>
-            </li>
-            <li>
-              <NavLink to="/reviews">Reviews</NavLink>
-            </li>
-            <li>
-              <NavLink to="/faqs">FAQs</NavLink>
-            </li>
-          </ul>
-        </div>
-      )}
     </>
   );
 };
