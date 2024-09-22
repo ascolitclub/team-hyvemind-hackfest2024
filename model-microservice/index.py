@@ -1,4 +1,5 @@
-from flask import Flask
+from flask import Flask,jsonify
+from map.helper.map import get_hostel
 
 app = Flask(__name__)
 
@@ -13,7 +14,8 @@ app.config['OPENAPI_SWAGGER_UI_URL'] = 'https://cdn.jsdelivr.net/npm/swagger-ui-
 
 @app.get('/model')
 def run():
-    return "{\"message\" : \"Hey there python\"}"
+    result = get_hostel()
+    return jsonify(result), 200
 
 
 if __name__ == "__main__":
