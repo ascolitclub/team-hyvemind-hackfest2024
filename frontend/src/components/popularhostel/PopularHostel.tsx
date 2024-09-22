@@ -1,60 +1,38 @@
 import { Link } from 'react-router-dom';
-import hostel1 from '/public/hostel1.jpg';
-import hostel2 from '/public/hostel2.jpg';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import { RenderStar } from '../dynamic renderer/RenderStar';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 export default function PopularHostel() {
-  const hostelData = [
-    {
-      img: hostel1,
-      title: 'Hostel1',
-      location: 'kapan,kathmandu',
-      rating: 5,
-    },
-    {
-      img: hostel2,
-      title: 'Hostel2',
-      location: 'kapan,kathmandu',
-      rating: 4,
-    },
-    {
-      img: hostel1,
-      title: 'Hostel3',
-      location: 'kapan,kathmandu',
-      rating: 5,
-    },
-    {
-      img: hostel2,
-      title: 'Hostel4',
-      location: 'kapan,kathmandu',
-      rating: 3,
-    },
-    {
-      img: hostel1,
-      title: 'Hostel5',
-      location: 'kapan,kathmandu',
-      rating: 5,
-    },
-    {
-      img: hostel2,
-      title: 'Hostel6',
-      location: 'kapan,kathmandu',
-      rating: 4,
-    },
-    {
-      img: hostel1,
-      title: 'Hostel7',
-      location: 'kapan,kathmandu',
-      rating: 3,
-    },
-    {
-      img: hostel2,
-      title: 'Hostel8',
-      location: 'kapan,kathmandu',
-      rating: 4,
-    },
-  ];
+  const [hostelData, setHostelData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const GOOGLE_MAPS_API_KEY = 'AIzaSyChRHG8gb0TwMq2YOdf_djXNkDxtokdAJI';
+        const response = await axios.get(
+          `http://localhost:3002/hostel/popular`
+        );
+        console.log(response.data.result);
+        const data = response.data.result.map((hostel: any) => ({
+          title: hostel.name,
+          location: hostel.vicinity,
+          rating: hostel.rating,
+          img:
+            hostel.photos.length > 0
+              ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${hostel.photos[0].photo_reference}&key=${GOOGLE_MAPS_API_KEY}`
+              : '/path/to/default/image.jpg',
+        }));
+        setHostelData(data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
       <div className="h-auto w-screen container mx-auto mb-5">
@@ -62,7 +40,7 @@ export default function PopularHostel() {
           <h1
             data-aos="fade-up"
             className="text-[150px] text-gray-100 font-mono font-semibold"
-            style={{ fontFamily: "Oswald" }}
+            style={{ fontFamily: 'Oswald' }}
           >
             HOSTELS
           </h1>
@@ -80,21 +58,20 @@ export default function PopularHostel() {
           <button className="px-3 py-1 rounded-3xl bg-[#0cafff] text-white">
             All
           </button>
-          <button className="px-3 py-1 border rounded-3xl border-gray-500 hover:bg-[#0cafff] ">
+          <button className="px-3 py-1 border rounded-3xl border-gray-500 hover:bg-[#0cafff]">
             Boys
           </button>
-          <button className="px-3 py-1 border rounded-3xl border-gray-500 hover:bg-[#0cafff] ">
+          <button className="px-3 py-1 border rounded-3xl border-gray-500 hover:bg-[#0cafff]">
             Girls
           </button>
         </div>
         <div
           data-aos="fade-up"
-          className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-5 py-10 px-16 "
+          className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-5 py-10 px-16"
         >
-          {hostelData.map((hostel, index) => (
-            <Link to={`/hostel/${hostel.title}`} key={index}>
+          {hostelData.map((hostel: any, index) => (
+            <Link to={`/hostel/${hostel.place_id}`} key={index}>
               <div
-                key={index}
                 className="shadow-lg border border-gray-200 rounded-2xl cursor-pointer overflow-hidden hover:-translate-y-2 transition-transform"
                 onMouseEnter={(e) => {
                   e.currentTarget.style.boxShadow =
@@ -105,15 +82,19 @@ export default function PopularHostel() {
                 }}
               >
                 <div className="object-cover bg-red-500">
-                  <img src={hostel.img} alt={hostel.title} className="" />
+                  <img
+                    src={hostel.img}
+                    alt={hostel.title}
+                    className="w-full h-48 object-cover"
+                  />
                 </div>
                 <div className="px-5">
-                  <p className="text-xl pt-4 font-semibold ">{hostel.title}</p>
+                  <p className="text-xl pt-4 font-semibold">{hostel.title}</p>
                   {RenderStar(hostel.rating)}
                   <p className="mb-4 text-[#acacac] text-sm">
                     <LocationOnOutlinedIcon
                       fontSize="small"
-                      style={{ color: "var(--btn-primary)" }}
+                      style={{ color: 'var(--btn-primary)' }}
                     />
                     {hostel.location}
                   </p>
