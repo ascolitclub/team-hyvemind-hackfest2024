@@ -11,15 +11,15 @@ export default function Footer() {
 
     return (
         <>
-            <div className=" bg-gray-400 md:px-24 px-8 pt-10">
+            <div className=" bg-gray-200 md:px-24 px-8 pt-10">
                 <div className="container mx-auto w-full">
-                    <div className="flex flex-wrap gap-8 items-center mb-10">
+                    <div className="flex flex-wrap gap-8 items-center mb-10 ">
                         {/* <h1 className="text-[40px] font-extrabold text-[--primary-color] border-r pr-16 mr-16 cursor-pointer">MHM</h1> */}
                         <div className="logo">
                           <NavLink to="/">
                             <img
-                              className="h-10 my-2 w-auto flex-shrink-0 mr-12"
-                              src="/assets/mhmlogo.png"
+                              className="h-10 my-2 w-auto flex-shrink-0 mr-4"
+                              src="/assets/mhmlogo_Black.png"
                               alt="mero hostel mate logo"
                             />
                           </NavLink>
@@ -28,7 +28,7 @@ export default function Footer() {
                             <h3 className="text-[28px] font-bold ">Subscription News</h3>
                             <p className="text-[14px]">Subscribe to the weekly newslatter.</p>
                         </div>
-                        <input className="px-6 py-3 outline-none w-[500px] rounded-full text-[16px]" type="email" placeholder="Enter Email Address" />
+                        <input className="px-6 py-3 outline-none w-[470px] rounded-full text-[16px]" type="email" placeholder="Enter Email Address" />
                         <button className="bg-black text-white rounded-full lg:px-6 md:px-6 px-4 py-3" >Subscribe</button>
                     </div>
                     <hr />

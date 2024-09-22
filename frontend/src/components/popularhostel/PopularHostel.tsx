@@ -214,34 +214,57 @@ export default function PopularHostel() {
   return (
     <>
       <div className="h-auto w-screen container mx-auto mb-5">
-        <h2 className="text-center text-[50px] font-extrabold">
-          Popular <span className="text-[#0cafff]">Hostel</span>
-        </h2>
-        <p className="text-center mb-8">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio,
-          accusamus?
-        </p>
-        <div className="flex justify-center flex-wrap gap-5">
+        <div className="relative flex flex-col items-center justify-center ">
+          <h1
+            data-aos="fade-up"
+            className="text-[150px] text-gray-200 font-mono font-semibold uppercase"
+            style={{ fontFamily: "Oswald" }}
+          >
+            HOSTELS
+          </h1>
+          <h2
+            data-aos="fade-up"
+            className="absolute tracking-widest text-center text-xl top-[47%] text-[--primary-color] font-sans uppercase"
+          >
+            popular hostels
+          </h2>
+        </div>
+        <div data-aos="fade-up" className="flex justify-center flex-wrap gap-5">
           <button
-            className={`px-3 py-1 rounded-3xl ${filterType === "All" ? "bg-[#0cafff] text-white" : "border border-gray-500 hover:bg-[#0cafff]"}`}
+            className={`px-3 py-1 rounded-3xl ${
+              filterType === "All"
+                ? "bg-[#0cafff] text-white"
+                : "border border-gray-500 hover:bg-[#0cafff]"
+            }`}
             onClick={() => handleFilterChange("All")}
           >
             All
           </button>
           <button
-            className={`px-3 py-1 rounded-3xl ${filterType === "Boys" ? "bg-[#0cafff] text-white" : "border border-gray-500 hover:bg-[#0cafff]"}`}
+            className={`px-3 py-1 rounded-3xl ${
+              filterType === "Boys"
+                ? "bg-[#0cafff] text-white"
+                : "border border-gray-500 hover:bg-[#0cafff]"
+            }`}
             onClick={() => handleFilterChange("Boys")}
           >
             Boys
           </button>
           <button
-            className={`px-3 py-1 rounded-3xl ${filterType === "Girls" ? "bg-[#0cafff] text-white" : "border border-gray-500 hover:bg-[#0cafff]"}`}
+            className={`px-3 py-1 rounded-3xl ${
+              filterType === "Girls"
+                ? "bg-[#0cafff] text-white"
+                : "border border-gray-500 hover:bg-[#0cafff]"
+            }`}
             onClick={() => handleFilterChange("Girls")}
           >
             Girls
           </button>
         </div>
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-5 py-10 px-16 ">
+        <div
+          data-aos="fade-up"
+          className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-5 py-10 px-16 "
+        >
           {filteredHostels.slice(0, visibleCount).map((hostel, index) => (
             <Link to={`/hostel/${hostel.title}`} key={index}>
               <div
@@ -255,7 +278,11 @@ export default function PopularHostel() {
                 }}
               >
                 <div className="h-56">
-                  <img src={hostel.img} alt={hostel.title} className="h-full w-full" />
+                  <img
+                    src={hostel.img}
+                    alt={hostel.title}
+                    className="h-full w-full"
+                  />
                 </div>
                 <div className="px-5">
                   <p className="text-xl pt-4 font-semibold">{hostel.title}</p>
@@ -276,7 +303,7 @@ export default function PopularHostel() {
           ))}
         </div>
         {visibleCount < filteredHostels.length && (
-          <div className="flex justify-center">
+          <div data-aos="fade-up" className="flex justify-center">
             <button
               className="bg-[--btn-primary] text-lg shadow-2xl px-6 py-3 rounded-lg font-semibold text-white hover:bg-[--btn-secondary] transition-all active:translate-y-0.5"
               onClick={handleShowMore}
