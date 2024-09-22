@@ -2,7 +2,7 @@ import { Express } from 'express';
 import authRouter from './auth';
 
 const serverRouter = (app: Express) => {
-  app.use('/user', [authRouter]);
+  app.use('/api', [authRouter]);
 };
 
 export default serverRouter;

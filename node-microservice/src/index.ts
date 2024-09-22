@@ -40,7 +40,7 @@ export const expressAppIntializer = async (app: Express) => {
     process.exit(0);
   });
 
-  app.set('trust proxy', true);
+  app.set('trust proxy', false);
 
   app.use(limiter);
 

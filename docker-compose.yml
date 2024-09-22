@@ -6,9 +6,9 @@ services:
     ports:
       - '80:80'
     depends_on:
-      - user-microservice
-      - hostel-microservice
+      - node-microservice
       - model-microservice
+
     networks:
       - hackathon
     restart: unless-stopped
@@ -18,15 +18,14 @@ services:
     ports:
       - '5173:5173'
     depends_on:
-      - user-microservice
-      - hostel-microservice
+      - node-microservice
       - model-microservice
     networks:
       - hackathon
     restart: unless-stopped
 
-  user-microservice:
-    build: ./user-microservice
+  node-microservice:
+    build: ./node-microservice
     ports:
       - '3000:3000'
     environment:
@@ -39,19 +38,6 @@ services:
       - redis
     restart: unless-stopped
 
-  hostel-microservice:
-    build: ./hostel-microservice
-    ports:
-      - '3001:3001'
-    depends_on:
-      - rabbitmq-hostel
-      - db
-      - redis
-      - mongoserver
-    networks:
-      - hackathon
-
-    restart: unless-stopped
 
   model-microservice:
     build: ./model-microservice
@@ -91,17 +77,6 @@ services:
       - 'RABBITMQ_DEFAULT_USER=guest'
     restart: unless-stopped
 
-  mongoserver:
-    image: mongo:5
-    volumes:
-      - ./mongodata:/data/db
-    ports:
-      - '27020:27017'
-
-    networks:
-      - hackathon
-    restart: unless-stopped
-
   db:
     image: mysql
     environment:
@@ -138,6 +113,7 @@ services:
 volumes:
   db_data:
   redis_data:
+  mongodb_data:
 
 networks:
   hackathon:

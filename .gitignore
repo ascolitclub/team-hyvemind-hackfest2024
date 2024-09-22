@@ -2,3 +2,5 @@ mongodata
 rabbitmq-user
 rabbitmq-hostel
 .env
+.idea
+.git
