@@ -92,11 +92,11 @@ export const Navbar = () => {
 
           <div className="buttons flex gap-4">
             <NavLink to={"/login"}>
-              <button className="text-white text-lg bg-[--btn-primary] px-6 py-2 rounded-lg font-semibold hover:text-[--primary-text-color] hover:bg-[--btn-secondary] transition-all active:translate-y-0.5">
+              <button className="text-white text-lg bg-[--btn-primary] px-6 py-2 rounded-lg font-semibold  hover:bg-[--btn-secondary] transition-all active:translate-y-0.5">
                 Login
               </button>
             </NavLink>
-            <button className="text-white text-lg bg-[--btn-primary] px-6 py-2 rounded-lg font-semibold hover:text-[--primary-text-color] hover:bg-[--btn-secondary] transition-all active:translate-y-0.5">
+            <button className="text-white text-lg bg-[--btn-primary] px-6 py-2 rounded-lg font-semibold  hover:bg-[--btn-secondary] transition-all active:translate-y-0.5">
               Book
             </button>
           </div>

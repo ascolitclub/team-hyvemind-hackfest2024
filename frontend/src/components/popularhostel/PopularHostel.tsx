@@ -70,8 +70,7 @@ export default function PopularHostel() {
           </h2>
         </div>
         <p className="text-center mb-8">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio,
-          accusamus?
+          Take a detour at our most popular hostel for this season
         </p>
         <div className="flex justify-center flex-wrap gap-5">
           <button className="px-3 py-1 rounded-3xl bg-[#0cafff] text-white">
@@ -105,10 +104,13 @@ export default function PopularHostel() {
                   <p className="text-xl pt-4 font-semibold ">{hostel.title}</p>
                   {RenderStar(hostel.rating)}
                   <p className="mb-4 text-[#acacac] text-sm">
-                    <LocationOnOutlinedIcon fontSize="small" />
+                    <LocationOnOutlinedIcon
+                      fontSize="small"
+                      style={{ color: "var(--btn-primary)" }}
+                    />
                     {hostel.location}
                   </p>
-                  <button className="w-full flex justify-center mb-5 border border-gray-300 lg:px-12 lg:py-2 md:px-16 md:py-2 px-16 py-2 rounded-lg font-semibold gap-2 hover:bg-[#0cafff] hover:border-none hover:text-white transition-all">
+                  <button className="w-full flex justify-center mb-5 border border-gray-300 lg:px-12 lg:py-2 md:px-16 md:py-2 px-16 py-2 rounded-lg font-semibold gap-2 hover:bg-[--btn-primary] hover:border-none hover:text-white transition-all">
                     view
                   </button>
                 </div>
@@ -117,7 +119,7 @@ export default function PopularHostel() {
           ))}
         </div>
         <div className="flex justify-center">
-          <button className="bg-[--btn-primary] text-lg shadow-2xl px-6 py-3 rounded-lg font-semibold text-white hover:bg-[--btn-secondary] transition-all active:translate-y-0.5">
+          <button className="bg-white text-lg shadow-2xl px-6 py-3 rounded-lg font-semibold text-[--primary-color] hover:text-white hover:bg-[--btn-primary] border border-[--btn-primary] transition-all active:translate-y-0.5">
             View all Hostels
           </button>
         </div>
