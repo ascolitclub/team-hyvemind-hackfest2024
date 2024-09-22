@@ -21,13 +21,13 @@ export class User extends BaseEntity {
   @Column({ type: 'varchar', length: 255, nullable: false })
   username!: string;
 
-  @Column({ type: 'varchar', length: 50 })
+  @Column({ type: 'text' })
   password!: string;
 
   @Column({ type: 'varchar', length: 255, nullable: false })
   email!: string;
 
-  @Column({ type: 'varchar', length: 255, nullable: false })
+  @Column({ type: 'text', nullable: false })
   phoneNumber!: string;
 
   @Column({ default: 'user', enum: RolesConstant })

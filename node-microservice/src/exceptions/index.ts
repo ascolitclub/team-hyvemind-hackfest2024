@@ -54,6 +54,17 @@ export class BadRequestException extends HttpException {
   }
 }
 
+export class RabbitMqExceptions extends HttpException {
+  constructor(statusCode: number | null, message: string) {
+    super(
+      statusCode || HTTP_STATUS.BAD_REQUEST.CODE,
+      message || HTTP_STATUS.BAD_REQUEST.MESSAGE
+    );
+    this.name = 'BadRequestException';
+    Object.setPrototypeOf(this, new.target.prototype);
+  }
+}
+
 export class DatabaseException extends HttpException {
   constructor(statusCode: number | null, message: string) {
     super(

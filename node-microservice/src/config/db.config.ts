@@ -7,11 +7,11 @@ dotenv.config();
 export function getdbConfig() {
   return {
     type: 'mysql',
-    host: 'db', // Use the service name defined in docker-compose
+    host: 'localhost', // Use the service name defined in docker-compose
     port: 3306, // MySQL default port
     username: 'root',
-    password: 'secret',
-    database: 'my_database',
+    password: 'r0bonepal77@',
+    database: 'hackathon',
     migrationsTableName: 'migrations',
     synchronize: false,
     logging: false,

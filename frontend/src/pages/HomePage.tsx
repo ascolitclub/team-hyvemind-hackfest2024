@@ -1,7 +1,9 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { HeroSection } from "../components/Hero Section/HeroSection";
+import PopularHostel from "../components/popularhostel/PopularHostel";
+import OurFeatures from "../components/features/OurFeatures";
 
 export default function HomePage() {
   useEffect(() => {
@@ -13,17 +15,9 @@ export default function HomePage() {
   }, []);
   return (
     <>
-      <div
-        data-aos="fade-up"
-        className="container mx-auto px-12 text-xl text-black font-bold "
-        style={{ fontFamily: "Pacifico" }}
-      >
-        {/* Mero Hostel Mate */}
-        <img className="h-14" src="/assets/mhmlogo.png" alt="logo" />
-      </div>
-      <Link to={"/about"}>
-        <button>GO TO ABOUT PAGE</button>
-      </Link>
+      <HeroSection />
+      <OurFeatures />
+      <PopularHostel />
     </>
   );
 }
