@@ -57,10 +57,18 @@ export default function PopularHostel() {
   ];
   return (
     <>
-      <div className="h-auto w-screen container mx-auto  mb-5">
-        <h2 className="text-center text-[50px] font-extrabold">
-          Popular <span className="text-[#0cafff]">Hostel</span>
-        </h2>
+      <div className="h-auto w-screen container mx-auto mb-5">
+        <div className="relative flex items-center justify-center">
+          <h1
+            className="text-[150px] text-gray-100 font-mono font-semibold"
+            style={{ fontFamily: "Oswald" }}
+          >
+            HOSTELS
+          </h1>
+          <h2 className="absolute tracking-widest text-center text-xl top-[47%] text-[--primary-color] font-sans uppercase">
+            Popular Hostels
+          </h2>
+        </div>
         <p className="text-center mb-8">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio,
           accusamus?
