@@ -2,6 +2,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import About from "../pages/About";
 import HomePage from "../pages/HomePage";
+import Login from "../pages/Login";
 
 export default function AppRoutes() {
   const location = useLocation();
@@ -32,6 +33,7 @@ export default function AppRoutes() {
       {/* {!hideNavbarFooter && <Navbar />} */}
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<Login/>} />
         <Route path="/about" element={<About />} />
       </Routes>
       {/* {!hideNavbarFooter && <Footer />} */}

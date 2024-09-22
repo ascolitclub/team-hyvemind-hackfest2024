@@ -4,6 +4,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Features from "../components/features/Features";
 import PopularHostel from "../components/popularhostel/PopularHostel";
+import Login from "./Login";
 
 export default function HomePage() {
   useEffect(() => {
@@ -23,6 +24,9 @@ export default function HomePage() {
         {/* Mero Hostel Mate */}
         <img className="h-14" src="/assets/mhmlogo.png" alt="logo" />
       </div>
+      <Features/>
+      <PopularHostel/>
+      <Login/>
     </>
   );
 }
