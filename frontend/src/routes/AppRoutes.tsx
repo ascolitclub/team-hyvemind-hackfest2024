@@ -2,6 +2,8 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import About from "../pages/About";
 import HomePage from "../pages/HomePage";
+import { Navbar } from "../components/Navbar/Navbar";
+import { Footer } from "../components/Footer/Footer";
 
 export default function AppRoutes() {
   const location = useLocation();
@@ -23,18 +25,18 @@ export default function AppRoutes() {
     return () => clearTimeout(timer);
   }, [location]);
 
-  // const noNavbarFooterRoutes = ["/login"];
+  const noNavbarFooterRoutes = ["/login"];
 
-  // const hideNavbarFooter = noNavbarFooterRoutes.includes(location.pathname);
+  const hideNavbarFooter = noNavbarFooterRoutes.includes(location.pathname);
 
   return (
     <>
-      {/* {!hideNavbarFooter && <Navbar />} */}
+      {!hideNavbarFooter && <Navbar />}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<About />} />
       </Routes>
-      {/* {!hideNavbarFooter && <Footer />} */}
+      {!hideNavbarFooter && <Footer />}
     </>
   );
 }
