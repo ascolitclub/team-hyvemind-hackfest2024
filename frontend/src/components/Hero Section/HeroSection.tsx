@@ -20,7 +20,7 @@ export const HeroSection = () => {
             space.
           </p>
         </div>
-        <div className="search absolute top-[520px] shadow-2xl box mx-72 px-8 grid items-center justify-center grid-cols-4 gap-x-12 bg-white rounded-2xl h-24 text-black font-medium">
+        <div className="search absolute top-[550px] shadow-2xl box mx-72 px-8 grid items-center justify-center grid-cols-4 gap-x-12 bg-white rounded-2xl h-24 text-black font-medium">
           <div className="">
             <h2>Location</h2>
             <input
@@ -73,7 +73,7 @@ export const HeroSection = () => {
             </select>
           </div>
           <div>
-            <button className="w-full text-[--third-text-color] bg-[--btn-primary] py-5 rounded-xl font-semibold text-white hover:bg-[--btn-secondary] border border-[--primary-color] transition-all active:translate-y-0.5">
+            <button className="w-full text-[--third-text-color] bg-[--btn-primary] py-5 rounded-xl font-semibold text-white hover:bg-[--btn-secondary] transition-all active:translate-y-0.5">
               Search
             </button>
           </div>
