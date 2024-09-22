@@ -1,4 +1,7 @@
-from flask import Flask
+from flask import Flask,jsonify
+from map.helper.map import get_hostel
+from queues.producer.nodeProducer import send_to_node_microservice
+
 
 app = Flask(__name__)
 
@@ -13,7 +16,10 @@ app.config['OPENAPI_SWAGGER_UI_URL'] = 'https://cdn.jsdelivr.net/npm/swagger-ui-
 
 @app.get('/model')
 def run():
-    return "{\"message\" : \"Hey there python\"}"
+    result = get_hostel()
+    send_to_node_microservice(result)
+    return jsonify(result)
+    
 
 
 if __name__ == "__main__":

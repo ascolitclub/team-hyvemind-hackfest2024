@@ -25,7 +25,10 @@ services:
     restart: unless-stopped
 
   node-microservice:
-    build: ./node-microservice
+    build:
+      context: ./node-microservice
+      dockerfile: dockerfile
+
     ports:
       - '3000:3000'
     environment:
@@ -37,7 +40,6 @@ services:
       - db
       - redis
     restart: unless-stopped
-
 
   model-microservice:
     build: ./model-microservice
