@@ -1,16 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { NavLink } from "react-router-dom";
 
 export const Navbar = () => {
   const [isBlogHover, setIsBlogHover] = useState(false);
+  const blogRef = useRef<HTMLLIElement>(null);
 
-  const handleBlogMouseEnter = () => {
-    setIsBlogHover(true);
+  // Toggle the dropdown on clicking the "Blog"
+  const triggerBlogHover = () => {
+    setIsBlogHover(!isBlogHover);
   };
 
-  const handleBlogMouseLeave = () => {
-    setIsBlogHover(false);
-  };
+  // Close the dropdown if clicked outside the "Blog" or dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        blogRef.current &&
+        !blogRef.current.contains(event.target as Node) &&
+        isBlogHover
+      ) {
+        setIsBlogHover(false); // Close the dropdown if clicked outside
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isBlogHover]);
 
   return (
     <>
@@ -26,7 +44,7 @@ export const Navbar = () => {
             </NavLink>
           </div>
           <div className="nav-elements justify-self-end">
-            <ul className="flex gap-20 justify-between">
+            <ul className="flex gap-12 justify-between">
               <li className="hover:text-[--primary-color]">
                 <NavLink
                   to="/"
@@ -51,16 +69,28 @@ export const Navbar = () => {
                   Hostel
                 </NavLink>
               </li>
+              <li className="hover:text-[--primary-color]">
+                <NavLink
+                  to="/about"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-[--primary-color] border-b-2 border-[--primary-color] transition-all"
+                      : ""
+                  }
+                >
+                  About
+                </NavLink>
+              </li>
               <li
-                className="relative hover:text-[--primary-color] cursor-pointer"
-                onMouseEnter={handleBlogMouseEnter}
+                ref={blogRef}
+                className="relative hover:text-[--primary-color] cursor-pointer flex gap-1"
+                onClick={triggerBlogHover}
               >
                 Blog
+                {!isBlogHover && <KeyboardArrowDownIcon />}
+                {isBlogHover && <KeyboardArrowUpIcon />}
                 {isBlogHover && (
-                  <div
-                    onMouseLeave={handleBlogMouseLeave}
-                    className="absolute top-full mt-3 -left-12 bg-white text-black p-4 shadow-xl rounded-b-md px-12"
-                  >
+                  <div className="absolute  top-full mt-3 -left-12 bg-white text-black p-4 shadow-xl rounded-b-md px-12">
                     <ul className="flex flex-col items-start gap-2">
                       <li className="hover:text-[--primary-color]">
                         <NavLink to="/news">News</NavLink>

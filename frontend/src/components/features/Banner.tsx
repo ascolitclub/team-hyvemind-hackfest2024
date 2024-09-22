@@ -3,8 +3,8 @@ export const Banner = () => {
     <>
       <div className="container mx-auto px-12">
         <div className="bg-[url(/assets/10.webp)] rounded-2xl bg-center bg-no-repeat bg-cover  my-28 flex flex-col">
-          <div className="text-white rounded-2xl bg-gradient-to-r from-cyan-500/50 to-blue-500/50 container mx-auto px-12 py-16 leading-tight">
-            <p data-aos="fade-up" className="uppercase text-lg">
+          <div className="text-white rounded-2xl bg-gradient-to-r from-cyan-500/50 to-blue-500/50 container mx-auto px-12 py-16 leading-none">
+            <p data-aos="fade-up" className="uppercase text-lg tracking-widest">
               Book your dream hostel
             </p>
             <h2
