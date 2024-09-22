@@ -1,3 +1,7 @@
+import json
+import os
+from libs.logger import logger
+from database.connect import client
 from flask import Flask,jsonify
 from flask_smorest import Api
 from flask_cors import CORS
@@ -17,6 +21,8 @@ app.config['OPENAPI_SWAGGER_UI_PATH'] = '/swagger-ui'
 app.config['OPENAPI_SWAGGER_UI_URL'] = 'https://cdn.jsdelivr.net/npm/swagger-ui-dist/'
 
 api = Api(app=app)
+
+
 
 api.register_blueprint(HostelBluePrint)
 
