@@ -32,11 +32,12 @@ export default function OurFeatures() {
   ];
 
   return (
-    <div className="h-auto py-32 ">
-      <div className="container mx-auto">
+    <div className="h-auto pt-32 pb-16">
+      <div className="container mx-auto px-12">
         <div className="grid grid-cols-4 gap-4">
           {featureList.map((feature, index) => (
             <div
+              data-aos="fade-up"
               key={index}
               className="feature-item text-center py-4"
               onMouseEnter={() => setHoveredIndex(index)}
@@ -63,7 +64,7 @@ export default function OurFeatures() {
                   },
                 })}
               </div>
-              <h3 className="feature-title text-[20px] font-bold mb-2">
+              <h3 className="feature-title text-[20px] font-semibold mb-2">
                 {feature.title}
               </h3>
               <p className="feature-description">{feature.description}</p>

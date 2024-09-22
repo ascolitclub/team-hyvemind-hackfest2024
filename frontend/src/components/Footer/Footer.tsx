@@ -1,7 +1,7 @@
 export const Footer = () => {
   return (
     <>
-      <section className="bottom-0 h-[500px]">
+      <section className="">
         <div>footer is her</div>
       </section>
     </>
