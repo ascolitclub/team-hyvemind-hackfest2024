@@ -218,7 +218,6 @@
 //   );
 // }
 
-
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css"; // Import AOS styles
@@ -418,7 +417,7 @@ export default function About() {
           className="stay-preparation mx-40 w-96 bg-gray-200 rounded-lg px-4 py-4 flex flex-col items-center justify-center"
           style={{ boxShadow: "5px 8px 8px 0px rgba(0, 0, 0, 0.5)" }}
         >
-          <div className="bg-white rounded-full w-max p-4 shadow-lg">
+          <div className="bg-white rounded-full w-max p-4 mt-4 shadow-lg">
             <HandshakeIcon
               style={{ color: "var(--primary-color)", fontSize: 70 }}
             />

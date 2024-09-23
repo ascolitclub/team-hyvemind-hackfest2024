@@ -7,6 +7,9 @@ import Login from "../pages/Login";
 import Footer from "../components/Footer/Footer";
 import HostelDetails from "../pages/HostelDetails";
 import Hostel from "../pages/Hostel";
+import { News } from "../pages/News";
+import { FAQs } from "../pages/FAQs";
+import { ReviewPage } from "../pages/ReviewPage";
 
 export default function AppRoutes() {
   const location = useLocation();
@@ -37,9 +40,12 @@ export default function AppRoutes() {
       {!hideNavbarFooter && <Navbar />}
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login/>} />
+        <Route path="/login" element={<Login />} />
         <Route path="/about" element={<About />} />
         <Route path="/hostel" element={<Hostel />} />
+        <Route path="/news" element={<News />} />
+        <Route path="/reviewpage" element={<ReviewPage />} />
+        <Route path="/faqs" element={<FAQs />} />
         <Route path="/hostel/:title" element={<HostelDetails />} />
       </Routes>
       {!hideNavbarFooter && <Footer />}

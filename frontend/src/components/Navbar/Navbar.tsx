@@ -134,7 +134,7 @@ export const Navbar = () => {
                         <NavLink to="/news">News</NavLink>
                       </li>
                       <li className="hover:text-[--primary-color]">
-                        <NavLink to="/reviews">Reviews</NavLink>
+                        <NavLink to="/reviewpage">Reviews</NavLink>
                       </li>
                       <li className="hover:text-[--primary-color]">
                         <NavLink to="/faqs">FAQs</NavLink>
