@@ -1,5 +1,4 @@
-import { useForm } from 'react-hook-form';
-import axios from 'axios';
+import { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faGooglePlusG,
@@ -7,23 +6,28 @@ import {
   faGithub,
   faLinkedinIn,
 } from '@fortawesome/free-brands-svg-icons';
-import { useState } from 'react';
-import { BACKEND_URL_NODOC } from '../services/helper';
-import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { USER_BACKEND_URL } from '../services/helper';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { loginReducer } from '../redux/authSlice';
+import Swal from 'sweetalert2';
 
-export default function Login() {
+interface LoginProps {
+  onClose: () => void; // Define onClose as a function that returns void
+}
+
+export default function Login({ onClose }: LoginProps) {
   const [isSignUpVisible, setIsSignUpVisible] = useState(false);
+  const [signInEmail, setSignInEmail] = useState('');
+  const [signInPassword, setSignInPassword] = useState('');
+  const [signUpName, setSignUpName] = useState('');
+  const [signUpPhone, setSignUpPhone] = useState('');
+  const [signUpEmail, setSignUpEmail] = useState('');
+  const [signUpPassword, setSignUpPassword] = useState('');
+  const loginRef = useRef<HTMLDivElement>(null); // Create a ref for the login div
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
 
   const handleSignUpClick = () => {
     setIsSignUpVisible(true);
@@ -33,24 +37,34 @@ export default function Login() {
     setIsSignUpVisible(false);
   };
 
-  const onSubmitRegister = async (data: any) => {
-    try {
-      console.log(data);
-      const response = await axios.post(`${BACKEND_URL_NODOC}/register`, data);
-      console.log('API Response:', response.data);
-    } catch (error) {
-      console.log(error);
-      console.error('API Error:', error);
-    }
-  };
+  // Close the login div when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        loginRef.current &&
+        !loginRef.current.contains(event.target as Node)
+      ) {
+        onClose(); // Call onClose when clicking outside
+      }
+    };
 
-  const onSubmitLogin = async (data: any) => {
-    const response = await axios.post(`${BACKEND_URL_NODOC}/login`, data);
-    try {
-      console.log(data);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [onClose]);
 
+  const handleSignIn = async () => {
+    try {
+      console.log(signInEmail, signInPassword);
+      const response = await axios.post(
+        `http://localhost:3000/api/user/login`,
+        {
+          email: signInEmail,
+          password: signInPassword,
+        }
+      );
       if (response.data) {
-        localStorage.setItem('authToken', response.data.accessToken);
         dispatch(
           loginReducer({
             access_token: response.data.accessToken,
@@ -59,8 +73,6 @@ export default function Login() {
             user_email: response.data.email,
           })
         );
-
-        navigate('/test');
         Swal.fire({
           position: 'top-end',
           icon: 'success',
@@ -68,22 +80,43 @@ export default function Login() {
           showConfirmButton: false,
           timer: 1500,
         });
+
+        navigate('/test');
       }
     } catch (error) {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: response.data.message || 'Login Failed!',
+        text: error.message || 'Login Failed!',
       });
     }
   };
 
+  const handleSignUp = async () => {
+    try {
+      const response = await axios.post(
+        `http://localhost:3000/api/user/register`,
+        {
+          name: signUpName,
+          phone: signUpPhone,
+          email: signUpEmail,
+          password: signUpPassword,
+        }
+      );
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
-    <div className="flex items-center justify-center h-screen bg-gradient-to-r from-gray-300 to-blue-200">
-      <div className="relative w-full max-w-4xl h-[500px] bg-white rounded-xl shadow-lg overflow-hidden flex">
+    <div className="relative flex items-center justify-center h-screen w-screen">
+      <div
+        ref={loginRef} // Attach the ref to the main login div
+        className="relative w-full max-w-4xl h-[500px] rounded-2xl bg-white shadow-lg flex"
+      >
         {/* Sign In Form */}
         <div
-          className={`w-1/2 h-full bg-white flex flex-col justify-center items-center px-10 transition-all duration-700 ${
+          className={`w-1/2 h-full bg-white flex flex-col rounded-2xl justify-center items-center px-10 transition-all duration-700 ${
             isSignUpVisible ? 'opacity-0 pointer-events-none' : 'opacity-100'
           }`}
         >
@@ -103,45 +136,34 @@ export default function Login() {
             </a>
           </div>
           <span className="text-sm mb-4">or use your email to sign in</span>
-
-          {/* Sign-In Form Fields */}
-          <form onSubmit={handleSubmit(onSubmitLogin)} className="w-full">
-            <input
-              type="email"
-              placeholder="Email"
-              className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
-              {...register('email', { required: 'Email is required' })}
-            />
-            {errors.email && (
-              <span className="text-red-500">{errors.email.message}</span>
-            )}
-
-            <input
-              type="password"
-              placeholder="Password"
-              className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
-              {...register('password', { required: 'Password is required' })}
-            />
-            {errors.password && (
-              <span className="text-red-500">{errors.password.message}</span>
-            )}
-
-            <a href="#" className="text-sm text-purple-600 mb-4">
-              Forgot Your Password?
-            </a>
-
-            <button
-              type="submit"
-              className="bg-purple-600 text-white py-2 px-6 rounded-full"
-            >
-              Sign In
-            </button>
-          </form>
+          <input
+            type="email"
+            placeholder="Email"
+            className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
+            value={signInEmail}
+            onChange={(e) => setSignInEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
+            value={signInPassword}
+            onChange={(e) => setSignInPassword(e.target.value)}
+          />
+          <a href="#" className="text-sm text-[--primary-color] mb-4">
+            Forgot Your Password?
+          </a>
+          <button
+            className="bg-[--primary-color] text-white py-2 px-6 rounded-full"
+            onClick={handleSignIn}
+          >
+            Sign In
+          </button>
         </div>
 
         {/* Sign Up Form */}
         <div
-          className={`w-1/2 h-full bg-white flex flex-col justify-center items-center px-10 transition-all duration-700 ${
+          className={`w-1/2 h-full bg-white flex flex-col rounded-2xl justify-center items-center px-10 transition-all duration-700 ${
             isSignUpVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
           }`}
         >
@@ -163,63 +185,45 @@ export default function Login() {
           <span className="text-sm mb-4">
             or use your email for registration
           </span>
-
-          {/* Sign-Up Form Fields */}
-          <form onSubmit={handleSubmit(onSubmitRegister)} className="w-full">
-            <input
-              type="text"
-              placeholder="User Name"
-              className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
-              {...register('username', { required: 'User Name is required' })}
-            />
-            {errors.name && (
-              <span className="text-red-500">{errors.username.message}</span>
-            )}
-
-            <input
-              type="number"
-              placeholder="Phone Number"
-              className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
-              {...register('phoneNumber', {
-                required: 'Phone number is required',
-              })}
-            />
-            {errors.phone && (
-              <span className="text-red-500">{errors.phoneNumber.message}</span>
-            )}
-
-            <input
-              type="email"
-              placeholder="Email"
-              className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
-              {...register('email', { required: 'Email is required' })}
-            />
-            {errors.email && (
-              <span className="text-red-500">{errors.email.message}</span>
-            )}
-
-            <input
-              type="password"
-              placeholder="Password"
-              className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
-              {...register('password', { required: 'Password is required' })}
-            />
-            {errors.password && (
-              <span className="text-red-500">{errors.password.message}</span>
-            )}
-
-            <button
-              type="submit"
-              className="bg-purple-600 text-white py-2 px-6 rounded-full"
-            >
-              Sign Up
-            </button>
-          </form>
+          <input
+            type="text"
+            placeholder="Name"
+            className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
+            value={signUpName}
+            onChange={(e) => setSignUpName(e.target.value)}
+          />
+          <input
+            type="tel"
+            placeholder="Phone Number"
+            className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
+            value={signUpPhone}
+            onChange={(e) => setSignUpPhone(e.target.value)}
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
+            value={signUpEmail}
+            onChange={(e) => setSignUpEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
+            value={signUpPassword}
+            onChange={(e) => setSignUpPassword(e.target.value)}
+          />
+          <button
+            className="bg-[--primary-color] text-white py-2 px-6 rounded-full"
+            onClick={handleSignUp}
+          >
+            Sign Up
+          </button>
         </div>
 
         {/* Overlapping Div */}
         <div
-          className={`absolute right-0 top-0 w-1/2 h-full bg-purple-700 flex flex-col items-center justify-center transition-transform duration-700 ${
+          className={`absolute right-0 top-0 rounded-2xl w-1/2 h-full bg-[--primary-color] flex flex-col items-center justify-center transition-transform duration-700 ${
             isSignUpVisible ? '-translate-x-full' : 'translate-x-0'
           }`}
           style={{ zIndex: 10 }}
@@ -239,6 +243,12 @@ export default function Login() {
             {isSignUpVisible ? 'Sign In' : 'Sign Up'}
           </button>
         </div>
+        <button
+          className="absolute -top-8 -right-10 text-black bg-white h-8 w-8 rounded-full p-1 shadow"
+          onClick={onClose}
+        >
+          X
+        </button>
       </div>
     </div>
   );
