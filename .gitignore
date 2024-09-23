@@ -3,3 +3,6 @@ rabbitmq-user
 rabbitmq-hostel
 .env
 log
+.idea
+.git
+.pyc
