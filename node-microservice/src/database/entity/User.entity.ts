@@ -5,12 +5,21 @@ import {
   PrimaryGeneratedColumn,
   Column,
   BaseEntity,
+  JoinColumn,
+  OneToOne,
 } from 'typeorm';
+import { HostelCredential } from './Hostel.entity';
 
 export enum RolesConstant {
   USER = 'user',
   HOSTEL_OWNER = 'hostel_owner',
   ADMIN = 'admin',
+}
+
+export enum StatusConstant {
+  PENDING = 'pending',
+  NOT_APPLY = 'not_apply',
+  APPROVED = 'approved',
 }
 
 @Entity({ name: 'user' })
@@ -32,6 +41,12 @@ export class User extends BaseEntity {
 
   @Column({ default: 'user', enum: RolesConstant })
   role!: string;
+
+  @Column({ default: 'not_apply', enum: StatusConstant })
+  status!: string;
+
+  @OneToOne(() => HostelCredential, (hostelCredential) => hostelCredential.user)
+  hostel!: HostelCredential;
 
   @CreateDateColumn()
   created_at!: Date;
