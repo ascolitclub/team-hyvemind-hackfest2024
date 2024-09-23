@@ -6,7 +6,7 @@ export const Contact = () => {
   return (
     <>
       <div className="w-full h-20  top-0  bg-[#041E42]"></div>
-        <div className="bg-[#041E42] text-center leading-tight py-8 mb-8 text-white">
+        <div className="bg-[#041E42] text-center leading-tight py-10 mb-8 text-white">
           <h2 className="text-[150px] font-extrabold uppercase tracking-wider"
             style={{ fontFamily: "Oswald" }}>
               Contact Us 

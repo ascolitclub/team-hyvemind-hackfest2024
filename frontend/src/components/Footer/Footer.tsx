@@ -73,16 +73,16 @@ export default function Footer() {
                             <h3 className="mb-3 font-bold text-[18px]">Social Media Links</h3>
                             <ul className="flex gap-3">
                                   <a href="#">
-                                    <FacebookOutlinedIcon style={{color:"black"}}/> 
+                                    <FacebookOutlinedIcon  style={{color:"black"}}/> 
                                   </a>
                                   <a href="#">
-                                    <InstagramIcon style={{color:"black"}}/>
+                                    <InstagramIcon  style={{color:"black"}}/>
                                   </a>
                                   <a href="#">
-                                    <LinkedInIcon style={{color:"black"}}/> 
+                                    <LinkedInIcon  style={{color:"black"}}/> 
                                   </a>
                                   <a href="#">
-                                    <XIcon style={{color:"black"}}/> 
+                                    <XIcon  style={{color:"black"}}/> 
                                   </a>
                             </ul>
                         </div>

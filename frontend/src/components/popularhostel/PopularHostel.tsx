@@ -10,202 +10,203 @@ export default function PopularHostel() {
       title: "Hostel1",
       location: "Thamel, Kathmandu",
       rating: 5,
-      type: "Male"
+      type: "Male",
     },
     {
       img: "/public/hostel2.jpg",
       title: "Hostel2",
       location: "Thamel, Kathmandu",
       rating: 3,
-      type: "Female"
+      type: "Female",
     },
     {
       img: "/public/hostel3.jpg",
       title: "Hostel3",
       location: "Thamel, Kathmandu",
       rating: 4,
-      type: "Male"
+      type: "Male",
     },
     {
       img: "/public/hostel4.jpg",
       title: "Hostel4",
       location: "Thamel, Kathmandu",
       rating: 4,
-      type: "Female"
+      type: "Female",
     },
     {
       img: "/public/hostel5.jpg",
       title: "Hostel5",
       location: "Jorpati, Kathmandu",
       rating: 3,
-      type: "Male"
+      type: "Male",
     },
     {
       img: "/public/hostel6.jpg",
       title: "Hostel6",
       location: "Jorpati, Kathmandu",
       rating: 4,
-      type: "Female"
+      type: "Female",
     },
     {
       img: "/public/hostel7.jpg",
       title: "Hostel7",
       location: "Jorpati, Kathmandu",
       rating: 2,
-      type: "Male"
+      type: "Male",
     },
     {
       img: "/public/hostel8.jpg",
       title: "Hostel8",
       location: "Jorpati, Kathmandu",
       rating: 5,
-      type: "Female"
+      type: "Female",
     },
     {
       img: "/public/hostel9.jpg",
       title: "Hostel9",
       location: "Kapan, Kathmandu",
       rating: 4,
-      type: "Male"
+      type: "Male",
     },
     {
       img: "/public/hostel10.jpg",
       title: "Hostel10",
       location: "Kapan, Kathmandu",
       rating: 5,
-      type: "Female"
+      type: "Female",
     },
     {
       img: "/public/hostel11.jpg",
       title: "Hostel11",
       location: "Kapan, Kathmandu",
       rating: 4,
-      type: "Male"
+      type: "Male",
     },
     {
       img: "/public/hostel12.jpg",
       title: "Hostel12",
       location: "Kapan, Kathmandu",
       rating: 3,
-      type: "Female"
+      type: "Female",
     },
     {
       img: "/public/hostel13.jpg",
       title: "Hostel13",
       location: "Chabhil, Kathmandu",
       rating: 5,
-      type: "Male"
+      type: "Male",
     },
     {
       img: "/public/hostel14.jpg",
       title: "Hostel14",
       location: "Chabhil, Kathmandu",
       rating: 4,
-      type: "Female"
+      type: "Female",
     },
     {
       img: "/public/hostel15.jpg",
       title: "Hostel15",
       location: "Chabhil, Kathmandu",
       rating: 3,
-      type: "Male"
+      type: "Male",
     },
     {
       img: "/public/hostel16.jpg",
       title: "Hostel16",
       location: "Chabhil, Kathmandu",
       rating: 2,
-      type: "Female"
+      type: "Female",
     },
     {
       img: "/public/hostel17.jpg",
       title: "Hostel17",
       location: "Mitrapark, Kathmandu",
       rating: 4,
-      type: "Male"
+      type: "Male",
     },
     {
       img: "/public/hostel18.jpg",
       title: "Hostel18",
       location: "Mitrapark, Kathmandu",
       rating: 3,
-      type: "Female"
+      type: "Female",
     },
     {
       img: "/public/hostel19.jpg",
       title: "Hostel19",
       location: "Mitrapark, Kathmandu",
       rating: 5,
-      type: "Male"
+      type: "Male",
     },
     {
       img: "/public/hostel20.jpg",
       title: "Hostel20",
       location: "Mitrapark, Kathmandu",
       rating: 4,
-      type: "Female"
+      type: "Female",
     },
     {
       img: "/public/hostel21.jpg",
       title: "Hostel21",
       location: "Gaushala, Kathmandu",
       rating: 4,
-      type: "Male"
+      type: "Male",
     },
     {
       img: "/public/hostel22.jpg",
       title: "Hostel22",
       location: "Gaushala, Kathmandu",
       rating: 5,
-      type: "Female"
+      type: "Female",
     },
     {
       img: "/public/hostel23.jpg",
       title: "Hostel23",
       location: "Gaushala, Kathmandu",
       rating: 3,
-      type: "Male"
+      type: "Male",
     },
     {
       img: "/public/hostel24.jpg",
       title: "Hostel24",
       location: "Gaushala, Kathmandu",
       rating: 2,
-      type: "Female"
+      type: "Female",
     },
     {
       img: "/public/hostel20.jpg",
       title: "Hostel25",
       location: "Mitrapark, Kathmandu",
       rating: 5,
-      type: "Male"
+      type: "Male",
     },
     {
       img: "/public/hostel20.jpg",
       title: "Hostel26",
       location: "Mitrapark, Kathmandu",
       rating: 3,
-      type: "Female"
+      type: "Female",
     },
   ];
+  
 
-  // Sort the hostelData by rating in descending order
   const sortedHostels = [...hostelData].sort((a, b) => b.rating - a.rating);
 
   const [visibleCount, setVisibleCount] = useState(4); // Initially show 4 hostels
-  const [filterType, setFilterType] = useState("All"); // To track the filter
+  const [filterType, setFilterType] = useState("All");
+  const [hasClickedShowMore, setHasClickedShowMore] = useState(false); // New state
 
   const handleShowMore = () => {
     setVisibleCount((prevCount) => Math.min(prevCount + 4, 8)); // Show 4 more but max is 8
+    setHasClickedShowMore(true); // Set to true when button is clicked
   };
 
-  const handleFilterChange = (hostelFilter: string) => {
+  const handleFilterChange = (hostelFilter:string) => {
     setFilterType(hostelFilter);
     setVisibleCount(4); // Reset the visible count when the filter changes
+    setHasClickedShowMore(false); // Reset the show more button state
   };
-  
 
-  // Filter the hostels based on the selected filter (All, Boys, Girls)
   const filteredHostels = sortedHostels.filter((hostel) => {
     if (filterType === "All") return true;
     return filterType === "Boys" ? hostel.type === "Male" : hostel.type === "Female";
@@ -302,13 +303,13 @@ export default function PopularHostel() {
             </Link>
           ))}
         </div>
-        {visibleCount < filteredHostels.length && (
+        {!hasClickedShowMore && visibleCount < filteredHostels.length && (
           <div data-aos="fade-up" className="flex justify-center">
             <button
               className="bg-[--btn-primary] text-lg shadow-2xl px-6 py-3 rounded-lg font-semibold text-white hover:bg-[--btn-secondary] transition-all active:translate-y-0.5"
               onClick={handleShowMore}
             >
-              View all Hostels
+              View more hostels
             </button>
           </div>
         )}
