@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const HostelSchema = new mongoose.Schema({
   name: {
@@ -7,12 +7,13 @@ const HostelSchema = new mongoose.Schema({
   },
   rating: {
     type: Number,
-    required: true,
+    default: 0,
   },
   user_ratings_total: {
     type: Number,
-    required: true,
+    default: 0,
   },
+
   location: {
     latitude: {
       type: Number,
@@ -29,7 +30,7 @@ const HostelSchema = new mongoose.Schema({
   },
   place_id: {
     type: String,
-    required: true,
+    required: false,
   },
   price: {
     type: Number,
@@ -38,11 +39,11 @@ const HostelSchema = new mongoose.Schema({
   icon: {
     url: {
       type: String,
-      required: true,
+      required: false,
     },
     background_color: {
       type: String,
-      required: true,
+      required: false,
     },
   },
   photos: [
@@ -94,4 +95,4 @@ const HostelSchema = new mongoose.Schema({
 });
 
 const Hostel = mongoose.model('Hostel', HostelSchema);
-module.exports = Hostel;
+export default Hostel;
