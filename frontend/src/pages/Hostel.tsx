@@ -201,7 +201,7 @@ export default function Hostel() {
       <div className="w-full h-20 top-0 bg-[#041E42]"></div>
       <div className="h-auto">
         <div className='bg-[#041E42]'>
-            <div className='container mx-auto mb-10 py-4'>
+            <div className='container mx-auto  mb-8 py-6'>
               <h2
                 className="text-[150px] text-white text-center font-mono font-semibold uppercase"
                 style={{ fontFamily: "Oswald" }}
@@ -212,10 +212,10 @@ export default function Hostel() {
                 <input
                   type="search"
                   placeholder="Search here"
-                  className="outline-none w-96 border rounded-lg px-4 py-2"
+                  className="outline-none w-96 border rounded-lg px-4 py-3"
                   onChange={(e) => setSearchTerm(e.target.value)}
                   />
-                <button className='bg-[--primary-color] px-5 rounded-lg py-2 text-white'>Search</button>
+                <button className='bg-[--primary-color] px-5 rounded-lg py-3 text-white'>Search</button>
               </div>
             </div>
           </div>
