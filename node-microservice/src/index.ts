@@ -8,6 +8,7 @@ import { errorHandler } from './handler/errorhandler';
 import DatabaseDataSource from './database/connect';
 import { DataSource } from 'typeorm';
 import limiter from './config/rate.limit.config';
+import { mongoDbConnect } from './mongo/connect';
 
 export const expressLogger = createLogger('express-app');
 
@@ -24,6 +25,8 @@ export const expressAppIntializer = async (app: Express) => {
       methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
     })
   );
+
+  await mongoDbConnect();
 
   serverRouter(app);
 

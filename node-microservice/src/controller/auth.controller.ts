@@ -39,10 +39,10 @@ export const loginUser = async (
   next: NextFunction
 ) => {
   try {
-    const { username, password }: Required<LoginUserBody> = req.body;
+    const { email, password }: Required<LoginUserBody> = req.body;
 
     const userCredential = {
-      username,
+      email,
       password,
     };
 

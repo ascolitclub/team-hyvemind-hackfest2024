@@ -1,18 +1,18 @@
-import { useForm } from 'react-hook-form';
-import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGooglePlusG,
   faFacebookF,
   faGithub,
   faLinkedinIn,
-} from '@fortawesome/free-brands-svg-icons';
-import { useState } from 'react';
-import { BACKEND_URL_NODOC } from '../services/helper';
-import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { loginReducer } from '../redux/authSlice';
+} from "@fortawesome/free-brands-svg-icons";
+import { useState } from "react";
+import { BACKEND_URL_NODOC } from "../services/helper";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginReducer } from "../redux/authSlice";
 
 export default function Login({ onClose }: LoginProps) {
   const [isSignUpVisible, setIsSignUpVisible] = useState(false);
@@ -37,10 +37,10 @@ export default function Login({ onClose }: LoginProps) {
     try {
       console.log(data);
       const response = await axios.post(`${BACKEND_URL_NODOC}/register`, data);
-      console.log('API Response:', response.data);
+      console.log("API Response:", response.data);
     } catch (error) {
       console.log(error);
-      console.error('API Error:', error);
+      console.error("API Error:", error);
     }
   };
 
@@ -50,7 +50,7 @@ export default function Login({ onClose }: LoginProps) {
       console.log(data);
 
       if (response.data) {
-        localStorage.setItem('authToken', response.data.accessToken);
+        localStorage.setItem("authToken", response.data.accessToken);
         dispatch(
           loginReducer({
             access_token: response.data.accessToken,
@@ -60,21 +60,37 @@ export default function Login({ onClose }: LoginProps) {
           })
         );
 
-        navigate('/test');
+        navigate("/test");
         Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'You are Logged In SuccessFully',
+          position: "top-end",
+          icon: "success",
+          title: "You are Logged In SuccessFully",
           showConfirmButton: false,
           timer: 1500,
         });
       }
     } catch (error) {
       Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: response.data.message || 'Login Failed!',
+        icon: "error",
+        title: "Error",
+        text: response.data.message || "Login Failed!",
       });
+    }
+  };
+
+  const handleSignUp = async () => {
+    try {
+      const response = await axios.post(
+        `http://localhost:3000/api/user/register`,
+        {
+          username: signUpName,
+          phoneNumber: signUpPhone,
+          email: signUpEmail,
+          password: signUpPassword,
+        }
+      );
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -84,7 +100,7 @@ export default function Login({ onClose }: LoginProps) {
         {/* Sign In Form */}
         <div
           className={`w-1/2 h-full bg-white flex flex-col justify-center items-center px-10 transition-all duration-700 ${
-            isSignUpVisible ? 'opacity-0 pointer-events-none' : 'opacity-100'
+            isSignUpVisible ? "opacity-0 pointer-events-none" : "opacity-100"
           }`}
         >
           <h1 className="text-3xl font-bold mb-6">Sign In</h1>
@@ -110,7 +126,7 @@ export default function Login({ onClose }: LoginProps) {
               type="email"
               placeholder="Email"
               className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
-              {...register('email', { required: 'Email is required' })}
+              {...register("email", { required: "Email is required" })}
             />
             {errors.email && (
               <span className="text-red-500">{errors.email.message}</span>
@@ -120,7 +136,7 @@ export default function Login({ onClose }: LoginProps) {
               type="password"
               placeholder="Password"
               className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
-              {...register('password', { required: 'Password is required' })}
+              {...register("password", { required: "Password is required" })}
             />
             {errors.password && (
               <span className="text-red-500">{errors.password.message}</span>
@@ -142,7 +158,7 @@ export default function Login({ onClose }: LoginProps) {
         {/* Sign Up Form */}
         <div
           className={`w-1/2 h-full bg-white flex flex-col justify-center items-center px-10 transition-all duration-700 ${
-            isSignUpVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
+            isSignUpVisible ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
         >
           <h1 className="text-3xl font-bold mb-6">Create Account</h1>
@@ -170,7 +186,7 @@ export default function Login({ onClose }: LoginProps) {
               type="text"
               placeholder="User Name"
               className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
-              {...register('username', { required: 'User Name is required' })}
+              {...register("username", { required: "User Name is required" })}
             />
             {errors.name && (
               <span className="text-red-500">{errors.username.message}</span>
@@ -180,8 +196,8 @@ export default function Login({ onClose }: LoginProps) {
               type="number"
               placeholder="Phone Number"
               className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
-              {...register('phoneNumber', {
-                required: 'Phone number is required',
+              {...register("phoneNumber", {
+                required: "Phone number is required",
               })}
             />
             {errors.phone && (
@@ -192,7 +208,7 @@ export default function Login({ onClose }: LoginProps) {
               type="email"
               placeholder="Email"
               className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
-              {...register('email', { required: 'Email is required' })}
+              {...register("email", { required: "Email is required" })}
             />
             {errors.email && (
               <span className="text-red-500">{errors.email.message}</span>
@@ -202,7 +218,7 @@ export default function Login({ onClose }: LoginProps) {
               type="password"
               placeholder="Password"
               className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
-              {...register('password', { required: 'Password is required' })}
+              {...register("password", { required: "Password is required" })}
             />
             {errors.password && (
               <span className="text-red-500">{errors.password.message}</span>
@@ -220,7 +236,7 @@ export default function Login({ onClose }: LoginProps) {
         {/* Overlapping Div */}
         <div
           className={`absolute right-0 top-0 w-1/2 h-full bg-purple-700 flex flex-col items-center justify-center transition-transform duration-700 ${
-            isSignUpVisible ? '-translate-x-full' : 'translate-x-0'
+            isSignUpVisible ? "-translate-x-full" : "translate-x-0"
           }`}
           style={{ zIndex: 10 }}
         >

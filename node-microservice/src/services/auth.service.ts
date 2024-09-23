@@ -1,25 +1,28 @@
 import { BadRequestException, DatabaseException } from '../exceptions';
 import { LoginUserBody, RegisterUserBody } from '../interface/auth.interface';
-import { User } from '../database/entity/User.entity';
+import User from '../mongo/models/User.model';
 import bcrypt from 'bcrypt';
 import AuthRepository from '../repositories/auth.repo';
 import { createAccessToken } from '../utils/jwt.utils';
 import { Check } from 'typeorm';
-import { initializeMongoDbUser } from '../mongo/connect';
 
 class AuthService {
   static registerUser = async (data: Partial<RegisterUserBody>) => {
     console.log('This is the register user', data);
-
-    const db = initializeMongoDbUser();
     const checkData = Object.values(data).length === 0;
     if (checkData) {
       throw new BadRequestException(null, 'Data Object Is Empty');
     }
-    const existingDocument = await (
-      await db
-    ).findOne({
-      $and: [{ email: data.email }, { phoneNumber: data.phoneNumber }],
+
+    const existingDocument = await User.findOne({
+      $and: [
+        {
+          username: data.username,
+        },
+        {
+          phoneNumber: data.phoneNumber,
+        },
+      ],
     });
 
     if (existingDocument) {
@@ -44,15 +47,9 @@ class AuthService {
   };
 
   static loginUser = async (data: Required<LoginUserBody>) => {
-    const db = initializeMongoDbUser();
-
-    const checkUser = await (
-      await db
-    ).findOne({
-      username: data.username,
+    const checkUser = await User.findOne({
+      email: data.email,
     });
-
-    console.log(checkUser);
 
     if (!checkUser) {
       throw new DatabaseException(null, `User name does not exists`);

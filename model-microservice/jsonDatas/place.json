@@ -6,6 +6,7 @@
     "location": { "latitude": 27.6660601, "longitude": 85.3297582 },
     "address": "M88H+CWC, Machagaa Marg Paschim, Lalitpur",
     "place_id": "ChIJe52RWwAZ6zkROIqtuMVf-WQ",
+    "price": 1500,
     "icon": {
       "url": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
       "background_color": "#909CE1"
@@ -34,6 +35,7 @@
     "location": { "latitude": 27.7141271, "longitude": 85.28460729999999 },
     "address": "Swoyambhu-15, Kathmandu",
     "place_id": "ChIJB1ezyM0Z6zkRry2Jtt2CSAw",
+    "price": 2500,
     "icon": {
       "url": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
       "background_color": "#909CE1"
@@ -53,6 +55,7 @@
     "location": { "latitude": 27.7167883, "longitude": 85.30774799999999 },
     "address": "P885+Q5F, Kathmandu",
     "place_id": "ChIJPzJ2x4EZ6zkRjX4YDUOfKu8",
+    "price": 1000,
     "icon": {
       "url": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
       "background_color": "#909CE1"
@@ -71,6 +74,7 @@
     "user_ratings_total": 142,
     "location": { "latitude": 27.7182795, "longitude": 85.2807145 },
     "address": "P79J+9C4, Kathmandu",
+    "price": 2500,
     "place_id": "ChIJt0c0zY0Y6zkRJJriyCJ13AM",
     "icon": {
       "url": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
@@ -88,6 +92,7 @@
     "name": "Trekkers Hostel",
     "rating": 4.2,
     "user_ratings_total": 65,
+    "price": 3500,
     "location": { "latitude": 27.7130133, "longitude": 85.3091187 },
     "address": "Chhatrapati, Kathmandu",
     "place_id": "ChIJt3RE1lwZ6zkRCtlleQYbhZU",
@@ -107,6 +112,7 @@
     "name": "Aarogya Hostel and Restaurant",
     "rating": 4.3,
     "user_ratings_total": 57,
+    "price": 1500,
     "location": { "latitude": 27.7172529, "longitude": 85.3083827 },
     "address": "K.M.C-16, Kathmandu",
     "place_id": "ChIJR5nYi3IZ6zkRqB6KKDVo4Yg",
@@ -126,6 +132,7 @@
     "name": "Holiday Hostel",
     "rating": 4.5,
     "user_ratings_total": 180,
+    "price": 2000,
     "location": { "latitude": 27.7108015, "longitude": 85.3109695 },
     "address": "Kathmandu",
     "place_id": "ChIJo479n2IZ6zkRH-yUh0YVHa0",
@@ -145,6 +152,7 @@
     "name": "Beehive Hostel",
     "rating": 3.8,
     "user_ratings_total": 48,
+    "price": 1000,
     "location": { "latitude": 27.7182011, "longitude": 85.3083331 },
     "address": "Paknajol Marg, Kathmandu",
     "place_id": "ChIJec72CPwY6zkRrSn1I3XGso4",
@@ -165,6 +173,7 @@
     "name": "Nepalaya Home Hostel",
     "rating": 4.9,
     "user_ratings_total": 75,
+    "price": 1500,
     "location": { "latitude": 27.7115927, "longitude": 85.3110689 },
     "address": "Kathmandu",
     "place_id": "ChIJn5OirYQZ6zkRXEPz5pY39CI",
@@ -180,29 +189,12 @@
       }
     ]
   },
-  {
-    "name": "Kwabahal Boutique hostel",
-    "rating": 4.8,
-    "user_ratings_total": 152,
-    "location": { "latitude": 27.7114388, "longitude": 85.31070400000002 },
-    "address": "Wak Bajra Marg, Kathmandu",
-    "place_id": "ChIJQbBkAkAZ6zkRwSPJitVBqgA",
-    "icon": {
-      "url": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
-      "background_color": "#909CE1"
-    },
-    "photos": [
-      {
-        "photo_reference": "AXCi2Q6L8a8ddIXM5kKs3E_IjGMUiJZUpueaGaRGg3mQ-mR4Lj0maLveATSC3S7b44icVH64vn6LGQoCv6lVLUznU0rsyNU0Dl3_BWexoWucGrMcTUI-nNqgvgH1n18JmbnyWkbjHvimVw2V41X75G_C9tvkaeH-w3bqq9MqmvnfJXlgm_Kg",
-        "dimensions": { "height": 3821, "width": 5732 },
-        "attribution": "<a href=\"https://maps.google.com/maps/contrib/108499867756679565000\">A Google User</a>"
-      }
-    ]
-  },
+
   {
     "name": "Birds Nest Hostel",
     "rating": 4.6,
     "user_ratings_total": 165,
+    "price": 1000,
     "location": { "latitude": 27.7174089, "latitude": 85.3063844 },
     "address": "Kaldhara Marg, Kathmandu",
     "place_id": "ChIJUWkL6b4Z6zkRzxYE7mXREU8",
@@ -222,6 +214,7 @@
     "name": "Rambler hostel",
     "rating": 4.2,
     "user_ratings_total": 71,
+    "price": 3200,
     "location": { "latitude": 27.7120788, "longitude": 85.3087503 },
     "address": "Paknajol Marg 43, Kathmandu",
     "place_id": "ChIJG1usFHwZ6zkRid51p-Sh6pg",
@@ -242,6 +235,7 @@
     "name": "Mountain Backpackers Hostel",
     "rating": 3.8,
     "user_ratings_total": 104,
+    "price": 2300,
     "location": { "latitude": 27.7166477, "longitude": 85.3116222 },
     "address": "A1 Business complex, Thamel Marg, Kathmandu",
     "place_id": "ChIJi-vWwL0Z6zkRyEri9BobyO8",
@@ -261,6 +255,7 @@
     "name": "Rest Up Kathmandu Hostel",
     "rating": 4.5,
     "user_ratings_total": 277,
+    "price": 3300,
     "location": { "latitude": 27.7137932, "longitude": 85.3082026 },
     "address": "Paknajol Marg 16, Kathmandu",
     "place_id": "ChIJi2eMm_wY6zkRAD-Hq_6Kq6k",
@@ -276,29 +271,12 @@
       }
     ]
   },
-  {
-    "name": "Thamel Hub Hostel",
-    "rating": 3.1,
-    "user_ratings_total": 15,
-    "location": { "latitude": 27.7173305, "longitude": 85.31172889999999 },
-    "address": "Thamel Marg 1, Kathmandu",
-    "place_id": "ChIJF9EnzuIY6zkRAXZC5DAyRqE",
-    "icon": {
-      "url": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
-      "background_color": "#909CE1"
-    },
-    "photos": [
-      {
-        "photo_reference": "AXCi2Q6cKLMYDyhwgIo7vRDuEXkNflL4f25CYN1H-QFTefRja2EljeJ2T9c8SlEVc85P0BZqf3DnzbOarin0epJ4T9198UXWxA1PC5Am6Ncjd8Ym-FB5MyE8zGKyt4VDCuJUQKvW__0VilRaEBaDqWIbMfF2Ul16n1RYXrL-Apj5GXHXICdt",
-        "dimensions": { "height": 901, "width": 1600 },
-        "attribution": "<a href=\"https://maps.google.com/maps/contrib/110769822471633719258\">A Google User</a>"
-      }
-    ]
-  },
+
   {
     "name": "Yakso Boys Hostel",
     "rating": 4.4,
     "user_ratings_total": 106,
+    "price": 3200,
     "location": { "latitude": 27.7000936, "longitude": 85.3304301 },
     "address": "Rudra Mati Marg, Kathmandu",
     "place_id": "ChIJFacOAtEZ6zkR4oB-rcdm4M8",
@@ -318,6 +296,7 @@
     "name": "Rauniyar Boys Hostel",
     "rating": 4.4,
     "user_ratings_total": 149,
+    "price": 1200,
     "location": { "latitude": 27.672409, "longitude": 85.3444671 },
     "address": "Kathmandu",
     "place_id": "ChIJ68-LB8cZ6zkRDIuJmtWz5tI",
@@ -337,6 +316,7 @@
     "name": "Himalayan Boys Hostel",
     "rating": 4.6,
     "user_ratings_total": 80,
+    "price": 4200,
     "location": { "latitude": 27.7369375, "longitude": 85.3289375 },
     "address": "P8PH+QHP Behind Teaching Hospital, Kathmandu, Kanti-Marg, Kathmandu",
     "place_id": "ChIJHzEDXJwZ6zkRuM2T6rqeVPI",
@@ -356,6 +336,7 @@
     "name": "Shafakat Boys Hostel",
     "rating": 3.5,
     "user_ratings_total": 70,
+    "price": 1200,
     "location": { "latitude": 27.6982918, "longitude": 85.34204559999999 },
     "address": "Basuki Marg, Kathmandu",
     "place_id": "ChIJK-AJmZsZ6zkRG777-86yK6Q",
@@ -376,6 +357,7 @@
     "name": "Boys hostel",
     "rating": 0,
     "user_ratings_total": 0,
+    "price": 1200,
     "location": { "latitude": 27.7046657, "longitude": 85.3196937 },
     "address": "P839+QRX, Kathmandu",
     "place_id": "ChIJsUMWSgAZ6zkRFhiRbmw6jFg",
@@ -389,6 +371,7 @@
     "name": "Biju Hostel Pvt. Ltd. - Girls Hostel",
     "rating": 4.1,
     "user_ratings_total": 16,
+    "price": 3200,
     "location": { "latitude": 27.7196328, "longitude": 85.3068074 },
     "address": "Pahikwo Sadak 19, Kathmandu",
     "place_id": "ChIJ9Zhw9uQY6zkRNnEvmiXRTDw",
@@ -408,6 +391,7 @@
     "name": "Hostel Funky Monkey",
     "rating": 4.8,
     "user_ratings_total": 65,
+    "price": 1200,
     "location": { "latitude": 27.715718, "longitude": 85.3057956 },
     "address": "Kushlechaur Marg, Kathmandu",
     "place_id": "ChIJ-w8x2M8Z6zkRDDKkO-Gg-Z8",
@@ -427,6 +411,7 @@
     "name": "Nepal Youth Hostel",
     "rating": 3.3,
     "user_ratings_total": 6,
+    "price": 3200,
     "location": { "latitude": 27.7111828, "longitude": 85.3121412 },
     "address": "P866+FQG, Amrit Marg, Kathmandu",
     "place_id": "ChIJ-48X2f0Y6zkRrvM1Qya_wTk",
@@ -446,6 +431,7 @@
     "name": "Central Girls Hostel",
     "rating": 4.2,
     "user_ratings_total": 39,
+    "price": 2200,
     "location": { "latitude": 27.707674, "longitude": 85.3229107 },
     "address": "P85F+35M, Kathmandu",
     "place_id": "ChIJHwVMRwIZ6zkRL3aqMNzdKUo",
@@ -459,6 +445,7 @@
     "name": "Peace Girls Hostel",
     "rating": 4.9,
     "user_ratings_total": 7,
+    "price": 1200,
     "location": { "latitude": 27.668263, "longitude": 85.30800110000001 },
     "address": "Ekamtakuna, Lalitpur",
     "place_id": "ChIJJVoa8FwZ6zkRF4g2I8PsHiE",
@@ -472,6 +459,7 @@
     "name": "Fat Farm Hostel",
     "rating": 4,
     "user_ratings_total": 9,
+    "price": 1200,
     "location": { "latitude": 27.7104714, "longitude": 85.31316799999999 },
     "address": "P867+67F, Jyatha Marg, Kathmandu",
     "place_id": "ChIJIw_cF00Z6zkR9lURdbKXYEU",
@@ -491,6 +479,7 @@
     "name": "3 monkeys tourist hostel",
     "rating": 4.7,
     "user_ratings_total": 10,
+    "price": 1200,
     "location": { "latitude": 27.7157702, "longitude": 85.3140981 },
     "address": "Kesarmahal Rd, Kathmandu",
     "place_id": "ChIJLX93owIZ6zkRGZ7Arf0Rx40",
@@ -510,6 +499,7 @@
     "name": "Hostel Horizon",
     "rating": 2.2,
     "user_ratings_total": 5,
+    "price": 2200,
     "location": { "latitude": 27.7166198, "longitude": 85.3123245 },
     "address": "Thamel Marg, Kathmandu",
     "place_id": "ChIJOzbPRr8Z6zkRsXi_7DjV0L8",
@@ -529,6 +519,7 @@
     "name": "Kathmandu hostel",
     "rating": 0,
     "user_ratings_total": 0,
+    "price": 3200,
     "location": { "latitude": 27.7178991, "longitude": 85.3108614 },
     "address": "Thamel lakhnath sadak, Kathmandu",
     "place_id": "ChIJbfbkErcZ6zkRN9Xf-xozZkw",
@@ -548,6 +539,7 @@
     "name": "Rigel Girls Hostel",
     "rating": 4.7,
     "user_ratings_total": 24,
+    "price": 2200,
     "location": { "latitude": 27.6986244, "longitude": 85.34833259999999 },
     "address": "Sinamangal Rd, Kathmandu",
     "place_id": "ChIJP1S1RoQZ6zkRv6bz_9F0X88",
@@ -567,6 +559,7 @@
     "name": "Bodhitree Hostel Pvt. Ltd.",
     "rating": 4.5,
     "user_ratings_total": 47,
+    "price": 3200,
     "location": { "latitude": 27.7118925, "longitude": 85.3108229 },
     "address": "Thamel Marg, Kathmandu",
     "place_id": "ChIJvbnLEFAZ6zkRX8Xjqj-ivVE",
@@ -586,6 +579,7 @@
     "name": "Hostel Himalayan Hindi Kitchen",
     "rating": 4.1,
     "user_ratings_total": 9,
+    "price": 2400,
     "location": { "latitude": 27.7181276, "longitude": 85.31068979999999 },
     "address": "44600, Kathmandu",
     "place_id": "ChIJF1HrIeMY6zkR7bWEtc8SOUE",
@@ -605,6 +599,7 @@
     "name": "K Hostel",
     "rating": 4.7,
     "user_ratings_total": 13,
+    "price": 2500,
     "location": { "latitude": 27.7161294, "longitude": 85.3131841 },
     "address": "P887+F73, Kathmandu",
     "place_id": "ChIJmwkQNnQZ6zkRaqtmj0RXkLY",
@@ -624,6 +619,7 @@
     "name": "My friend\u2019s hostel",
     "rating": 3.9,
     "user_ratings_total": 35,
+    "price": 3200,
     "location": { "latitude": 27.7267947, "longitude": 85.3081551 },
     "address": "P8G5+P7F, \u092e\u094d\u0939\u0947\u092a\u093f \u092e\u093e\u0930\u094d\u0917, Kathmandu",
     "place_id": "ChIJYXdUUTEZ6zkRmD35vwQ7mbw",
@@ -662,6 +658,7 @@
     "name": "Hostelmandu",
     "rating": 4.1,
     "user_ratings_total": 14,
+    "price": 2200,
     "location": { "latitude": 27.6866782, "longitude": 85.32763159999999 },
     "address": "M8PH+Q2H, Kathmandu",
     "place_id": "ChIJD52fvssX6zkR8ilKadx7jwo",
@@ -681,6 +678,7 @@
     "name": "Yeti Hostel",
     "rating": 5,
     "user_ratings_total": 1,
+    "price": 3200,
     "location": { "latitude": 27.7148805, "longitude": 85.31148560000001 },
     "address": "P876+XH5, Thamel Marg, Kathmandu",
     "place_id": "ChIJdSop0g0Z6zkR0Cg9hIGRpjc",
@@ -694,6 +692,7 @@
     "name": "Happy Feet Girls Hostel",
     "rating": 4.3,
     "user_ratings_total": 7,
+    "price": 3200,
     "location": { "latitude": 27.6987057, "longitude": 85.3358904 },
     "address": "Kathmandu",
     "place_id": "ChIJRdjMF34Z6zkRcC7LOKQtM1w",
