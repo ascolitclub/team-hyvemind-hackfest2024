@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGooglePlusG,
@@ -13,6 +13,7 @@ interface LoginProps {
 
 export default function Login({ onClose }: LoginProps) {
   const [isSignUpVisible, setIsSignUpVisible] = useState(false);
+  const loginRef = useRef<HTMLDivElement>(null); // Create a ref for the login div
 
   const handleSignUpClick = () => {
     setIsSignUpVisible(true);
@@ -22,9 +23,26 @@ export default function Login({ onClose }: LoginProps) {
     setIsSignUpVisible(false);
   };
 
+  // Close the login div when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (loginRef.current && !loginRef.current.contains(event.target as Node)) {
+        onClose(); // Call onClose when clicking outside
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [onClose]);
+
   return (
     <div className="relative flex items-center justify-center h-screen w-screen">
-      <div className="relative w-full max-w-4xl h-[500px] bg-white rounded-xl shadow-lg overflow-hidden flex">
+      <div
+        ref={loginRef} // Attach the ref to the main login div
+        className="relative w-full max-w-4xl h-[500px] bg-white rounded-xl shadow-lg overflow-hidden flex"
+      >
         {/* Sign In Form */}
         <div className={`w-1/2 h-full bg-white flex flex-col justify-center items-center px-10 transition-all duration-700 ${isSignUpVisible ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
           <h1 className="text-3xl font-bold mb-6">Sign In</h1>
