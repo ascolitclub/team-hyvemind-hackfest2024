@@ -16,7 +16,7 @@ export const Navbar = () => {
   // Track scroll position
   useEffect(() => {
     const handleScroll = () => {
-      const heroSectionHeight = window.innerHeight; // 100vh height
+      const heroSectionHeight = window.innerHeight*0.01; // 100vh height
       if (window.scrollY > heroSectionHeight) {
         setIsScrolled(true); // Change navbar text color to black
       } else {
@@ -55,7 +55,7 @@ export const Navbar = () => {
           isScrolled ? "bg-white text-black" : "bg-transparent text-white"
         }`}
       >
-        <div className="container mx-auto px-12 navbar flex items-center justify-between">
+        <div className="container mx-auto px-12 py-2 navbar flex items-center justify-between">
           {/* Conditionally render logo div based on isScrolled */}
           {isScrolled ? (
             // New div when user scrolls past hero section
@@ -128,7 +128,7 @@ export const Navbar = () => {
                 {!isBlogHover && <KeyboardArrowDownIcon />}
                 {isBlogHover && <KeyboardArrowUpIcon />}
                 {isBlogHover && (
-                  <div className="absolute top-full mt-3 -left-12 bg-white text-black p-4 shadow-xl rounded-b-md px-12">
+                  <div className="absolute top-full mt-3 z-50 -left-12 bg-white text-black p-4 shadow-xl rounded-b-md px-12">
                     <ul className="flex flex-col items-start gap-2">
                       <li className="hover:text-[--primary-color]">
                         <NavLink to="/news">News</NavLink>

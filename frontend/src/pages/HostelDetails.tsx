@@ -232,7 +232,7 @@ export default function HostelDetails() {
 
   return (
     <>
-      <div className="w-full h-16  top-0  bg-black"></div>
+      <div className="w-full h-20  top-0  bg-[#041E42]"></div>
       <div className="container mx-auto">
         <h2 className="text-center text-[40px] font-bold py-10">
           Hostel <span className="text-[--primary-color]">Details</span>
@@ -249,7 +249,9 @@ export default function HostelDetails() {
                 />
               </div>
               <div className="bg-white p-2  h-full">
-                <h2 className="text-[35px] font-bold mb-2">{hostelItem.title}</h2>
+                <h2 className="text-[35px] font-bold mb-2">
+                  {hostelItem.title}
+                </h2>
                 {RenderStar(hostelItem.rating)}
                 {/* <p className='py-2'>{hostelItem.description}</p> */}
                 <p className="pt-2 pb-8">
