@@ -2,7 +2,7 @@ from flask_smorest import Blueprint
 from flask.views import MethodView
 from flask import jsonify
 from bson import ObjectId
-from libs.logger import logger
+
 from models.trainModel.model1 import recommend_hostels
 from extractor.extractmodel import recommend_hotel_api
 from services.hostelservice import getHostelById
@@ -21,7 +21,7 @@ class PopularHostel(MethodView):
 
             return jsonify({"result": result}), 200
         except Exception as e:
-            logger.error(f'Error fetching popular hostels: {e}')
+            print(f'Error fetching popular hostels: {e}')
             return jsonify({"error": "An error occurred while fetching popular hostels."}), 500
 
 
@@ -31,7 +31,7 @@ class Hostel(MethodView):
         try:
             # Fetch the hostel by ID
             response = getHostelById(hostelId=ObjectId(hostelId)) 
-            logger.info('Fetched hostel response: %s', response)
+            print('Fetched hostel response: %s', response)
 
             if response and '_id' in response:
                 response['_id'] = str(response['_id'])  # Convert ObjectId to string
@@ -40,5 +40,5 @@ class Hostel(MethodView):
             return jsonify({'data': response}), 200
 
         except Exception as e:
-            logger.error(f'Error fetching particular hostel: {e}')
+            print(f'Error fetching particular hostel: {e}')
             return jsonify({'error': 'An error occurred while fetching the hostel ID'}), 500

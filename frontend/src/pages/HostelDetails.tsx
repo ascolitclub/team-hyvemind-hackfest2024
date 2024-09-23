@@ -82,12 +82,13 @@ export default function HostelDetails() {
     if (!hostelItem) return;
 
     const directionsService = new google.maps.DirectionsService();
+    console.log(hostelItem);
     directionsService.route(
       {
         origin: location,
         destination: {
-          lat: hostelItem.geometry.location.latitude,
-          lng: hostelItem.geometry.location.longitude,
+          lat: hostelItem.location.latitude,
+          lng: hostelItem.location.longitude,
         },
         travelMode: google.maps.TravelMode.DRIVING,
       },
@@ -224,8 +225,8 @@ export default function HostelDetails() {
                     <Marker position={location} label="You" />
                     <Marker
                       position={{
-                        lat: hostelItem.geometry.location.latitude,
-                        lng: hostelItem.geometry.location.latitude,
+                        lat: hostelItem.location.latitude,
+                        lng: hostelItem.location.latitude,
                       }}
                       label={hostelItem.name}
                     />
