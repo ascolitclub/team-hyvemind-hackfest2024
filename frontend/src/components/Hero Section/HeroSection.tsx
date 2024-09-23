@@ -20,12 +20,12 @@ export const HeroSection = () => {
           >
             Perfect Stay
           </h1>
-          <p className="w-[700px] text-center leading-loose pb-16">
+          <p className="w-[700px] text-center leading-loose pb-20 pt-8">
             Experience comfort and convenience with our expertly curated hostel
             listings, designed to match students with their perfect living
             space.
           </p>
-          <div className="search shadow-2xl z-20 w-[70%] box mx-72 px-8 grid items-center justify-center grid-cols-4 gap-x-12 bg-white rounded-2xl h-24 text-black font-medium">
+          <div className="search shadow-2xl z-20 w-[70%] box mx-72 px-8 grid items-center justify-center grid-cols-4 gap-x-4 bg-white rounded-2xl h-24 text-black font-medium">
             <div className="flex flex-col">
               <h2 className="mb-1">Location</h2>
               <input

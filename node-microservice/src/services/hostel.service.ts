@@ -1,46 +1,45 @@
-import { getRepository } from "typeorm";
-import { HostelData } from "../dto/HostelData"; 
-import { HostelCredential } from "../database/entity/Hostel.entity";
-import { InsertResult } from "typeorm/browser";
+import { IHostelCredential } from '../controller/hostel.controller';
+import { HostelCredential } from '../database/entity/Hostel.entity';
+import { BadRequestException } from '../exceptions';
+import HostelRepo from '../repositories/hostel.repo';
 
-// Create Hostel
-export const createHostel = async (
-  data: HostelData
-): Promise<InsertResult> => {
-  const hostel =  await HostelCredential.createQueryBuilder().insert().into(HostelCredential).values([data]).execute();
-  
-  return hostel;
-};
+class HostelService {
+  static createHostel = async (data: Partial<IHostelCredential>) => {
+    const checkUniqueHostelName = await HostelCredential.find({
+      where: [
+        {
+          hostel_name: data.hostel_name,
+          hostel_phoneNumber: data.phoneNumber,
+        },
+      ],
+    });
 
+    if (checkUniqueHostelName) {
+      throw new BadRequestException(
+        null,
+        'Hostel Name or Phone Number is already Registered, Please Try Another Name'
+      );
+    }
 
-// Get Hostel
-export const getHostel = async (): Promise<HostelCredential[]> => {
-  const hostelRepository = getRepository(HostelCredential);
-  return await hostelRepository.find({ relations: ["location"] }); // Fetch all hostels with their location
-};
+    const response = await HostelRepo.storeHostel(data);
 
+    const savedHostel = {
+      hostel: response.id,
+      lat: data.location?.lat,
+      lng: data.location?.lng,
+    };
 
-// Update Hostel
-// export const updateHostel = async (
-//   data: HostelData
-// ): Promise<HostelCredential | null> => {
-//   const hostelRepository = getRepository(HostelCredential);
+    const savedLocation = await HostelRepo.storeAddress(
+      savedHostel.lat,
+      savedHostel.lng
+    );
 
-//   const hostel = await hostelRepository.findOne(data.id); // Find the hostel by ID
-//   if (!hostel) {
-//     return null; // Return null if hostel not found
-//   }
-//   // Update hostel properties
-//   hostel.hostel_name = data.hostel_name;
-//   hostel.rating = data.rating;
-//   hostel.user_ratings_total = data.user_ratings_total;
-//   hostel.opening_hours = data.opening_hours;
+    response.location = savedLocation;
 
-//   await hostelRepository.save(hostel); // Save the updated hostel
+    const dataRespond = await response.save();
 
-//   return hostel;
-// };
-
-export const updateHostel=async(HostelData :any)=>{
-    return "this is test "
+    return dataRespond;
+  };
 }
+
+export default HostelService;

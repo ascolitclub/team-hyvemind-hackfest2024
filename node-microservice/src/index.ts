@@ -21,6 +21,7 @@ export const expressAppIntializer = async (app: Express) => {
   app.use(
     cors({
       origin: 'http://localhost:5173',
+      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
     })
   );
 
@@ -39,10 +40,6 @@ export const expressAppIntializer = async (app: Express) => {
     expressLogger.error(`Error While Migration Database Error:`, err);
     process.exit(0);
   });
-
-  app.set('trust proxy', false);
-
-  app.use(limiter);
 
   serverRouter(app);
 
