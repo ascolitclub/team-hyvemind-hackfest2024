@@ -182,7 +182,7 @@ export default function HostelDetails() {
                     fontSize="small"
                     style={{ color: "var(--primary-color)" }}
                   />
-                  {hostelItem.vicinity}
+                  {hostelItem.address}
                 </p>
                 <div className="flex flex-col gap-y-1 mb-4 border-t border-b py-1 w-max">
                   <div className="flex gap-2 ">

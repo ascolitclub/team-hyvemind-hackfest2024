@@ -13,6 +13,7 @@ import { ReviewPage } from "../pages/ReviewPage";
 import { Contact } from "../pages/Contact";
 import { TermsAndCondition } from "../pages/TermsAndCondition";
 import { PrivacyPolicy } from "../pages/PrivacyPolicy";
+import AuthDashboard from "../redux/AuthDashboard";
 
 export default function AppRoutes() {
   const location = useLocation();
@@ -43,9 +44,16 @@ export default function AppRoutes() {
       {!hideNavbarFooter && <Navbar />}
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login onClose={function (): void {
-          throw new Error("Function not implemented.");
-        } } />} />
+        <Route
+          path="/login"
+          element={
+            <Login
+              onClose={function (): void {
+                throw new Error("Function not implemented.");
+              }}
+            />
+          }
+        />
         <Route path="/about" element={<About />} />
         <Route path="/hostel" element={<Hostel />} />
         <Route path="/hostel/:hostelId" element={<HostelDetails />} />
@@ -54,6 +62,7 @@ export default function AppRoutes() {
         <Route path="/faqs" element={<FAQs />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/termsandcondition" element={<TermsAndCondition />} />
+        <Route path="/dashboard" element={<AuthDashboard />} />
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />
       </Routes>
       {!hideNavbarFooter && <Footer />}

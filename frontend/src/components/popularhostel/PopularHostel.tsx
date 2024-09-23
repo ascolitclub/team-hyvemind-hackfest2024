@@ -18,7 +18,7 @@ export default function PopularHostel() {
         const data = response.data.result.map((hostel) => ({
           _id: hostel._id,
           title: hostel.name,
-          location: hostel.vicinity,
+          location: hostel.address,
           rating: hostel.rating,
           img:
             hostel.photos.length > 0
@@ -90,9 +90,9 @@ export default function PopularHostel() {
                   />
                 </div>
                 <div className="px-5">
-                  <p className="text-lg pt-4 font-semibold">{hostel.title}</p>
+                  <p className="text-lg py-2 font-semibold">{hostel.title}</p>
                   {RenderStar(hostel.rating)}
-                  <p className="mb-4 text-[#acacac] text-sm">
+                  <p className="mb-4 text-[#acacac] text-sm mt-1">
                     <LocationOnOutlinedIcon
                       fontSize="small"
                       style={{ color: "var(--btn-primary)" }}
