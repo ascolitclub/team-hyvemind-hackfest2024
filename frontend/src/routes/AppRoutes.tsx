@@ -10,6 +10,7 @@ import Hostel from "../pages/Hostel";
 import { News } from "../pages/News";
 import { FAQs } from "../pages/FAQs";
 import { ReviewPage } from "../pages/ReviewPage";
+import { Contact } from "../pages/Contact";
 
 export default function AppRoutes() {
   const location = useLocation();
@@ -46,6 +47,7 @@ export default function AppRoutes() {
         <Route path="/news" element={<News />} />
         <Route path="/reviewpage" element={<ReviewPage />} />
         <Route path="/faqs" element={<FAQs />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/hostel/:title" element={<HostelDetails />} />
       </Routes>
       {!hideNavbarFooter && <Footer />}
