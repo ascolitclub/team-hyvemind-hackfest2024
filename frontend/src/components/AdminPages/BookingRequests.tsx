@@ -52,12 +52,11 @@ const BookingRequests: React.FC = () => {
   ];
 
   return (
-    <div className="flex-1 bg-white p-6 rounded-md shadow-md">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold">Booking Requests</h2>
-        <button className="p-2 bg-black text-white rounded">
-          + Create New Event
-        </button>
+    <div className="flex-1 rounded-md container mx-auto px-8">
+      <div className="flex items-center justify-center my-4 mb-12">
+        <h2 className="text-5xl font-medium" style={{ fontFamily: "Oswald" }}>
+          Booking Requests
+        </h2>
       </div>
       <table className="min-w-full table-auto">
         <thead>
