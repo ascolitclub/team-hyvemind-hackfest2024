@@ -24,12 +24,12 @@
     // "removeComments": true,
 
     /* Interop Constraints */
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
+    // "esModuleInterop": true,
+    // "forceConsistentCasingInFileNames": true,
 
-    /* Type Checking */
-    "strict": true /* Enable all strict type-checking options */,
-    "noImplicitAny": true,
+    // /* Type Checking */
+    // "strict": true /* Enable all strict type-checking options */,
+    // "noImplicitAny": true,
     // "strictNullChecks": true,
     // "strictFunctionTypes": true,
     // "strictBindCallApply": true,
@@ -46,7 +46,7 @@
     // "noImplicitOverride": true,
 
     /* Completeness */
-    "skipLibCheck": true,
+    // "skipLibCheck": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },

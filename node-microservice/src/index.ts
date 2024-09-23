@@ -36,11 +36,6 @@ export const expressAppIntializer = async (app: Express) => {
       process.exit(0);
     });
 
-  await DatabaseDataSource.runMigrations().catch((err: Error) => {
-    expressLogger.error(`Error While Migration Database Error:`, err);
-    process.exit(0);
-  });
-
   serverRouter(app);
 
   app.use((req: Request, _: Response, next: NextFunction) =>

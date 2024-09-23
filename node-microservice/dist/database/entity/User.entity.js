@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = exports.RolesConstant = void 0;
+exports.User = exports.StatusConstant = exports.RolesConstant = void 0;
 const typeorm_1 = require("typeorm");
 var RolesConstant;
 (function (RolesConstant) {
@@ -17,6 +17,12 @@ var RolesConstant;
     RolesConstant["HOSTEL_OWNER"] = "hostel_owner";
     RolesConstant["ADMIN"] = "admin";
 })(RolesConstant || (exports.RolesConstant = RolesConstant = {}));
+var StatusConstant;
+(function (StatusConstant) {
+    StatusConstant["PENDING"] = "pending";
+    StatusConstant["NOT_APPLY"] = "not_apply";
+    StatusConstant["APPROVED"] = "approved";
+})(StatusConstant || (exports.StatusConstant = StatusConstant = {}));
 let User = class User extends typeorm_1.BaseEntity {
 };
 exports.User = User;
@@ -41,9 +47,21 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "phoneNumber", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ default: 'user', enum: RolesConstant }),
+    (0, typeorm_1.Column)({
+        type: 'enum',
+        enum: RolesConstant,
+        default: RolesConstant.USER,
+    }),
     __metadata("design:type", String)
 ], User.prototype, "role", void 0);
+__decorate([
+    (0, typeorm_1.Column)({
+        type: 'enum',
+        enum: StatusConstant,
+        default: StatusConstant.PENDING, // Corrected default value
+    }),
+    __metadata("design:type", String)
+], User.prototype, "status", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
@@ -53,6 +71,6 @@ __decorate([
     __metadata("design:type", Date)
 ], User.prototype, "updated_at", void 0);
 exports.User = User = __decorate([
-    (0, typeorm_1.Entity)({ name: 'user' })
+    (0, typeorm_1.Entity)()
 ], User);
 //# sourceMappingURL=User.entity.js.map

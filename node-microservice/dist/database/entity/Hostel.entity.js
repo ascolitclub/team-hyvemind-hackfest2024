@@ -11,8 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HostelCredential = void 0;
 const typeorm_1 = require("typeorm");
-const HotelLocation_1 = require("./HotelLocation");
-let HostelCredential = class HostelCredential {
+let HostelCredential = class HostelCredential extends typeorm_1.BaseEntity {
 };
 exports.HostelCredential = HostelCredential;
 __decorate([
@@ -24,23 +23,41 @@ __decorate([
     __metadata("design:type", String)
 ], HostelCredential.prototype, "hostel_name", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'int', unique: true }),
+    (0, typeorm_1.Column)({ type: 'int', unique: true, default: 0 }),
     __metadata("design:type", Number)
 ], HostelCredential.prototype, "rating", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
-    __metadata("design:type", String)
+    (0, typeorm_1.Column)({ type: 'int', default: 0 }),
+    __metadata("design:type", Number)
 ], HostelCredential.prototype, "user_ratings_total", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'boolean' }),
+    (0, typeorm_1.Column)({ type: 'text' }),
+    __metadata("design:type", Number)
+], HostelCredential.prototype, "hostel_phoneNumber", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'boolean', default: false }),
     __metadata("design:type", Boolean)
 ], HostelCredential.prototype, "opening_hours", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => HotelLocation_1.HostelLocation),
-    (0, typeorm_1.JoinColumn)() // This decorator will create a foreign key in the HostelCredential table
-    ,
-    __metadata("design:type", HotelLocation_1.HostelLocation)
-], HostelCredential.prototype, "location", void 0);
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], HostelCredential.prototype, "lat", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], HostelCredential.prototype, "lng", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], HostelCredential.prototype, "address", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], HostelCredential.prototype, "photos", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], HostelCredential.prototype, "place_id", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)({ type: 'timestamp' }),
     __metadata("design:type", Date)

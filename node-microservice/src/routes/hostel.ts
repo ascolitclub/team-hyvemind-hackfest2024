@@ -1,7 +1,8 @@
 import { Router } from 'express';
+import { fetchPopularHostels } from '../controller/hostel.controller';
 
-const hostelRouter = Router();
+const hostelRouter: Router = Router();
 
-hostelRouter.post('/hostel/create',);
+hostelRouter.get('/hostels', fetchPopularHostels);
 
 export default hostelRouter;

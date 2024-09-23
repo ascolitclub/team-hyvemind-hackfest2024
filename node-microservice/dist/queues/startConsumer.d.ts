@@ -1,2 +1,2 @@
-export declare const startAllConsumer: () => Promise<true | undefined>;
+export declare const startAllConsumer: () => Promise<boolean>;
 //# sourceMappingURL=startConsumer.d.ts.map

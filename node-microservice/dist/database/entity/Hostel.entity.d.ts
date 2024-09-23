@@ -1,11 +1,16 @@
-import { HostelLocation } from './HotelLocation';
-export declare class HostelCredential {
-    id: number;
-    hostel_name: string;
-    rating: number;
-    user_ratings_total: string;
-    opening_hours: boolean;
-    location: HostelLocation;
+import { BaseEntity } from 'typeorm';
+export declare class HostelCredential extends BaseEntity {
+    id: Number;
+    hostel_name: String;
+    rating: Number;
+    user_ratings_total: Number;
+    hostel_phoneNumber: Number;
+    opening_hours: Boolean;
+    lat: Number;
+    lng: Number;
+    address: String;
+    photos: String;
+    place_id: String;
     created_at: Date;
     updated_at: Date;
 }

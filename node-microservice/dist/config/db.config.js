@@ -16,7 +16,7 @@ function getdbConfig() {
         password: 'r0bonepal77@',
         database: 'hackathon',
         migrationsTableName: 'migrations',
-        synchronize: false,
+        synchronize: true,
         logging: false,
         migrations: [path_1.default.resolve(__dirname, '../database/migrations/*.{ts,js}')],
         entities: [path_1.default.resolve(__dirname, '../database/entity/*.{ts,js}')],

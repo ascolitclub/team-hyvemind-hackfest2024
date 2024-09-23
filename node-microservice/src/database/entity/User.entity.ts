@@ -22,7 +22,7 @@ export enum StatusConstant {
   APPROVED = 'approved',
 }
 
-@Entity({ name: 'user' })
+@Entity()
 export class User extends BaseEntity {
   @PrimaryGeneratedColumn({ type: 'bigint' })
   id!: number;
@@ -39,14 +39,19 @@ export class User extends BaseEntity {
   @Column({ type: 'text', nullable: false })
   phoneNumber!: string;
 
-  @Column({ default: 'user', enum: RolesConstant })
-  role!: string;
+  @Column({
+    type: 'enum',
+    enum: RolesConstant,
+    default: RolesConstant.USER,
+  })
+  role: string;
 
-  @Column({ default: 'not_apply', enum: StatusConstant })
-  status!: string;
-
-  @OneToOne(() => HostelCredential, (hostelCredential) => hostelCredential.user)
-  hostel!: HostelCredential;
+  @Column({
+    type: 'enum',
+    enum: StatusConstant,
+    default: StatusConstant.PENDING, // Corrected default value
+  })
+  status: string;
 
   @CreateDateColumn()
   created_at!: Date;
