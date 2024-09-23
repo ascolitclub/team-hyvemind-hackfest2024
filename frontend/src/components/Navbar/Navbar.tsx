@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Login from "../../pages/Login";
 
 export const Navbar = () => {
@@ -161,9 +161,11 @@ export const Navbar = () => {
             >
               Login
             </button>
-            <button className="text-white text-lg bg-[--btn-primary] px-6 py-2 rounded-lg font-semibold hover:bg-[--btn-secondary] transition-all active:translate-y-0.5">
-              Book
-            </button>
+            <Link to={"/hostel"}>
+              <button className="text-white text-lg bg-[--btn-primary] px-6 py-2 rounded-lg font-semibold hover:bg-[--btn-secondary] transition-all active:translate-y-0.5">
+                Book
+              </button>
+            </Link>
           </div>
         </div>
       </div>
