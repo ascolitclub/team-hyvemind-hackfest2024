@@ -14,11 +14,11 @@ export default function BottomBanner() {
                                 <p>&copy; Copyright {currentYear} Mero Hostel Mate. All Rights Reserved.</p>
                             </div>
                             <div className='font-medium'>
-                                <Link to={"/privacyPolicy"}>
+                                <Link to={"/privacypolicy"}>
                                     <a className="px-2 border-r border-black " href="#">Privacy Policy</a>
                                 </Link>
-                                <Link to={"/termOfUse"}>
-                                    <a className="pl-2" href="#">Terms of Use</a>
+                                <Link to={"/termsandcondition"}>
+                                    <a className="pl-2" href="#">Terms and Conditions</a>
                                 </Link>
                             </div>
                         </div>

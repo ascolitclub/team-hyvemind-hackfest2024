@@ -11,6 +11,8 @@ import { News } from "../pages/News";
 import { FAQs } from "../pages/FAQs";
 import { ReviewPage } from "../pages/ReviewPage";
 import { Contact } from "../pages/Contact";
+import { TermsAndCondition } from "../pages/TermsAndCondition";
+import { PrivacyPolicy } from "../pages/PrivacyPolicy";
 
 export default function AppRoutes() {
   const location = useLocation();
@@ -49,7 +51,8 @@ export default function AppRoutes() {
         <Route path="/reviewpage" element={<ReviewPage />} />
         <Route path="/faqs" element={<FAQs />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/hostel/:title" element={<HostelDetails />} />
+        <Route path="/termsandcondition" element={<TermsAndCondition />} />
+        <Route path="/privacypolicy" element={<PrivacyPolicy />} />
       </Routes>
       {!hideNavbarFooter && <Footer />}
     </>

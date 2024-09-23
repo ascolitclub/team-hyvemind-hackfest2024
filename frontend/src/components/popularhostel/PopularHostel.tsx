@@ -90,7 +90,7 @@ export default function PopularHostel() {
                   />
                 </div>
                 <div className="px-5">
-                  <p className="text-xl pt-4 font-semibold">{hostel.title}</p>
+                  <p className="text-lg pt-4 font-semibold">{hostel.title}</p>
                   {RenderStar(hostel.rating)}
                   <p className="mb-4 text-[#acacac] text-sm">
                     <LocationOnOutlinedIcon
