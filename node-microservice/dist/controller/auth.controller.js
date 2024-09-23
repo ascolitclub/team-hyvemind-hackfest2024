@@ -27,9 +27,9 @@ const registerUser = async (req, res, next) => {
 exports.registerUser = registerUser;
 const loginUser = async (req, res, next) => {
     try {
-        const { username, password } = req.body;
+        const { email, password } = req.body;
         const userCredential = {
-            username,
+            email,
             password,
         };
         const response = await auth_service_1.default.loginUser(userCredential);

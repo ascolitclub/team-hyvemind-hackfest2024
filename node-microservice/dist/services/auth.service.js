@@ -5,22 +5,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 const exceptions_1 = require("../exceptions");
+const User_model_1 = __importDefault(require("../mongo/models/User.model"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const auth_repo_1 = __importDefault(require("../repositories/auth.repo"));
 const jwt_utils_1 = require("../utils/jwt.utils");
-const connect_1 = require("../mongo/connect");
 class AuthService {
 }
 _a = AuthService;
 AuthService.registerUser = async (data) => {
     console.log('This is the register user', data);
-    const db = (0, connect_1.initializeMongoDbUser)();
     const checkData = Object.values(data).length === 0;
     if (checkData) {
         throw new exceptions_1.BadRequestException(null, 'Data Object Is Empty');
     }
-    const existingDocument = await (await db).findOne({
-        $and: [{ email: data.email }, { phoneNumber: data.phoneNumber }],
+    const existingDocument = await User_model_1.default.findOne({
+        $and: [
+            {
+                username: data.username,
+            },
+            {
+                phoneNumber: data.phoneNumber,
+            },
+        ],
     });
     if (existingDocument) {
         throw new exceptions_1.BadRequestException(null, 'Phone Number or Email is Already Exists');
@@ -37,11 +43,9 @@ AuthService.registerUser = async (data) => {
     return savedData;
 };
 AuthService.loginUser = async (data) => {
-    const db = (0, connect_1.initializeMongoDbUser)();
-    const checkUser = await (await db).findOne({
-        username: data.username,
+    const checkUser = await User_model_1.default.findOne({
+        email: data.email,
     });
-    console.log(checkUser);
     if (!checkUser) {
         throw new exceptions_1.DatabaseException(null, `User name does not exists`);
     }
