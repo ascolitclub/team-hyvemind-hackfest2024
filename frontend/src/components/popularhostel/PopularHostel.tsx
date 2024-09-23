@@ -16,6 +16,7 @@ export default function PopularHostel() {
         );
         console.log(response.data.result);
         const data = response.data.result.map((hostel: any) => ({
+          _id: hostel._id,
           title: hostel.name,
           location: hostel.vicinity,
           rating: hostel.rating,
@@ -69,8 +70,8 @@ export default function PopularHostel() {
           data-aos="fade-up"
           className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-5 py-10 px-16"
         >
-          {hostelData.map((hostel: any, index) => (
-            <Link to={`/hostel/${hostel.place_id}`} key={index}>
+          {hostelData.map((hostel: any) => (
+            <Link to={`/hostel/${hostel._id}`} key={hostel._id}>
               <div
                 className="shadow-lg border border-gray-200 rounded-2xl cursor-pointer overflow-hidden hover:-translate-y-2 transition-transform"
                 onMouseEnter={(e) => {
