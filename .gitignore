@@ -4,3 +4,4 @@ rabbitmq-hostel
 .env
 .idea
 .git
+.pyc
