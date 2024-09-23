@@ -46,7 +46,7 @@ export const loginUser = async (
       password,
     };
 
-    const response = AuthService.loginUser(userCredential);
+    const response = await AuthService.loginUser(userCredential);
 
     return res.status(201).json({
       message: `User Logged In SuccessFully`,

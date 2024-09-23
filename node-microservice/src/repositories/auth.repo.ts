@@ -1,16 +1,13 @@
 import { User } from '../database/entity/User.entity';
 import { DatabaseException } from '../exceptions';
 import { RegisterUserBody } from '../interface/auth.interface';
+import { initializeMongoDbUser } from '../mongo/connect';
 
 class AuthRepository {
   static async insertData(data: Partial<RegisterUserBody | any>) {
     try {
-      console.log('database data', data);
-      await User.createQueryBuilder()
-        .insert()
-        .into(User)
-        .values([data])
-        .execute();
+      const db = initializeMongoDbUser();
+      (await db).insertOne(data);
       return true;
     } catch (err) {
       console.log(err);

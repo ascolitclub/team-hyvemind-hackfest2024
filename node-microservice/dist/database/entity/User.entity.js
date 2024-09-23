@@ -9,14 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = exports.RolesConstant = void 0;
+exports.User = exports.StatusConstant = exports.RolesConstant = void 0;
 const typeorm_1 = require("typeorm");
+const Hostel_entity_1 = require("./Hostel.entity");
 var RolesConstant;
 (function (RolesConstant) {
     RolesConstant["USER"] = "user";
     RolesConstant["HOSTEL_OWNER"] = "hostel_owner";
     RolesConstant["ADMIN"] = "admin";
 })(RolesConstant || (exports.RolesConstant = RolesConstant = {}));
+var StatusConstant;
+(function (StatusConstant) {
+    StatusConstant["PENDING"] = "pending";
+    StatusConstant["NOT_APPLY"] = "not_apply";
+    StatusConstant["APPROVED"] = "approved";
+})(StatusConstant || (exports.StatusConstant = StatusConstant = {}));
 let User = class User extends typeorm_1.BaseEntity {
 };
 exports.User = User;
@@ -44,6 +51,14 @@ __decorate([
     (0, typeorm_1.Column)({ default: 'user', enum: RolesConstant }),
     __metadata("design:type", String)
 ], User.prototype, "role", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ default: 'not_apply', enum: StatusConstant }),
+    __metadata("design:type", String)
+], User.prototype, "status", void 0);
+__decorate([
+    (0, typeorm_1.OneToOne)(() => Hostel_entity_1.HostelCredential, (hostelCredential) => hostelCredential.user),
+    __metadata("design:type", Hostel_entity_1.HostelCredential)
+], User.prototype, "hostel", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)

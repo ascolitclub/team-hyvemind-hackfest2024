@@ -32,7 +32,7 @@ const loginUser = async (req, res, next) => {
             username,
             password,
         };
-        const response = auth_service_1.default.loginUser(userCredential);
+        const response = await auth_service_1.default.loginUser(userCredential);
         return res.status(201).json({
             message: `User Logged In SuccessFully`,
             data: response,

@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import { useParams } from "react-router-dom";
-import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
-import { RenderStar } from "../components/dynamic renderer/RenderStar";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { useParams } from 'react-router-dom';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import { RenderStar } from '../components/dynamic renderer/RenderStar';
+import axios from 'axios';
 import {
   Button,
   Typography,
@@ -16,17 +16,17 @@ import {
   DialogTitle,
   DialogActions,
   DialogContent,
-} from "@mui/material";
+} from '@mui/material';
 import {
   GoogleMap,
   LoadScript,
   Marker,
   DirectionsRenderer,
-} from "@react-google-maps/api";
+} from '@react-google-maps/api';
 
 const mapContainerStyle = {
-  width: "100%",
-  height: "100%",
+  width: '100%',
+  height: '100%',
 };
 
 const defaultCenter = { lat: 27.7107273, lng: 85.3109501 }; // Default coordinates
@@ -35,14 +35,14 @@ export default function HostelDetails() {
   const { hostelId } = useParams();
 
   const [hostelItem, setHostelItem] = useState(null);
-  const [activeTab, setActiveTab] = useState("description");
+  const [activeTab, setActiveTab] = useState('description');
   const [directionsResponse, setDirectionsResponse] = useState(null);
   const [location, setLocation] = useState(defaultCenter);
   const [savedHostels, setSavedHostels] = useState([]);
   const [loading, setLoading] = useState(true);
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [currentDistance, setCurrentDistance] = useState("");
-  const [currentDuration, setCurrentDuration] = useState("");
+  const [currentDistance, setCurrentDistance] = useState('');
+  const [currentDuration, setCurrentDuration] = useState('');
 
   useEffect(() => {
     const fetchHostelDetails = async () => {
@@ -57,7 +57,7 @@ export default function HostelDetails() {
           setLoading(false);
         }
       } catch (error) {
-        console.error("Error fetching hostel details:", error);
+        console.error('Error fetching hostel details:', error);
         setLoading(false);
       }
     };
@@ -65,7 +65,7 @@ export default function HostelDetails() {
     fetchHostelDetails();
 
     // Load saved hostels from localStorage
-    const saved = JSON.parse(localStorage.getItem("savedHostels")) || [];
+    const saved = JSON.parse(localStorage.getItem('savedHostels')) || [];
     setSavedHostels(saved);
 
     if (navigator.geolocation) {
@@ -98,7 +98,7 @@ export default function HostelDetails() {
           setCurrentDistance(result.routes[0].legs[0].distance.text);
           setCurrentDuration(result.routes[0].legs[0].duration.text);
         } else {
-          console.error("Error fetching directions:", result);
+          console.error('Error fetching directions:', result);
         }
       }
     );
@@ -107,13 +107,13 @@ export default function HostelDetails() {
   const handleSaveHostel = () => {
     const updatedSaved = [...savedHostels, hostelItem];
     setSavedHostels(updatedSaved);
-    localStorage.setItem("savedHostels", JSON.stringify(updatedSaved));
+    localStorage.setItem('savedHostels', JSON.stringify(updatedSaved));
   };
 
   const handleRemoveHostel = (hostel) => {
     const updatedSaved = savedHostels.filter((h) => h.id !== hostel.id);
     setSavedHostels(updatedSaved);
-    localStorage.setItem("savedHostels", JSON.stringify(updatedSaved));
+    localStorage.setItem('savedHostels', JSON.stringify(updatedSaved));
   };
 
   const handleOpenDialog = () => {
@@ -125,10 +125,10 @@ export default function HostelDetails() {
   };
 
   const renderTabContent = () => {
-    if (activeTab === "description") {
+    if (activeTab === 'description') {
       return (
         <Typography variant="body1" gutterBottom>
-          {hostelItem.description || "No description available."}
+          {hostelItem.description || 'No description available.'}
         </Typography>
       );
     } else {
@@ -147,7 +147,7 @@ export default function HostelDetails() {
 
   if (loading) return <CircularProgress />;
 
-  const handleTabChange = (tab: "description" | "reviews") => {
+  const handleTabChange = (tab: 'description' | 'reviews') => {
     setActiveTab(tab);
   };
   return (
@@ -180,7 +180,7 @@ export default function HostelDetails() {
                 <p className="pt-2 pb-2 text-sm flex ">
                   <LocationOnOutlinedIcon
                     fontSize="small"
-                    style={{ color: "var(--primary-color)" }}
+                    style={{ color: 'var(--primary-color)' }}
                   />
                   {hostelItem.address}
                 </p>
@@ -211,7 +211,7 @@ export default function HostelDetails() {
                   </button>
                   <FavoriteIcon
                     className="cursor-pointer"
-                    style={{ color: "var(#F5F7F8)" }}
+                    style={{ color: 'var(#F5F7F8)' }}
                   />
                 </div>
               </div>
@@ -240,28 +240,28 @@ export default function HostelDetails() {
             <div className="flex justify-center   gap-10 mb-10">
               <button
                 className={`px-0 py-2 ${
-                  activeTab === "description"
-                    ? " border-b-2 border-[--primary-color]  font-semibold text-[--primary-color]"
-                    : "font-semibold"
+                  activeTab === 'description'
+                    ? ' border-b-2 border-[--primary-color]  font-semibold text-[--primary-color]'
+                    : 'font-semibold'
                 }`}
-                onClick={() => handleTabChange("description")}
+                onClick={() => handleTabChange('description')}
               >
                 Description
               </button>
               <button
                 className={`px-0 py-2 ${
-                  activeTab === "reviews"
-                    ? "border-b-2 border-[--primary-color] font-semibold text-[--primary-color]"
-                    : "font-semibold"
+                  activeTab === 'reviews'
+                    ? 'border-b-2 border-[--primary-color] font-semibold text-[--primary-color]'
+                    : 'font-semibold'
                 }`}
-                onClick={() => handleTabChange("reviews")}
+                onClick={() => handleTabChange('reviews')}
               >
                 Reviews
               </button>
             </div>
 
             <div className="tab-content mt-4 px-12">
-              {activeTab === "description" ? (
+              {activeTab === 'description' ? (
                 <div className="description-content">
                   <h3 className="text-2xl mb-2 font-bold">
                     Hostel Description

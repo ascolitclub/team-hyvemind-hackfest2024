@@ -1,4 +1,5 @@
-export declare class HostelLocation {
+import { BaseEntity } from 'typeorm';
+export declare class HostelLocation extends BaseEntity {
     location_id: number;
     lat: number;
     lng: number;
