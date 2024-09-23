@@ -11,8 +11,6 @@ const logger_1 = require("./libs/logger");
 const router_1 = __importDefault(require("./routes/router"));
 const exceptions_1 = require("./exceptions");
 const errorhandler_1 = require("./handler/errorhandler");
-const connect_1 = __importDefault(require("./database/connect"));
-const mongo_connect_1 = require("./mongoConnection/mongo.connect");
 exports.expressLogger = (0, logger_1.createLogger)('express-app');
 const expressAppIntializer = async (app) => {
     app.use((0, helmet_1.default)());
@@ -22,19 +20,6 @@ const expressAppIntializer = async (app) => {
         origin: 'http://localhost:5173',
         methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
     }));
-    await (0, mongo_connect_1.connectMongo)();
-    await connect_1.default.initialize()
-        .then((db) => {
-        exports.expressLogger.info(`Initialized ${db.options.database} database Successfully`);
-    })
-        .catch((err) => {
-        exports.expressLogger.error(`Error While Initalizing Database . Error` + err);
-        process.exit(0);
-    });
-    await connect_1.default.runMigrations().catch((err) => {
-        exports.expressLogger.error(`Error While Migration Database Error:`, err);
-        process.exit(0);
-    });
     (0, router_1.default)(app);
     app.use((req, _, next) => next(new exceptions_1.NotFoundException(null, `404 Not Found : ${req.url} does not exists`)));
     app.use(errorhandler_1.errorHandler);

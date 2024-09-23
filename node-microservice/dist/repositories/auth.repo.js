@@ -1,16 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const User_entity_1 = require("../database/entity/User.entity");
 const exceptions_1 = require("../exceptions");
+const connect_1 = require("../mongo/connect");
 class AuthRepository {
     static async insertData(data) {
         try {
-            console.log('database data', data);
-            await User_entity_1.User.createQueryBuilder()
-                .insert()
-                .into(User_entity_1.User)
-                .values([data])
-                .execute();
+            const db = (0, connect_1.initializeMongoDbUser)();
+            (await db).insertOne(data);
             return true;
         }
         catch (err) {

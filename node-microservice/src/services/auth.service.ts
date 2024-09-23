@@ -5,36 +5,28 @@ import bcrypt from 'bcrypt';
 import AuthRepository from '../repositories/auth.repo';
 import { createAccessToken } from '../utils/jwt.utils';
 import { Check } from 'typeorm';
+import { initializeMongoDbUser } from '../mongo/connect';
 
 class AuthService {
   static registerUser = async (data: Partial<RegisterUserBody>) => {
     console.log('This is the register user', data);
+
+    const db = initializeMongoDbUser();
     const checkData = Object.values(data).length === 0;
     if (checkData) {
       throw new BadRequestException(null, 'Data Object Is Empty');
     }
-
-    const checkUniquqValue = await User.find({
-      where: {
-        email: data.email,
-        username: data.username,
-      },
+    const existingDocument = await (
+      await db
+    ).findOne({
+      $and: [{ email: data.email }, { phoneNumber: data.phoneNumber }],
     });
 
-    const existsingUser = checkUniquqValue.filter(
-      (item) => item.email === data.email && item.username === data.username
-    );
-
-    const checkPhoneNumber = checkUniquqValue.find(
-      (item) => item.phoneNumber === data.phoneNumber
-    );
-
-    if (checkUniquqValue && existsingUser.length > 0) {
-      throw new BadRequestException(null, 'Username or Email already Exists');
-    }
-
-    if (checkPhoneNumber) {
-      throw new BadRequestException(null, 'Phone Number Already Exists');
+    if (existingDocument) {
+      throw new BadRequestException(
+        null,
+        'Phone Number or Email is Already Exists'
+      );
     }
 
     const genSalt = bcrypt.genSaltSync(10);
@@ -52,11 +44,15 @@ class AuthService {
   };
 
   static loginUser = async (data: Required<LoginUserBody>) => {
-    const checkUser = await User.findOne({
-      where: {
-        username: data.username,
-      },
+    const db = initializeMongoDbUser();
+
+    const checkUser = await (
+      await db
+    ).findOne({
+      username: data.username,
     });
+
+    console.log(checkUser);
 
     if (!checkUser) {
       throw new DatabaseException(null, `User name does not exists`);
@@ -73,13 +69,16 @@ class AuthService {
         'Password Does Not Match, Please Try Again'
       );
     }
-    const hasId = checkUser.hasId() ? checkUser.id : null;
+    const id = checkUser._id;
     const userData = {
       email: checkUser.email,
-      userId: hasId as number,
+      userId: id,
       username: checkUser.username,
     };
+
+    console.log('User data', userData);
     const accessToken = await createAccessToken(userData);
+    console.log(accessToken);
     return {
       accessToken,
       email: checkUser.email,

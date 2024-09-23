@@ -56,16 +56,24 @@ class CreateHostelEntities1625207938471 {
                 {
                     name: 'rating',
                     type: 'int',
+                    default: 0,
+                    isUnique: true,
+                },
+                {
+                    name: 'hostel_phoneNumber',
+                    type: 'text',
                     isUnique: true,
                 },
                 {
                     name: 'user_ratings_total',
                     type: 'varchar',
                     length: '255',
+                    default: 0,
                 },
                 {
                     name: 'opening_hours',
                     type: 'boolean',
+                    default: false,
                 },
                 {
                     name: 'location_id',
@@ -96,7 +104,7 @@ class CreateHostelEntities1625207938471 {
     async down(queryRunner) {
         // Drop foreign key first
         const table = await queryRunner.getTable('hostel_credential');
-        const foreignKey = table.foreignKeys.find(fk => fk.columnNames.indexOf('location_id') !== -1);
+        const foreignKey = table.foreignKeys.find((fk) => fk.columnNames.indexOf('location_id') !== -1);
         await queryRunner.dropForeignKey('hostel_credential', foreignKey);
         // Drop tables
         await queryRunner.dropTable('hostel_credential');
