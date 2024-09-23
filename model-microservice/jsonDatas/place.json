@@ -22,7 +22,7 @@
       {
         "name": "Subham",
         "age": 19,
-        "program": "BSC_CSIT",
+        "faculty": "IT",
         "location": "Imadol",
         "college": "Texas International College"
       }
@@ -46,6 +46,16 @@
         "dimensions": { "height": 4096, "width": 3072 },
         "attribution": "<a href=\"https://maps.google.com/maps/contrib/106852290462680591238\">A Google User</a>"
       }
+    ],
+
+    "hostel_members": [
+      {
+        "name": "nishan",
+        "age": 19,
+        "faculty": "IT",
+        "location": "jorpati",
+        "college": "Texas International College"
+      }
     ]
   },
   {
@@ -65,6 +75,15 @@
         "photo_reference": "AXCi2Q4h2ySpy-pMiPLarT5N07d-l_C3QkJM08jbsQkm8hUiu7Nn_22yQHnRl_W4qX0hckF59VRYqQW89VUXL0voVsZKDjppKbWsNEfV-xOJs1ebSPzr6PJh_wPRaPDWIl4gSbuW62ijvp3xkRyIqHe_d3712K1KX_ULNtme8n2S6MxcY1A",
         "dimensions": { "height": 3313, "width": 4969 },
         "attribution": "<a href=\"https://maps.google.com/maps/contrib/117368644937759051717\">A Google User</a>"
+      }
+    ],
+    "hostel_members": [
+      {
+        "name": "rohan",
+        "age": 19,
+        "faculty": "IT",
+        "location": "jorpati",
+        "college": "MIT College"
       }
     ]
   },
@@ -86,6 +105,15 @@
         "dimensions": { "height": 3024, "width": 4032 },
         "attribution": "<a href=\"https://maps.google.com/maps/contrib/111851153529689716079\">The Sparkling Turtle Backpackers Hostel</a>"
       }
+    ],
+    "hostel_members": [
+      {
+        "name": "prashant",
+        "age": 19,
+        "faculty": "IT",
+        "location": "jorpati",
+        "college": "MIT College"
+      }
     ]
   },
   {
@@ -105,6 +133,15 @@
         "photo_reference": "AXCi2Q53BepRCUkOb5A-qCjZ18x34FQO6olmTb5ZA_LjFnABT74Kgebkn63Q6lhnhqEjn19opFcq5gQREOuyfYBuHyDTAOO-ZWqk1AW3fBp1hEpi2O_z4eAjKy4SXEGKZr7-1jeMwsawUKoHcBm7p79LF110Fy2q0JqHhG71b85SMSHbpdwY",
         "dimensions": { "height": 3024, "width": 4032 },
         "attribution": "<a href=\"https://maps.google.com/maps/contrib/112816072625614679938\">\uacfd\ud61c\uc9c4</a>"
+      }
+    ],
+    "hostel_members": [
+      {
+        "name": "suresh",
+        "age": 19,
+        "faculty": "IT",
+        "location": "jorpati",
+        "college": "MIT College"
       }
     ]
   },
@@ -126,6 +163,15 @@
         "dimensions": { "height": 4176, "width": 5568 },
         "attribution": "<a href=\"https://maps.google.com/maps/contrib/113367364153332574019\">A Google User</a>"
       }
+    ],
+    "hostel_members": [
+      {
+        "name": "amit",
+        "age": 19,
+        "faculty": "IT",
+        "location": "jorpati",
+        "college": "MIT College"
+      }
     ]
   },
   {
@@ -145,6 +191,15 @@
         "photo_reference": "AXCi2Q7zsC4Dtd0KK3x6EA_6S2K03VJTt5ds1JM4ibTzESvJ7W9q-DCZgjiY9qX75zPTW5Sf9GaNtrhgGWGV9hvCbOJQe-fqOprDOc3s5lOp6GGUDHTK4Pdc7N4dOmc-p2HULUtFQZwIcsngFTaimxsGZkAhuhuHyktRLedhM7lrNOEvLFKW",
         "dimensions": { "height": 1920, "width": 2880 },
         "attribution": "<a href=\"https://maps.google.com/maps/contrib/114182696817981539903\">A Google User</a>"
+      }
+    ],
+    "hostel_members": [
+      {
+        "name": "rohan",
+        "age": 19,
+        "faculty": "medical",
+        "location": "jorpati",
+        "college": "Institute of Medicine"
       }
     ]
   },
@@ -187,6 +242,15 @@
         "dimensions": { "height": 4624, "width": 2080 },
         "attribution": "<a href=\"https://maps.google.com/maps/contrib/112704963952021847873\">Sangita Khadka</a>"
       }
+    ],
+    "hostel_members": [
+      {
+        "name": "suresh",
+        "age": 19,
+        "faculty": "medical",
+        "location": "balaju",
+        "college": "Nepal Medical college"
+      }
     ]
   },
 
@@ -195,7 +259,7 @@
     "rating": 4.6,
     "user_ratings_total": 165,
     "price": 1000,
-    "location": { "latitude": 27.7174089, "latitude": 85.3063844 },
+    "location": { "latitude": 27.7115927, "longitude": 85.3110689 },
     "address": "Kaldhara Marg, Kathmandu",
     "place_id": "ChIJUWkL6b4Z6zkRzxYE7mXREU8",
     "icon": {
@@ -207,6 +271,16 @@
         "photo_reference": "AXCi2Q7ttV_9YldgPQSN0MeZ7KcbsKayLkuuu_enOaq7G0DkDJTrD4ZmltmC_GZ7z5AkZvyc-E1PBqfyLPYb7u1CT7hthvK3GvmkD5Ad4DyhBid8BKF2Cmch2x-MDMHlDNSsC3UQeH0L4ZmQfmwAA6DbkGBTGJRNRcR3vnUdJpfzP56K7RXt",
         "dimensions": { "height": 3000, "width": 4000 },
         "attribution": "<a href=\"https://maps.google.com/maps/contrib/114724425999041043806\">A Google User</a>"
+      }
+    ],
+
+    "hostel_members": [
+      {
+        "name": "sulav",
+        "age": 19,
+        "faculty": "medical",
+        "location": "kapan",
+        "college": "Nepal Medical college"
       }
     ]
   },
@@ -227,6 +301,15 @@
         "photo_reference": "AXCi2Q6HwXugUPXo2JGUF4_dxpfL8vufa6jjU5WtL-KiLoqEybgsxsh8AqKBZfJTBrWLpdxDldSAGsr4HLiFy5V1D0a258fLSv3l5z704XMt9EpFWoCsom1_FpRV9Sl_riGkgehH8N2hcg4tGQ2lX1z2Agkne8XwHfiuBJ1-9WXXRVl9fbwM",
         "dimensions": { "height": 3648, "width": 5472 },
         "attribution": "<a href=\"https://maps.google.com/maps/contrib/117394315258075854382\">A Google User</a>"
+      }
+    ],
+    "hostel_members": [
+      {
+        "name": "rojan",
+        "age": 19,
+        "faculty": "medical",
+        "location": "narayantar",
+        "college": "Kathmandu Medical College"
       }
     ]
   },
@@ -533,6 +616,15 @@
         "dimensions": { "height": 780, "width": 1194 },
         "attribution": "<a href=\"https://maps.google.com/maps/contrib/103856149758162225500\">A Google User</a>"
       }
+    ],
+    "hostel_members": [
+      {
+        "name": "suresh",
+        "age": 19,
+        "faculty": "medical",
+        "location": "balaju",
+        "college": "Nepal Medical college"
+      }
     ]
   },
   {
@@ -552,6 +644,15 @@
         "photo_reference": "AXCi2Q6T0DqkZWDsWKQFnYILt1d5B9KisDSCgMVN0bdGLDMHrh9zViE28nl_lHYYP91mDwp0B0Uoy_2mKqiD20lHXh_dmveXLPH4ilhShyQS3UdmbubQ3naZEp0VsxYHUh456d0T-KteR1KbHJEfuXFjOSzfmVq-wT9b8BWRed3Rs2_eJs3L",
         "dimensions": { "height": 3264, "width": 4928 },
         "attribution": "<a href=\"https://maps.google.com/maps/contrib/116791303255690534118\">A Google User</a>"
+      }
+    ],
+    "hostel_members": [
+      {
+        "name": "prashant",
+        "age": 19,
+        "faculty": "medical",
+        "location": "kapan",
+        "college": "Nepal Medical college"
       }
     ]
   },
@@ -573,6 +674,15 @@
         "dimensions": { "height": 682, "width": 1024 },
         "attribution": "<a href=\"https://maps.google.com/maps/contrib/107725170898347939422\">A Google User</a>"
       }
+    ],
+    "hostel_members": [
+      {
+        "name": "dipesh",
+        "age": 19,
+        "faculty": "medical",
+        "location": "gaushala",
+        "college": "Nepal Medical college"
+      }
     ]
   },
   {
@@ -592,6 +702,15 @@
         "photo_reference": "AXCi2Q66zk7IX4UKr9t8xHNQi6gdvPv7f8DOKIt01rDh2wUAT_PfDY-KFEma5J4FCe9jP4ZjNbNk12oGGdy-FUVkFbK4P2WxRkB0Fo-4mecHHftvw6jhWrCkHI3DtzItmBPFUZ4YnXtRiF2H1DC4Uq-KTf8y3W3GpHZ85TdLcGqGf96q_Bki",
         "dimensions": { "height": 309, "width": 550 },
         "attribution": "<a href=\"https://maps.google.com/maps/contrib/102443988922663387345\">Eran Lax</a>"
+      }
+    ],
+    "hostel_members": [
+      {
+        "name": "hemraj",
+        "age": 19,
+        "faculty": "Engineer",
+        "location": "gaushala",
+        "college": "Nepal Engineering college"
       }
     ]
   },
@@ -613,6 +732,15 @@
         "dimensions": { "height": 3456, "width": 5184 },
         "attribution": "<a href=\"https://maps.google.com/maps/contrib/115027282741548772870\">Jayram Dahal</a>"
       }
+    ],
+    "hostel_members": [
+      {
+        "name": "abhishek",
+        "age": 19,
+        "faculty": "Engineer",
+        "location": "Bhaktapur",
+        "college": "Himalayan Engineering College"
+      }
     ]
   },
   {
@@ -633,6 +761,15 @@
         "dimensions": { "height": 2736, "width": 3648 },
         "attribution": "<a href=\"https://maps.google.com/maps/contrib/105105324925679597907\">Jonathan Thijs</a>"
       }
+    ],
+    "hostel_members": [
+      {
+        "name": "manish",
+        "age": 19,
+        "faculty": "Engineering",
+        "location": "balaju",
+        "college": "Nepal Engineering College"
+      }
     ]
   },
   {
@@ -651,6 +788,15 @@
         "photo_reference": "AXCi2Q6EiRg7MXMNHdpdHo7WqJCLjLrrKm43DcW7EYbaN4VM1EZtTgv4ENVDD6620EbpK1vS1DIYiOOUYTos2B37DYmUlm9f7MKDpIeoQBaa2ASCdHe08IrH265ZQYZ_UUhkxvpC50EJPmgaXfPys_RnS95aXIn3hhQfe1pkEldzgp9dBBEh",
         "dimensions": { "height": 683, "width": 1021 },
         "attribution": "<a href=\"https://maps.google.com/maps/contrib/108733998654945360986\">Anoushka Pandey</a>"
+      }
+    ],
+    "hostel_members": [
+      {
+        "name": "pradip",
+        "age": 19,
+        "faculty": "management",
+        "location": "maitidevi",
+        "college": "Texas International college"
       }
     ]
   },
@@ -672,6 +818,15 @@
         "dimensions": { "height": 1000, "width": 1000 },
         "attribution": "<a href=\"https://maps.google.com/maps/contrib/110385496902741390117\">A Google User</a>"
       }
+    ],
+    "hostel_members": [
+      {
+        "name": "sandeep",
+        "age": 19,
+        "faculty": "management",
+        "location": "bouddha",
+        "college": "NAMI college"
+      }
     ]
   },
   {
@@ -686,7 +841,16 @@
       "url": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
       "background_color": "#909CE1"
     },
-    "photos": []
+    "photos": [],
+    "hostel_members": [
+      {
+        "name": "nisha",
+        "age": 19,
+        "faculty": "management",
+        "location": "jorpati",
+        "college": "Himalayan college"
+      }
+    ]
   },
   {
     "name": "Happy Feet Girls Hostel",
@@ -705,6 +869,15 @@
         "photo_reference": "AXCi2Q6uaqZ81MCC10KloDU7eTVtyUBV3qG4N68Gw_-XE1jFcs7kCTnhBp_vBvwxrHZHLCIhYX6yEpH1ifDcbJHSG-zJvU37qAAgYOfpdEQZ8RHNC-Vz_d40H8npOcEn3DrMfV-_SwR5_jY5tgOV-5F9AUrYpXlBc1ts8dr0ss8Wzvo2X1oD",
         "dimensions": { "height": 774, "width": 1080 },
         "attribution": "<a href=\"https://maps.google.com/maps/contrib/117410771096631043920\">Vishal Thapa</a>"
+      }
+    ],
+    "hostel_members": [
+      {
+        "name": "prabin",
+        "age": 19,
+        "faculty": "management",
+        "location": "balaju",
+        "college": "Texas international college"
       }
     ]
   }

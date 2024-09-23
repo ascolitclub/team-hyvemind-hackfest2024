@@ -7,6 +7,7 @@ from models.trainModel.model1 import recommend_hostels
 from extractor.extractmodel import recommend_hotel_api
 from services.hostelservice import getHostelById
 blp = Blueprint('hostel', __name__, description='Hostel Routes')
+from flask import request
 
 @blp.route('/hostel/popular')
 class PopularHostel(MethodView):
@@ -42,3 +43,20 @@ class Hostel(MethodView):
         except Exception as e:
             logger.error(f'Error fetching particular hostel: {e}')
             return jsonify({'error': 'An error occurred while fetching the hostel ID'}), 500
+        
+
+
+
+
+@blp.route('/recommend')
+class Hostel(MethodView):
+
+    try:
+
+        pass
+
+
+
+
+    except Exception as e:
+        print(f' Error in the Hostel {e}')

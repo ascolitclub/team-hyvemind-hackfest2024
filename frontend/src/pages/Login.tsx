@@ -250,6 +250,11 @@ export default function Login({ onClose }: LoginProps) {
           X
         </button>
       </div>
+
+      {/* Close Button */}
+      <button className="absolute top-24 right-64 text-black bg-white h-8 w-8 rounded-full p-1 shadow" onClick={onClose}>
+        X
+      </button>
     </div>
   );
 }

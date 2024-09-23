@@ -7,6 +7,9 @@ import OurFeatures from "../components/features/OurFeatures";
 import { HowItWorks } from "../components/features/HowItWorks";
 import { QualityAssuarance } from "../components/features/QualityAssuarance";
 import { Banner } from "../components/features/Banner";
+import FeedBacks from "../components/features/FeedBacks";
+import AssociatePartners from "../components/features/AssociatePartners";
+import Register from "./Register";
 
 export default function HomePage() {
   useEffect(() => {
@@ -24,6 +27,8 @@ export default function HomePage() {
       <HowItWorks />
       <QualityAssuarance />
       <Banner />
+      <FeedBacks/>
+      <AssociatePartners/>
     </>
   );
 }
