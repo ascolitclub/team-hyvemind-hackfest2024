@@ -41,7 +41,9 @@ export default function AppRoutes() {
       {!hideNavbarFooter && <Navbar />}
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login onClose={function (): void {
+          throw new Error("Function not implemented.");
+        } } />} />
         <Route path="/about" element={<About />} />
         <Route path="/hostel" element={<Hostel />} />
         <Route path="/news" element={<News />} />
