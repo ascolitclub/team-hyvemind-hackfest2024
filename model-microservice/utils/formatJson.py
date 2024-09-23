@@ -1,35 +1,33 @@
 import json
 
 def format_place_data(raw_data):
+    print(raw_data)
     formatted_data = []
     
     for place in raw_data:
-        formatted_place = {
-            "name": place.get("name"),
-            "rating": place.get("rating"),
-            "user_ratings_total": place.get("user_ratings_total"),
-            "location": {
-                "latitude": place["geometry"]["location"]["lat"],
-                "longitude": place["geometry"]["location"]["lng"]
-            },
-            "address": place.get("vicinity"),
-            "place_id": place.get("place_id"),
-            "icon": {
-                "url": place.get("icon"),
-                "background_color": place.get("icon_background_color")
-            },
-            "photos": [
-                {
-                    "photo_reference": photo.get("photo_reference"),
-                    "dimensions": {
-                        "height": photo.get("height"),
-                        "width": photo.get("width")
-                    },
-                    "attribution": photo.get("html_attributions", ["Unknown"])[0]  # Default to "Unknown" if not available
-                }
-                for photo in place.get("photos", [])
-            ]
-        }
-        formatted_data.append(formatted_place)
+        if isinstance(place, dict):  # Ensure place is a dictionary
+            formatted_place = {
+                "name": place.get("name"),
+                "rating": place.get("rating"),
+                "user_ratings_total": place.get("user_ratings_total"),
+                "location": {
+                    "latitude": place["geometry"]["location"]["lat"],
+                    "longitude": place["geometry"]["location"]["lng"]
+                },
+                "address": place['address'],
+                "place_id": place['place_id'],
+              
+                "photos": [
+                    {
+                        "photo_reference": photo["photo_reference"],
+                    }
+                    for photo in place
+                ]
+            }
+            formatted_data.append(formatted_place)
+        else:
+            print(f"Warning: Expected a dictionary but got {type(place)}: {place}")
+
+    print('This is the formatted data:', formatted_data)
     
     return formatted_data

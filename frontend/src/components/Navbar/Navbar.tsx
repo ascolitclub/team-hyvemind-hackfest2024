@@ -1,11 +1,17 @@
-import { useState, useEffect, useRef } from "react";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { NavLink } from "react-router-dom";
+import { useState, useEffect, useRef } from 'react';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector, UseSelector } from 'react-redux';
+import { logoutReducer } from '../../redux/authSlice';
 
 export const Navbar = () => {
   const [isBlogHover, setIsBlogHover] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false); // Track scroll position
+  const isLoggedIn = useSelector((state: any) => state.auth.isLoggedIn);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const blogRef = useRef<HTMLLIElement>(null);
 
   // Toggle the dropdown on clicking the "Blog"
@@ -13,10 +19,15 @@ export const Navbar = () => {
     setIsBlogHover(!isBlogHover);
   };
 
+  const handleLogout = () => {
+    dispatch(logoutReducer());
+    navigate('/');
+  };
+
   // Track scroll position
   useEffect(() => {
     const handleScroll = () => {
-      const heroSectionHeight = window.innerHeight*0.01; // 100vh height
+      const heroSectionHeight = window.innerHeight * 0.01; // 100vh height
       if (window.scrollY > heroSectionHeight) {
         setIsScrolled(true); // Change navbar text color to black
       } else {
@@ -24,9 +35,9 @@ export const Navbar = () => {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -42,9 +53,9 @@ export const Navbar = () => {
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isBlogHover]);
 
@@ -52,7 +63,7 @@ export const Navbar = () => {
     <>
       <div
         className={`w-full fixed top-0 z-50 transition-colors duration-300 ${
-          isScrolled ? "bg-white text-black" : "bg-transparent text-white"
+          isScrolled ? 'bg-white text-black' : 'bg-transparent text-white'
         }`}
       >
         <div className="container mx-auto px-12 py-2 navbar flex items-center justify-between">
@@ -88,8 +99,8 @@ export const Navbar = () => {
                   to="/"
                   className={({ isActive }) =>
                     isActive
-                      ? "text-[--primary-color] border-b-2 border-[--primary-color] transition-all"
-                      : ""
+                      ? 'text-[--primary-color] border-b-2 border-[--primary-color] transition-all'
+                      : ''
                   }
                 >
                   Home
@@ -100,8 +111,8 @@ export const Navbar = () => {
                   to="/hostel"
                   className={({ isActive }) =>
                     isActive
-                      ? "text-[--primary-color] border-b-2 border-[--primary-color] transition-all"
-                      : ""
+                      ? 'text-[--primary-color] border-b-2 border-[--primary-color] transition-all'
+                      : ''
                   }
                 >
                   Hostel
@@ -112,8 +123,8 @@ export const Navbar = () => {
                   to="/about"
                   className={({ isActive }) =>
                     isActive
-                      ? "text-[--primary-color] border-b-2 border-[--primary-color] transition-all"
-                      : ""
+                      ? 'text-[--primary-color] border-b-2 border-[--primary-color] transition-all'
+                      : ''
                   }
                 >
                   About
@@ -148,8 +159,8 @@ export const Navbar = () => {
                   to="/contact"
                   className={({ isActive }) =>
                     isActive
-                      ? "text-[--primary-color] border-b-2 border-[--primary-color] transition-all"
-                      : ""
+                      ? 'text-[--primary-color] border-b-2 border-[--primary-color] transition-all'
+                      : ''
                   }
                 >
                   Contact Us
@@ -159,11 +170,21 @@ export const Navbar = () => {
           </div>
 
           <div className="buttons flex gap-4">
-            <NavLink to={"/login"}>
-              <button className="text-white text-lg bg-[--btn-primary] px-6 py-2 rounded-lg font-semibold  hover:bg-[--btn-secondary] transition-all active:translate-y-0.5">
-                Login
+            {isLoggedIn ? (
+              <NavLink to={'/login'}>
+                <button className="text-white text-lg bg-[--btn-primary] px-6 py-2 rounded-lg font-semibold  hover:bg-[--btn-secondary] transition-all active:translate-y-0.5">
+                  Login
+                </button>
+              </NavLink>
+            ) : (
+              <button
+                onClick={() => handleLogout}
+                className="text-white text-lg bg-[--btn-primary] px-6 py-2 rounded-lg font-semibold  hover:bg-[--btn-secondary] transition-all active:translate-y-0.5"
+              >
+                Logout
               </button>
-            </NavLink>
+            )}
+
             <button className="text-white text-lg bg-[--btn-primary] px-6 py-2 rounded-lg font-semibold  hover:bg-[--btn-secondary] transition-all active:translate-y-0.5">
               Book
             </button>

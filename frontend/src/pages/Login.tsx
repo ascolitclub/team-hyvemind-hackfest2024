@@ -97,8 +97,8 @@ export default function Login({ onClose }: LoginProps) {
       const response = await axios.post(
         `http://localhost:3000/api/user/register`,
         {
-          name: signUpName,
-          phone: signUpPhone,
+          username: signUpName,
+          phoneNumber: signUpPhone,
           email: signUpEmail,
           password: signUpPassword,
         }
