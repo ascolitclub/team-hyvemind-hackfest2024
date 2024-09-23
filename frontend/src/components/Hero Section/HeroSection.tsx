@@ -20,29 +20,29 @@ export const HeroSection = () => {
           >
             Perfect Stay
           </h1>
-          <p className="w-[700px] text-center leading-loose pb-16">
+          <p className="w-[700px] text-center leading-loose pb-20 pt-8">
             Experience comfort and convenience with our expertly curated hostel
             listings, designed to match students with their perfect living
             space.
           </p>
-          <div className="search shadow-2xl z-20 w-[70%] box mx-72 px-8 grid items-center justify-center grid-cols-4 gap-x-12 bg-white rounded-2xl h-24 text-black font-medium">
-            <div className="">
-              <h2>Location</h2>
+          <div className="search shadow-2xl z-20 w-[70%] box mx-72 px-8 grid items-center justify-center grid-cols-4 gap-x-4 bg-white rounded-2xl h-24 text-black font-medium">
+            <div className="flex flex-col">
+              <h2 className="mb-1">Location</h2>
               <input
                 className="outline-none py-1 rounded-md text-gray-500 font-medium"
                 type="text"
                 placeholder="Mitrapark, Chabahill"
               />
             </div>
-            <div>
-              <h2>Price Range</h2>
+            <div className="flex flex-col gap-2">
+              <h2 className="">Price Range</h2>
               <select
                 className="outline-none text-gray-400"
                 name="gender"
                 id="gender"
               >
                 <option
-                  className="text-gray-300 outline-none"
+                  className="text-gray-300 outline-none "
                   value=""
                   disabled
                   selected
@@ -57,7 +57,7 @@ export const HeroSection = () => {
                 <option>25000-Above</option>
               </select>
             </div>
-            <div>
+            <div className="flex flex-col gap-2">
               <h2>Gender</h2>
               <select
                 className="outline-none text-gray-400"
