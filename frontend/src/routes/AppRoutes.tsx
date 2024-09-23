@@ -20,7 +20,7 @@ export default function AppRoutes() {
       window.requestAnimationFrame(() => {
         window.scrollTo({
           top: 0,
-          behavior: "smooth",
+          behavior: 'smooth',
         });
       });
     };
@@ -32,7 +32,7 @@ export default function AppRoutes() {
     return () => clearTimeout(timer);
   }, [location]);
 
-  const noNavbarFooterRoutes = [""];
+  const noNavbarFooterRoutes = [''];
 
   const hideNavbarFooter = noNavbarFooterRoutes.includes(location.pathname);
 
