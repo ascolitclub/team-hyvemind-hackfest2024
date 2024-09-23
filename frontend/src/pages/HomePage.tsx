@@ -9,6 +9,7 @@ import { QualityAssuarance } from "../components/features/QualityAssuarance";
 import { Banner } from "../components/features/Banner";
 import FeedBacks from "../components/features/FeedBacks";
 import AssociatePartners from "../components/features/AssociatePartners";
+import Register from "./Register";
 
 export default function HomePage() {
   useEffect(() => {

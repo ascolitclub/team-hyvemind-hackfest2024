@@ -148,7 +148,7 @@ export const Navbar = () => {
                       : ""
                   }
                 >
-                  Contact Us
+                  Contact
                 </NavLink>
               </li>
             </ul>

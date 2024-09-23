@@ -1,5 +1,5 @@
 import { useState } from "react";
-import StarIcon from "@mui/icons-material/Star";
+import { RenderStar } from "../dynamic renderer/RenderStar";
 
 export default function FeedBacks() {
   const feedbacks = [
@@ -63,20 +63,23 @@ export default function FeedBacks() {
     <>
       <div className="px-12 container mx-auto ">
         <div className="relative rounded-xl  bg-gray-300 px-4 py-12 mb-10">
-          <div className="text-center mb-8 flex-col flex">
-            <h2 className="text-[45px] font-extrabold">
-              Our Customer{" "}
-              <span className="text-[--primary-color]">Feedbacks</span>
+          <div className="relative flex flex-col items-center justify-center ">
+            <h1
+              data-aos="fade-up"
+              className="text-[120px] text-white font-mono font-semibold uppercase"
+              style={{ fontFamily: "Oswald" }}
+            >
+              Testimonial
+            </h1>
+            <h2
+              data-aos="fade-up"
+              className="absolute tracking-widest text-center text-xl top-[47%] text-[--primary-color] font-sans uppercase"
+            >
+              Take a look at our
             </h2>
-            <p className="w-full lg:w-[60%] mx-auto">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Distinctio perspiciatis amet eaque molestias saepe ipsam ad
-              consequuntur iure error? Ducimus?
-            </p>
           </div>
-
           {/* Wrapper for feedback cards */}
-          <div className="py-8 px-4 overflow-hidden">
+          <div data-aos="fade-up" className="py-8 px-4 overflow-hidden">
             <div
               className="flex gap-4 transition-transform duration-500 ease-in-out"
               style={{
@@ -90,24 +93,20 @@ export default function FeedBacks() {
                   key={index}
                   className="bg-[#fff] rounded-2xl p-8 relative overflow-hidden shadow-xl cursor-pointer w-[33.333%] flex-shrink-0"
                 >
-                  <div className="mb-2">
-                    {[...Array(5)].map((_, i) => (
-                      <StarIcon
-                        key={i}
-                        style={{
-                          color: i < feedback.rating ? "yellow" : "gray",
-                        }}
-                      />
-                    ))}
-                  </div>
-                  <p className="mb-5">{feedback.feedback}</p>
-                  <div className="grid grid-cols-2 overflow-x-clip">
-                    <div>
-                      <h3 className="text-[20px] font-semibold">
-                        {feedback.name}
-                      </h3>
-                      <p className="text-[#a7a7a7]">{feedback.location}</p>
-                    </div>
+                  <div data-aos="fade-up">{RenderStar(feedback.rating)}</div>
+                  <p data-aos="fade-up" className="mt-4 mb-4">
+                    {feedback.feedback}
+                  </p>
+                  <div className="location mt-4">
+                    <h3
+                      data-aos="fade-up"
+                      className="text-[20px] font-semibold"
+                    >
+                      {feedback.name}
+                    </h3>
+                    <p data-aos="fade-up" className="text-[#a7a7a7]">
+                      {feedback.location}
+                    </p>
                   </div>
                 </div>
               ))}
