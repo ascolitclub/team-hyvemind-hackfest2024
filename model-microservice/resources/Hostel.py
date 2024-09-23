@@ -5,7 +5,8 @@ from bson import ObjectId
 
 from models.trainModel.model1 import recommend_hostels
 from extractor.extractmodel import recommend_hotel_api
-from services.hostelservice import getHostelById
+from services.hostelService import getHostelById
+
 blp = Blueprint('hostel', __name__, description='Hostel Routes')
 
 @blp.route('/hostel/popular')

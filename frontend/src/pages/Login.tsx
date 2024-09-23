@@ -60,7 +60,7 @@ export default function Login({ onClose }: LoginProps) {
           })
         );
 
-        navigate("/test");
+        navigate("/dashboard");
         Swal.fire({
           position: "top-end",
           icon: "success",
