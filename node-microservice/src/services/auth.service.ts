@@ -1,6 +1,6 @@
 import { BadRequestException, DatabaseException } from '../exceptions';
 import { LoginUserBody, RegisterUserBody } from '../interface/auth.interface';
-import { User } from '../database/entity/User.entity';
+import User from '../mongo/models/User.model';
 import bcrypt from 'bcrypt';
 import AuthRepository from '../repositories/auth.repo';
 import { createAccessToken } from '../utils/jwt.utils';
@@ -14,27 +14,22 @@ class AuthService {
       throw new BadRequestException(null, 'Data Object Is Empty');
     }
 
-    const checkUniquqValue = await User.find({
-      where: {
-        email: data.email,
-        username: data.username,
-      },
+    const existingDocument = await User.findOne({
+      $and: [
+        {
+          username: data.username,
+        },
+        {
+          phoneNumber: data.phoneNumber,
+        },
+      ],
     });
 
-    const existsingUser = checkUniquqValue.filter(
-      (item) => item.email === data.email && item.username === data.username
-    );
-
-    const checkPhoneNumber = checkUniquqValue.find(
-      (item) => item.phoneNumber === data.phoneNumber
-    );
-
-    if (checkUniquqValue && existsingUser.length > 0) {
-      throw new BadRequestException(null, 'Username or Email already Exists');
-    }
-
-    if (checkPhoneNumber) {
-      throw new BadRequestException(null, 'Phone Number Already Exists');
+    if (existingDocument) {
+      throw new BadRequestException(
+        null,
+        'Phone Number or Email is Already Exists'
+      );
     }
 
     const genSalt = bcrypt.genSaltSync(10);
@@ -53,9 +48,7 @@ class AuthService {
 
   static loginUser = async (data: Required<LoginUserBody>) => {
     const checkUser = await User.findOne({
-      where: {
-        username: data.username,
-      },
+      email: data.email,
     });
 
     if (!checkUser) {
@@ -73,13 +66,16 @@ class AuthService {
         'Password Does Not Match, Please Try Again'
       );
     }
-    const hasId = checkUser.hasId() ? checkUser.id : null;
+    const id = checkUser._id;
     const userData = {
       email: checkUser.email,
-      userId: hasId as number,
+      userId: id,
       username: checkUser.username,
     };
+
+    console.log('User data', userData);
     const accessToken = await createAccessToken(userData);
+    console.log(accessToken);
     return {
       accessToken,
       email: checkUser.email,

@@ -1,38 +1,24 @@
-import { InsertResult } from 'typeorm';
-import { expressLogger } from '..';
-import { IHostelCredential } from '../controller/hostel.controller';
-import { HostelCredential } from '../database/entity/Hostel.entity';
+import { DEFAULT_CIPHERS } from 'tls';
+import { RegisterHostelDto } from '../routes/hostel';
+import Hostel from '../mongo/models/Hostel.model';
 import { DatabaseException } from '../exceptions';
-import { HostelLocation } from '../database/entity/HotelLocation';
 
 class HostelRepo {
-  static storeHostel = async (
-    hostelData: Partial<IHostelCredential>
-  ): Promise<HostelCredential> => {
+  static registerHostel = async (data: Partial<RegisterHostelDto>) => {
     try {
-      const insertData = HostelCredential.create(hostelData);
-
-      const datainserted = await insertData.save();
-      expressLogger.info('Hostel Saved');
-      return datainserted;
-    } catch (err) {
-      throw new DatabaseException(null, 'Database Exception Error');
-    }
-  };
-  static storeAddress = async (
-    lat: number | undefined,
-    lng: number | undefined
-  ) => {
-    try {
-      const savedLocation = HostelLocation.create({
-        lat: lat,
-        lng: lng,
+      const newData = new Hostel({
+        name: data.name,
+        location: data.location,
+        address: data.address,
+        price: data.price,
+        photos: data.photos,
       });
 
-      const savedData = await savedLocation.save();
+      const savedData = await newData.save();
+
       return savedData;
     } catch (err) {
-      throw new DatabaseException(null, 'Error in Storing Address Of Hostel');
+      throw new DatabaseException(null, 'Error in the Database Exceptions');
     }
   };
 }

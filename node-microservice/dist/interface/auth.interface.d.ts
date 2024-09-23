@@ -7,7 +7,7 @@ export interface RegisterUserBody {
     role: RolesConstant;
 }
 export interface LoginUserBody {
-    username: string;
+    email: string;
     password: string;
 }
 export interface userPayload {

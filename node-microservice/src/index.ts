@@ -8,6 +8,7 @@ import { errorHandler } from './handler/errorhandler';
 import DatabaseDataSource from './database/connect';
 import { DataSource } from 'typeorm';
 import limiter from './config/rate.limit.config';
+import { mongoDbConnect } from './mongo/connect';
 
 export const expressLogger = createLogger('express-app');
 
@@ -25,21 +26,7 @@ export const expressAppIntializer = async (app: Express) => {
     })
   );
 
-  await DatabaseDataSource.initialize()
-    .then((db: DataSource) => {
-      expressLogger.info(
-        `Initialized ${db.options.database} database Successfully`
-      );
-    })
-    .catch((err: Error) => {
-      expressLogger.error(`Error While Initalizing Database . Error` + err);
-      process.exit(0);
-    });
-
-  await DatabaseDataSource.runMigrations().catch((err: Error) => {
-    expressLogger.error(`Error While Migration Database Error:`, err);
-    process.exit(0);
-  });
+  await mongoDbConnect();
 
   serverRouter(app);
 

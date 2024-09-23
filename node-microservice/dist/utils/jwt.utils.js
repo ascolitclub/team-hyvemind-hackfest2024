@@ -43,8 +43,9 @@ const createAccessToken = async (data) => {
             issuer: 'hyvemind',
             expiresIn: '365d',
         };
-        jsonwebtoken_1.default.sign(payload, process.env.SECRET_KEY, options, (err, token) => {
+        jsonwebtoken_1.default.sign(payload, 'hyvemind', options, (err, token) => {
             if (err) {
+                console.log(err);
                 if (err instanceof jsonwebtoken_1.JsonWebTokenError) {
                     throw new exceptions_1.JsonWebTokenErrorException(null, err.message);
                 }

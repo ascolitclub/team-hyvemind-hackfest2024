@@ -13,7 +13,7 @@ declare global {
   }
 }
 
-export const createAccessToken = async (data: Required<userPayload>) => {
+export const createAccessToken = async (data: Required<any>) => {
   return new Promise((resolve, reject) => {
     const payload = {
       username: data.username,
@@ -27,21 +27,17 @@ export const createAccessToken = async (data: Required<userPayload>) => {
       expiresIn: '365d',
     };
 
-    jwt.sign(
-      payload,
-      process.env.SECRET_KEY as string,
-      options,
-      (err, token) => {
-        if (err) {
-          if (err instanceof JsonWebTokenError) {
-            throw new JsonWebTokenErrorException(null, err.message);
-          }
-          throw new BadRequestException(null, 'Bad Gateway Exception');
-        } else {
-          resolve(token);
+    jwt.sign(payload, 'hyvemind', options, (err, token) => {
+      if (err) {
+        console.log(err);
+        if (err instanceof JsonWebTokenError) {
+          throw new JsonWebTokenErrorException(null, err.message);
         }
+        throw new BadRequestException(null, 'Bad Gateway Exception');
+      } else {
+        resolve(token);
       }
-    );
+    });
   });
 };
 

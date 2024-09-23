@@ -8,6 +8,7 @@ const auth_service_1 = __importDefault(require("../services/auth.service"));
 const registerUser = async (req, res, next) => {
     try {
         const { email, username, password, phoneNumber, } = req.body;
+        console.log(email, username);
         const userCredential = {
             email,
             username,
@@ -27,12 +28,12 @@ const registerUser = async (req, res, next) => {
 exports.registerUser = registerUser;
 const loginUser = async (req, res, next) => {
     try {
-        const { username, password } = req.body;
+        const { email, password } = req.body;
         const userCredential = {
-            username,
+            email,
             password,
         };
-        const response = auth_service_1.default.loginUser(userCredential);
+        const response = await auth_service_1.default.loginUser(userCredential);
         return res.status(201).json({
             message: `User Logged In SuccessFully`,
             data: response,

@@ -1,44 +1,23 @@
-import { IHostelCredential } from '../controller/hostel.controller';
-import { HostelCredential } from '../database/entity/Hostel.entity';
-import { BadRequestException } from '../exceptions';
+import { add } from 'winston';
+import { RegisterUserBody } from '../interface/auth.interface';
+import { RegisterHostelDto } from '../routes/hostel';
 import HostelRepo from '../repositories/hostel.repo';
 
 class HostelService {
-  static createHostel = async (data: Partial<IHostelCredential>) => {
-    const checkUniqueHostelName = await HostelCredential.find({
-      where: [
-        {
-          hostel_name: data.hostel_name,
-          hostel_phoneNumber: data.phoneNumber,
-        },
-      ],
-    });
+  static registerHotel = async (data: Partial<RegisterHostelDto>) => {
+    const { name, location, address, price, photos } = data;
 
-    if (checkUniqueHostelName) {
-      throw new BadRequestException(
-        null,
-        'Hostel Name or Phone Number is already Registered, Please Try Another Name'
-      );
-    }
-
-    const response = await HostelRepo.storeHostel(data);
-
-    const savedHostel = {
-      hostel: response.id,
-      lat: data.location?.lat,
-      lng: data.location?.lng,
+    const dataCredential = {
+      name,
+      location,
+      address,
+      price,
+      photos,
     };
 
-    const savedLocation = await HostelRepo.storeAddress(
-      savedHostel.lat,
-      savedHostel.lng
-    );
+    const savedData = HostelRepo.registerHostel(dataCredential);
 
-    response.location = savedLocation;
-
-    const dataRespond = await response.save();
-
-    return dataRespond;
+    return savedData;
   };
 }
 

@@ -21,6 +21,7 @@ def insertSeeder():
     
         
     except Exception as e:
+            print(e)
             print(f'Error occurred: {e}')
             
 

@@ -15,6 +15,7 @@ export const registerUser = async (
       phoneNumber,
     }: Partial<RegisterUserBody> = req.body;
 
+    console.log(email,username)
     const userCredential = {
       email,
       username,
@@ -39,14 +40,14 @@ export const loginUser = async (
   next: NextFunction
 ) => {
   try {
-    const { username, password }: Required<LoginUserBody> = req.body;
+    const { email, password }: Required<LoginUserBody> = req.body;
 
     const userCredential = {
-      username,
+      email,
       password,
     };
 
-    const response = AuthService.loginUser(userCredential);
+    const response = await AuthService.loginUser(userCredential);
 
     return res.status(201).json({
       message: `User Logged In SuccessFully`,
