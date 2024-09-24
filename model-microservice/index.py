@@ -1,6 +1,5 @@
 import json
 import os
-from libs.logger import logger
 from database.connect import client
 from flask import Flask,jsonify
 from flask_smorest import Api
