@@ -10,6 +10,9 @@ import {
   DialogTitle,
   DialogActions,
   DialogContent,
+  Card,
+  CardContent,
+  CardHeader,
 } from '@mui/material';
 import {
   GoogleMap,
@@ -25,7 +28,7 @@ const mapContainerStyle = {
   height: '400px', // Adjust height as needed
 };
 
-const defaultCenter = { lat: 27.7107273, lng: 85.3109501 };
+const defaultCenter = { lat: 27.7107273, lng: 85.3109501 }; // Default center coordinates
 
 export default function HostelDetails() {
   const { hostelId } = useParams();
@@ -51,10 +54,10 @@ export default function HostelDetails() {
 
         if (data) {
           setHostelItem(data);
-          setLoading(false);
         }
       } catch (error) {
         console.error('Error fetching hostel details:', error);
+      } finally {
         setLoading(false);
       }
     };
@@ -78,7 +81,7 @@ export default function HostelDetails() {
   const calculateRoute = async () => {
     if (!hostelItem) return;
 
-    const directionsService = new google.maps.DirectionsService();
+    const directionsService = new window.google.maps.DirectionsService();
     directionsService.route(
       {
         origin: location,
@@ -86,10 +89,10 @@ export default function HostelDetails() {
           lat: hostelItem.location.latitude,
           lng: hostelItem.location.longitude,
         },
-        travelMode: google.maps.TravelMode.DRIVING,
+        travelMode: window.google.maps.TravelMode.DRIVING,
       },
       (result, status) => {
-        if (status === google.maps.DirectionsStatus.OK) {
+        if (status === window.google.maps.DirectionsStatus.OK) {
           setDirectionsResponse(result);
           setCurrentDistance(result.routes[0].legs[0].distance.text);
           setCurrentDuration(result.routes[0].legs[0].duration.text);
@@ -122,6 +125,26 @@ export default function HostelDetails() {
   };
 
   if (loading) return <CircularProgress />;
+
+  // Mock reviews
+  const mockReviews = [
+    {
+      user: 'John Doe',
+      comment:
+        'Amazing hostel! The staff were friendly and the facilities were great.',
+      rating: 4,
+    },
+    {
+      user: 'Jane Smith',
+      comment: 'I had a wonderful stay. Clean rooms and a great location!',
+      rating: 5,
+    },
+    {
+      user: 'Alice Johnson',
+      comment: 'Good value for money. The atmosphere was lovely!',
+      rating: 4,
+    },
+  ];
 
   return (
     <div className="container mx-auto">
@@ -242,48 +265,53 @@ export default function HostelDetails() {
           </div>
 
           {/* Tab Content */}
-          <div className="px-12 pb-16">
-            {activeTab === 'description' ? (
-              <div>{hostelItem.description || 'No description available'}</div>
-            ) : (
+          {activeTab === 'description' ? (
+            <div className="px-12 py-4">
+              <h3 className="text-2xl font-semibold mb-2">Description</h3>
+              <p>{hostelItem.description || 'No description available.'}</p>
+            </div>
+          ) : (
+            <div className="px-12 py-4">
+              <h3 className="text-2xl font-semibold mb-2">Reviews</h3>
               <div>
-                {hostelItem.reviews && hostelItem.reviews.length > 0 ? (
-                  hostelItem.reviews.map((review, index) => (
-                    <div
-                      key={index}
-                      className="review-item p-4 mb-4 border border-gray-200 rounded-md"
-                    >
-                      <Typography variant="subtitle1" fontWeight="bold">
-                        {review.author_name}
-                      </Typography>
-                      <Typography variant="body2">{review.text}</Typography>
-                      {RenderStar(review.rating)}
-                    </div>
+                {mockReviews.length > 0 ? (
+                  mockReviews.map((review, index) => (
+                    <Card key={index} className="mb-2">
+                      <CardHeader title={review.user} />
+                      <CardContent>
+                        <Typography variant="body2">
+                          {review.comment}
+                        </Typography>
+                        <div className="flex items-center mt-2">
+                          {RenderStar(review.rating)}
+                        </div>
+                      </CardContent>
+                    </Card>
                   ))
                 ) : (
-                  <Typography>No reviews available</Typography>
+                  <p>No reviews available</p>
                 )}
               </div>
-            )}
-          </div>
-
-          {/* Directions Dialog */}
-          <Dialog open={dialogOpen} onClose={handleCloseDialog}>
-            <DialogTitle>Directions</DialogTitle>
-            <DialogContent>
-              <Typography>Distance: {currentDistance}</Typography>
-              <Typography>Duration: {currentDuration}</Typography>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleCloseDialog} color="primary">
-                Close
-              </Button>
-            </DialogActions>
-          </Dialog>
+            </div>
+          )}
         </div>
       ) : (
-        <Typography>No Hostel Details Found</Typography>
+        <p>Hostel not found</p>
       )}
+
+      {/* Directions Dialog */}
+      <Dialog open={dialogOpen} onClose={handleCloseDialog}>
+        <DialogTitle>Directions to {hostelItem?.name}</DialogTitle>
+        <DialogContent>
+          <Typography variant="body1">Distance: {currentDistance}</Typography>
+          <Typography variant="body1">Duration: {currentDuration}</Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }

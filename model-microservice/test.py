@@ -1,6 +1,5 @@
-from models.trainModel.model import recommend_hotels_with_name
+from models.trainModel.model2 import get_recommendations
 
-
-recommended_hotels = recommend_hotels_with_name('Shafakat Boys Hostel', n_recommendations=3)
+recommended_hotels = get_recommendations(27.713067,85.34542119999999,1000,'IT' )
 print("Recommended Hotels:")
 print(recommended_hotels)

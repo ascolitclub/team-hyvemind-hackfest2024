@@ -1,18 +1,19 @@
-import { Route, Routes, useLocation } from "react-router-dom";
-import { useEffect } from "react";
-import About from "../pages/About";
-import HomePage from "../pages/HomePage";
-import { Navbar } from "../components/Navbar/Navbar";
-import Login from "../pages/Login";
-import Footer from "../components/Footer/Footer";
-import HostelDetails from "../pages/HostelDetails";
-import Hostel from "../pages/Hostel";
-import { News } from "../pages/News";
-import { FAQs } from "../pages/FAQs";
-import { ReviewPage } from "../pages/ReviewPage";
-import { Contact } from "../pages/Contact";
-import { TermsAndCondition } from "../pages/TermsAndCondition";
-import { PrivacyPolicy } from "../pages/PrivacyPolicy";
+import { Route, Routes, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import About from '../pages/About';
+import HomePage from '../pages/HomePage';
+import { Navbar } from '../components/Navbar/Navbar';
+import Login from '../pages/Login';
+import Footer from '../components/Footer/Footer';
+import HostelDetails from '../pages/HostelDetails';
+import Hostel from '../pages/Hostel';
+import { News } from '../pages/News';
+import { FAQs } from '../pages/FAQs';
+import { ReviewPage } from '../pages/ReviewPage';
+import { Contact } from '../pages/Contact';
+import { TermsAndCondition } from '../pages/TermsAndCondition';
+import { PrivacyPolicy } from '../pages/PrivacyPolicy';
+import { Search } from '../pages/Search';
 
 export default function AppRoutes() {
   const location = useLocation();
@@ -22,7 +23,7 @@ export default function AppRoutes() {
       window.requestAnimationFrame(() => {
         window.scrollTo({
           top: 0,
-          behavior: "smooth",
+          behavior: 'smooth',
         });
       });
     };
@@ -34,7 +35,7 @@ export default function AppRoutes() {
     return () => clearTimeout(timer);
   }, [location]);
 
-  const noNavbarFooterRoutes = [""];
+  const noNavbarFooterRoutes = [''];
 
   const hideNavbarFooter = noNavbarFooterRoutes.includes(location.pathname);
 
@@ -43,9 +44,16 @@ export default function AppRoutes() {
       {!hideNavbarFooter && <Navbar />}
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login onClose={function (): void {
-          throw new Error("Function not implemented.");
-        } } />} />
+        <Route
+          path="/login"
+          element={
+            <Login
+              onClose={function (): void {
+                throw new Error('Function not implemented.');
+              }}
+            />
+          }
+        />
         <Route path="/about" element={<About />} />
         <Route path="/hostel" element={<Hostel />} />
         <Route path="/hostel/:hostelId" element={<HostelDetails />} />
@@ -54,6 +62,7 @@ export default function AppRoutes() {
         <Route path="/faqs" element={<FAQs />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/termsandcondition" element={<TermsAndCondition />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />
       </Routes>
       {!hideNavbarFooter && <Footer />}
