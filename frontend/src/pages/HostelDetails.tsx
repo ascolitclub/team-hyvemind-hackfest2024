@@ -10,9 +10,6 @@ import {
   DialogTitle,
   DialogActions,
   DialogContent,
-  Card,
-  CardContent,
-  CardHeader,
 } from "@mui/material";
 import {
   GoogleMap,
@@ -110,11 +107,11 @@ export default function HostelDetails() {
     localStorage.setItem("savedHostels", JSON.stringify(updatedSaved));
   };
 
-  const handleRemoveHostel = (hostel) => {
-    const updatedSaved = savedHostels.filter((h) => h.id !== hostel.id);
-    setSavedHostels(updatedSaved);
-    localStorage.setItem("savedHostels", JSON.stringify(updatedSaved));
-  };
+  // const handleRemoveHostel = (hostel) => {
+  //   const updatedSaved = savedHostels.filter((h) => h.id !== hostel.id);
+  //   setSavedHostels(updatedSaved);
+  //   localStorage.setItem("savedHostels", JSON.stringify(updatedSaved));
+  // };
 
   const handleOpenDialog = () => {
     setDialogOpen(true);
@@ -178,7 +175,7 @@ export default function HostelDetails() {
                     fontSize="small"
                     style={{ color: "var(--primary-color)" }}
                   />
-                  {hostelItem.vicinity}
+                  {hostelItem.address}
                 </p>
                 <div className="flex flex-col gap-y-1 mb-4 border-t border-b py-1 w-max">
                   <div className="flex gap-2">
@@ -196,9 +193,11 @@ export default function HostelDetails() {
                         <span className="italic">No Info</span>
                       )}
                     </p>
+                  </div>
+                  <div className="flex gap-2">
                     <h3 className="font-medium text-[17px]">Hostel Price:</h3>
                     <p>
-                      {hostelItem.price || (
+                      {`NPR. ${hostelItem.price}` || (
                         <span className="italic">No Price</span>
                       )}
                     </p>
@@ -277,22 +276,20 @@ export default function HostelDetails() {
                 <p>{hostelItem.description || "No description available."}</p>
               </div>
             ) : (
-              <div className="px-12 py-4">
-                <h3 className="text-2xl font-semibold mb-2">Reviews</h3>
-                <div>
+              <div className="px-12 py-4 mb-12">
+                <h3 className="text-3xl font-semibold mb-8">Reviews</h3>
+                <div className="gap-8 flex">
                   {mockReviews.length > 0 ? (
-                    mockReviews.map((review, index) => (
-                      <Card key={index} className="mb-2">
-                        <CardHeader title={review.user} />
-                        <CardContent>
-                          <Typography variant="body2">
-                            {review.comment}
-                          </Typography>
-                          <div className="flex items-center mt-2">
-                            {RenderStar(review.rating)}
-                          </div>
-                        </CardContent>
-                      </Card>
+                    mockReviews.map((review) => (
+                      <div className="border-2 border-gray-300 rounded-lg p-4 w-full hover:scale-105">
+                        <div className="flex  justify-between mb-4">
+                          <h3 className="font-semibold text-xl">
+                            {review.user}
+                          </h3>
+                          <div>{RenderStar(review.rating)}</div>
+                        </div>
+                        <p>{review.comment}</p>
+                      </div>
                     ))
                   ) : (
                     <p>No reviews available</p>
