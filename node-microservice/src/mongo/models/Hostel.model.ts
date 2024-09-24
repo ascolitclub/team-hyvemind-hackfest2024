@@ -36,33 +36,10 @@ const HostelSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  icon: {
-    url: {
-      type: String,
-      required: false,
-    },
-    background_color: {
-      type: String,
-      required: false,
-    },
-  },
+
   photos: [
     {
       photo_reference: {
-        type: String,
-        required: true,
-      },
-      dimensions: {
-        height: {
-          type: Number,
-          required: true,
-        },
-        width: {
-          type: Number,
-          required: true,
-        },
-      },
-      attribution: {
         type: String,
         required: true,
       },
@@ -72,23 +49,23 @@ const HostelSchema = new mongoose.Schema({
     {
       name: {
         type: String,
-        required: true,
+        required: false,
       },
       age: {
         type: Number,
-        required: true,
+        required: false,
       },
       program: {
         type: String,
-        required: true,
+        required: false,
       },
       location: {
         type: String,
-        required: true,
+        required: false,
       },
       college: {
         type: String,
-        required: true,
+        required: false,
       },
     },
   ],

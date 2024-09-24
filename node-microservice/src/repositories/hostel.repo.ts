@@ -6,7 +6,7 @@ import { DatabaseException } from '../exceptions';
 class HostelRepo {
   static registerHostel = async (data: Partial<RegisterHostelDto>) => {
     try {
-      const newData = new Hostel({
+      const newData = Hostel.create({
         name: data.name,
         location: data.location,
         address: data.address,
@@ -14,9 +14,7 @@ class HostelRepo {
         photos: data.photos,
       });
 
-      const savedData = await newData.save();
-
-      return savedData;
+      return newData;
     } catch (err) {
       throw new DatabaseException(null, 'Error in the Database Exceptions');
     }

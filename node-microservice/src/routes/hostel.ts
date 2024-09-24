@@ -1,6 +1,6 @@
-import { NextFunction, Request, Response } from 'express';
-import { DatabaseException } from '../exceptions';
-import HostelService from '../services/hostel.service';
+import { NextFunction, Request, Response, Router } from 'express';
+import { BadRequestException, DatabaseException } from '../exceptions';
+import { bookHostel, registerHostel } from '../controller/hostel.controller';
 
 export interface RegisterHostelDto {
   name: string;
@@ -18,22 +18,10 @@ export interface RegisterHostelDto {
   ];
 }
 
-export const registerHostel = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
-    const data: Partial<RegisterHostelDto> = req.body;
-    const resposne = await HostelService.registerHotel(data);
-    return res.status(201).json({
-      message: 'Register Hotel',
-      data: resposne,
-    });
-  } catch (err) {
-    if (err instanceof DatabaseException) {
-      next(err);
-    }
-    next(err);
-  }
-};
+const hostelRouter = Router();
+
+
+hostelRouter.post('/hostel',registerHostel)
+hostelRouter.post('/hostel/book', bookHostel);
+
+export default hostelRouter;

@@ -5,7 +5,7 @@ from bson import ObjectId
 
 from models.trainModel.model1 import recommend_hostels
 from extractor.extractmodel import recommend_hotel_api
-from services.hostelService import getHostelById
+from services.hostelservice import getHostelById
 from models.trainModel.model2 import get_recommendations
 from models.trainModel.model3 import get_recommendations_location
 

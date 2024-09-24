@@ -137,128 +137,127 @@ export const Search = () => {
   };
 
   return (
-    <div className="h-auto w-screen container mx-auto mb-5">
-      {/* Header */}
-      <div className="relative flex items-center justify-center">
-        <h1
-          className="text-[150px] text-gray-100 font-mono font-semibold"
-          style={{ fontFamily: 'Oswald' }}
-        >
-          HOSTELS
-        </h1>
-        <h2 className="absolute tracking-widest text-center text-xl top-[47%] text-[--primary-color] font-sans uppercase">
-          Popular Hostels
-        </h2>
-      </div>
-      <p className="text-center mb-8">
-        Take a detour at our most popular hostel for this season
-      </p>
-
-      {/* Search 1 and Search 2 buttons */}
-      <div className="flex space-x-4 justify-center mb-6">
-        <div
-          className={`text-lg font-medium cursor-pointer ${
-            showDiv === 'search1'
-              ? 'text-[--primary-color] border-b-2 border-b-[--primary-color]'
-              : 'text-black'
-          }`}
-          onClick={() => handleSearchClick('search1')}
-        >
-          <h3>By Preference</h3>
+    <>
+      <div className="w-full h-20  top-0  bg-[#041E42]"></div>
+      <div className="h-auto w-screen container mx-auto mb-5">
+        {/* Header */}
+        <div className="relative flex items-center justify-center">
+          <h1
+            className="text-[150px] text-gray-100 font-mono font-semibold"
+            style={{ fontFamily: 'Oswald' }}
+          >
+            SCAVENGE
+          </h1>
+          <h2 className="absolute tracking-widest text-center text-xl top-[47%] text-[--primary-color] font-sans uppercase">
+            TAKE A LOOK AT WHAT YOU PREFER
+          </h2>
         </div>
-        <div
-          className={`text-lg font-medium cursor-pointer ${
-            showDiv === 'search2'
-              ? 'text-[--primary-color] border-b-2 border-b-[--primary-color]'
-              : 'text-black'
-          }`}
-          onClick={() => handleSearchClick('search2')}
-        >
-          <h3>By Nearby</h3>
-        </div>
-      </div>
+        <p className="text-center mb-8">
+          Take a detour at our most popular hostel for this season
+        </p>
 
-      {/* Search Form */}
-      <form onSubmit={handleSearch} className="flex justify-center gap-5 mb-10">
-        <input
-          type="text"
-          placeholder="Enter location"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-          className="border rounded-lg p-2"
-          required
-        />
-        {showDiv === 'search1' && (
+        {/* Search 1 and Search 2 buttons */}
+        <div className="flex space-x-4 justify-center mb-6">
+          <div
+            className={`text-lg font-medium cursor-pointer ${
+              showDiv === 'search1'
+                ? 'text-[--primary-color] border-b-2 border-b-[--primary-color]'
+                : 'text-black'
+            }`}
+            onClick={() => handleSearchClick('search1')}
+          >
+            <h3>By Preference</h3>
+          </div>
+          <div
+            className={`text-lg font-medium cursor-pointer ${
+              showDiv === 'search2'
+                ? 'text-[--primary-color] border-b-2 border-b-[--primary-color]'
+                : 'text-black'
+            }`}
+            onClick={() => handleSearchClick('search2')}
+          >
+            <h3>By Nearby</h3>
+          </div>
+        </div>
+
+        {/* Search Form */}
+        <form
+          onSubmit={handleSearch}
+          className="flex justify-center gap-5 mb-10"
+        >
           <input
             type="text"
-            placeholder="Price range"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
+            placeholder="Enter location"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+            className="border rounded-lg p-2"
+            required
+          />
+          {showDiv === 'search1' && (
+            <input
+              type="text"
+              placeholder="Price range"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              className="border rounded-lg p-2"
+            />
+          )}
+          <input
+            type="text"
+            placeholder="Faculty"
+            value={faculty}
+            onChange={(e) => setFaculty(e.target.value)}
             className="border rounded-lg p-2"
           />
-        )}
-        <input
-          type="text"
-          placeholder="Faculty"
-          value={faculty}
-          onChange={(e) => setFaculty(e.target.value)}
-          className="border rounded-lg p-2"
-        />
-        <button
-          type="submit"
-          className="px-4 py-2 bg-[#0cafff] text-white rounded-lg"
-        >
-          Search
-        </button>
-      </form>
+          <button
+            type="submit"
+            className="px-4 py-2 bg-[#0cafff] text-white rounded-lg"
+          >
+            Search
+          </button>
+        </form>
 
-      {/* Error Message */}
-      {error && <p className="text-red-500 text-center">{error}</p>}
+        {/* Error Message */}
+        {error && <p className="text-red-500 text-center">{error}</p>}
 
-      {/* Error Message */}
-      {error && <p className="text-red-500 text-center">{error}</p>}
+        {/* Error Message */}
+        {error && <p className="text-red-500 text-center">{error}</p>}
 
-      {/* Loading and Results */}
-      {loading ? (
-        <p className="text-center">Loading...</p>
-      ) : (
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-5 py-10 px-16">
-          {hostelData.map((hostel) => (
-            <Link to={`/hostel/${hostel._id}`} key={hostel._id}>
-              <div className="shadow-lg border border-gray-200 rounded-2xl cursor-pointer overflow-hidden hover:-translate-y-2 transition-transform">
-                <div className="object-cover bg-red-500">
-                  <img
-                    src={hostel.img}
-                    alt={hostel.title}
-                    className="w-full h-48 object-cover"
-                  />
-                </div>
-                <div className="px-5">
-                  <p className="text-lg py-2 font-semibold">{hostel.title}</p>
-                  {RenderStar(hostel.rating)}
-                  <p className="mb-4 text-[#acacac] text-sm mt-1">
-                    <LocationOnOutlinedIcon
-                      fontSize="small"
-                      style={{ color: 'var(--btn-primary)' }}
+        {/* Loading and Results */}
+        {loading ? (
+          <p className="text-center">Loading...</p>
+        ) : (
+          <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-5 py-10 px-16">
+            {hostelData.map((hostel) => (
+              <Link to={`/hostel/${hostel._id}`} key={hostel._id}>
+                <div className="shadow-lg border border-gray-200 rounded-2xl cursor-pointer overflow-hidden hover:-translate-y-2 transition-transform">
+                  <div className="object-cover bg-red-500">
+                    <img
+                      src={hostel.img}
+                      alt={hostel.title}
+                      className="w-full h-48 object-cover"
                     />
-                    {hostel.location}
-                  </p>
-                  <button className="w-full flex justify-center mb-5 border border-gray-300 lg:px-12 lg:py-2 md:px-16 md:py-2 px-16 py-2 rounded-lg font-semibold gap-2 hover:bg-[--btn-primary] hover:border-none hover:text-white transition-all">
-                    View
-                  </button>
+                  </div>
+                  <div className="px-5">
+                    <p className="text-lg py-2 font-semibold">{hostel.title}</p>
+                    {RenderStar(hostel.rating)}
+                    <p className="mb-4 text-[#acacac] text-sm mt-1">
+                      <LocationOnOutlinedIcon
+                        fontSize="small"
+                        style={{ color: 'var(--btn-primary)' }}
+                      />
+                      {hostel.location}
+                    </p>
+                    <button className="w-full flex justify-center mb-5 border border-gray-300 lg:px-12 lg:py-2 md:px-16 md:py-2 px-16 py-2 rounded-lg font-semibold gap-2 hover:bg-[--btn-primary] hover:border-none hover:text-white transition-all">
+                      View
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      )}
-
-      {/* View All Button */}
-      <div className="flex justify-center">
-        <button className="bg-white text-lg shadow-2xl px-6 py-3 rounded-lg font-semibold text-[--primary-color] hover:text-white hover:bg-[--btn-primary] border border-[--btn-primary] transition-all active:translate-y-0.5">
-          View all Hostels
-        </button>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
-    </div>
+    </>
   );
 };

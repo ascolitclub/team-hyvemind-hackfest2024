@@ -4,39 +4,39 @@ import { RenderStar } from "../dynamic renderer/RenderStar";
 export default function FeedBacks() {
   const feedbacks = [
     {
-      name: "John Doe",
-      location: "Kapan, Kathmandu",
+      name: "Suman Shrestha",
+      gmail: "suman.shrestha25@gmail.com",
       rating: 4,
       feedback:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae vitae iure laudantium nemo totam magnam aperiam mollitia tempore magni illo.",
+        "Mero Hostel Mate made finding a budget-friendly hostel near my college easy. I was even matched with a great roommate. Highly recommended!",
     },
     {
-      name: "Jane Smith",
-      location: "Thamel, Kathmandu",
+      name: "Anisha Karki",
+      gmail: "anisha.karki87@gmail.com",
       rating: 5,
       feedback:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus molestias minima enim error iusto et deserunt distinctio a.",
+        "Moving to a new city was daunting, but Mero Hostel Mate helped me find a safe, verified hostel with ease. The student reviews were super helpful!",
     },
     {
-      name: "Michael Brown",
-      location: "Jorpati, Kathmandu",
+      name: "Pratik Adhikari",
+      gmail: "pratik.adhikari91@gmail.com",
       rating: 3,
       feedback:
-        "Recusandae vitae iure laudantium nemo totam magnam aperiam mollitia tempore magni illo. Ducimus molestias minima enim error iusto et deserunt distinctio.",
+        "Thanks to Mero Hostel Mate, I found a hostel and a roommate that fit my lifestyle perfectly. The process was quick and easy!",
     },
     {
-      name: "Lisa Green",
-      location: "Bhaktapur, Kathmandu",
+      name: "Sneha Rai",
+      gmail: "sneha.rai15@gmail.com",
       rating: 4,
       feedback:
-        "Recusandae vitae iure laudantium nemo totam magnam aperiam mollitia tempore magni illo. Ducimus molestias minima enim error iusto et deserunt distinctio.",
+        "I found a clean, nearby hostel in no time with Mero Hostel Mate. The flexible payment options and easy booking made my experience stress-free.",
     },
     {
-      name: "Sam Wilson",
-      location: "Lalitpur, Kathmandu",
+      name: "Ramesh Lama",
+      gmail: "ramesh.lama47@gmail.com",
       rating: 3,
       feedback:
-        "Recusandae vitae iure laudantium nemo totam magnam aperiam mollitia tempore magni illo. Ducimus molestias minima enim error iusto et deserunt distinctio.",
+        "Mero Hostel Mate saved me so much time! I booked a hostel online after checking out the virtual tours, and it was exactly what I needed.",
     },
   ];
 
