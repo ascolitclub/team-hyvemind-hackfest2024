@@ -7,6 +7,7 @@ from models.trainModel.model1 import recommend_hostels
 from extractor.extractmodel import recommend_hotel_api
 from services.hostelservice import getHostelById
 from models.trainModel.model2 import get_recommendations
+from models.trainModel.model3 import get_recommendations_location
 
 blp = Blueprint('hostel', __name__, description='Hostel Routes')
 from flask import request
@@ -49,6 +50,24 @@ class Hostel(MethodView):
         
 
 
+
+
+@blp.route('/hostel/location')
+class Hostel(MethodView):
+
+    def get(self):
+        try:
+            user_latitude = request.args.get('latitude',type=float)
+            user_longitude = request.args.get('longitude',type=float)
+            user_faculty = request.args.get('faculty')
+
+            recommendation = get_recommendations_location(user_latitude=user_latitude,user_longitude=user_longitude,user_faculty=user_faculty)
+            return jsonify(recommendation)
+
+
+
+        except Exception as e:
+            print(f'{e}')
 
 
 @blp.route('/hostel/filter')

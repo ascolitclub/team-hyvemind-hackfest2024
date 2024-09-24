@@ -39,6 +39,47 @@ export const Search = () => {
     }
   };
 
+  const handleGetLocationRecommendation = async () => {
+    setLoading(true);
+    setError(null);
+    const coordinates = await handleGetCoordinates();
+    if (coordinates) {
+      try {
+        const response = await axios.get(
+          'http://localhost:3002/hostel/location',
+          {
+            params: {
+              latitude: coordinates.latitude,
+              longitude: coordinates.longitude,
+              faculty,
+            },
+          }
+        );
+        if (response.data && response.data.length > 0) {
+          const data = response.data.map((hostel) => ({
+            _id: hostel._id,
+            title: hostel.name,
+            location: hostel.address,
+            rating: hostel.rating,
+            img:
+              hostel.photos.length > 0
+                ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${hostel.photos[0].photo_reference}&key=${googleMapsApiKey}`
+                : Image,
+          }));
+          setHostelData(data);
+        } else {
+          throw new Error('No hostels found');
+        }
+      } catch (error) {
+        console.error('Error fetching recommendations:', error);
+        setError('Failed to fetch hostel recommendations. Please try again.');
+      }
+    } else {
+      setError('Failed to get coordinates for the specified location.');
+    }
+    setLoading(false);
+  };
+
   const handleGetRecommendations = async () => {
     setLoading(true);
     setError(null);
@@ -84,7 +125,11 @@ export const Search = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    handleGetRecommendations();
+    if (showDiv === 'search1') {
+      handleGetRecommendations();
+    } else {
+      handleGetLocationRecommendation();
+    }
   };
 
   const handleSearchClick = (searchType) => {
@@ -134,19 +179,16 @@ export const Search = () => {
       </div>
 
       {/* Search Form */}
-      {showDiv === 'search1' && (
-        <form
-          onSubmit={handleSearch}
-          className="flex justify-center gap-5 mb-10"
-        >
-          <input
-            type="text"
-            placeholder="Enter location"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-            className="border rounded-lg p-2"
-            required
-          />
+      <form onSubmit={handleSearch} className="flex justify-center gap-5 mb-10">
+        <input
+          type="text"
+          placeholder="Enter location"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+          className="border rounded-lg p-2"
+          required
+        />
+        {showDiv === 'search1' && (
           <input
             type="text"
             placeholder="Price range"
@@ -154,50 +196,24 @@ export const Search = () => {
             onChange={(e) => setPrice(e.target.value)}
             className="border rounded-lg p-2"
           />
-          <input
-            type="text"
-            placeholder="Faculty"
-            value={faculty}
-            onChange={(e) => setFaculty(e.target.value)}
-            className="border rounded-lg p-2"
-          />
-          <button
-            type="submit"
-            className="px-4 py-2 bg-[#0cafff] text-white rounded-lg"
-          >
-            Search
-          </button>
-        </form>
-      )}
-
-      {showDiv === 'search2' && (
-        <form
-          onSubmit={handleSearch}
-          className="flex justify-center gap-5 mb-10"
+        )}
+        <input
+          type="text"
+          placeholder="Faculty"
+          value={faculty}
+          onChange={(e) => setFaculty(e.target.value)}
+          className="border rounded-lg p-2"
+        />
+        <button
+          type="submit"
+          className="px-4 py-2 bg-[#0cafff] text-white rounded-lg"
         >
-          <input
-            type="text"
-            placeholder="Enter location"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-            className="border rounded-lg p-2"
-            required
-          />
-          <input
-            type="text"
-            placeholder="Faculty"
-            value={faculty}
-            onChange={(e) => setFaculty(e.target.value)}
-            className="border rounded-lg p-2"
-          />
-          <button
-            type="submit"
-            className="px-4 py-2 bg-[#0cafff] text-white rounded-lg"
-          >
-            Search
-          </button>
-        </form>
-      )}
+          Search
+        </button>
+      </form>
+
+      {/* Error Message */}
+      {error && <p className="text-red-500 text-center">{error}</p>}
 
       {/* Error Message */}
       {error && <p className="text-red-500 text-center">{error}</p>}
