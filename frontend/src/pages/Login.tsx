@@ -103,8 +103,39 @@ export default function Login({ onClose }: LoginProps) {
           password: signUpPassword,
         }
       );
+
+      if (response.data) {
+        // Trigger Swal modal for role selection after successful signup
+        Swal.fire({
+          title: 'Continue as?',
+          showDenyButton: true,
+          showCancelButton: true,
+          confirmButtonText: 'User',
+          denyButtonText: 'Hostel Owner',
+          cancelButtonText: 'Cancel',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // User selected "Continue as User"
+            Swal.fire('Redirecting to login...', '', 'success');
+            navigate('/login'); // Redirect to login page
+          } else if (result.isDenied) {
+            // User selected "Continue as Hostel Owner"
+            Swal.fire(
+              'Redirecting to hostel owner registration...',
+              '',
+              'success'
+            );
+            navigate('/register-hostel-owner'); // Redirect to hostel owner registration
+          }
+        });
+      }
     } catch (err) {
       console.error(err);
+      Swal.fire({
+        icon: 'error',
+        title: 'Registration Failed',
+        text: err.response?.data?.message || 'Please try again later!',
+      });
     }
   };
 
@@ -252,7 +283,10 @@ export default function Login({ onClose }: LoginProps) {
       </div>
 
       {/* Close Button */}
-      <button className="absolute top-24 right-64 text-black bg-white h-8 w-8 rounded-full p-1 shadow" onClick={onClose}>
+      <button
+        className="absolute top-24 right-64 text-black bg-white h-8 w-8 rounded-full p-1 shadow"
+        onClick={onClose}
+      >
         X
       </button>
     </div>

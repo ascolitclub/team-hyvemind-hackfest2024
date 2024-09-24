@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import Webcam from 'react-webcam';
 
-export default function Register() {
+export const Register = () => {
   const [ownerPhoto, setOwnerPhoto] = useState(null);
   const [ownerPhotoURL, setOwnerPhotoURL] = useState(null);
   const [hostelPhoto, setHostelPhoto] = useState(null);
@@ -40,8 +40,8 @@ export default function Register() {
     e.preventDefault();
 
     // Handle form submission logic here
-    console.log("Owner Photo: ", ownerPhoto);
-    console.log("Hostel Photo: ", hostelPhoto);
+    console.log('Owner Photo: ', ownerPhoto);
+    console.log('Hostel Photo: ', hostelPhoto);
   };
 
   // Remove owner photo
@@ -61,11 +61,15 @@ export default function Register() {
       <div className="h-auto container mx-auto px-12">
         <div className="flex justify-center py-10">
           <div className="bg-[#C4DFF2] text-black rounded-2xl p-8 mt-10 h-fit bg-gradient-to-br from-[#C4DFEF] to-[#ffffff] shadow-2xl">
-            <h1 className="text-center text-[#6A2DE9] font-bold text-4xl">Registration</h1>
+            <h1 className="text-center text-[#6A2DE9] font-bold text-4xl">
+              Registration
+            </h1>
             <form className="form text-md" onSubmit={handleSubmit}>
               {/* Full Name */}
               <div className="input-box mt-6">
-                <label className="flex w-full text-md font-semibold">Full Name</label>
+                <label className="flex w-full text-md font-semibold">
+                  Full Name
+                </label>
                 <input
                   className="w-full text-black outline-none pl-2 py-1 rounded-md"
                   type="text"
@@ -76,7 +80,9 @@ export default function Register() {
 
               {/* Email Address */}
               <div className="input-box mt-4">
-                <label className="flex w-full text-md font-semibold">Email Address</label>
+                <label className="flex w-full text-md font-semibold">
+                  Email Address
+                </label>
                 <input
                   className="w-full text-black outline-none pl-2 py-1 rounded-md"
                   type="email"
@@ -131,7 +137,9 @@ export default function Register() {
                   </div>
                 </div>
                 <div className="input-box w-full">
-                  <label className="font-normal text-md">No. of Hostelers</label>
+                  <label className="font-normal text-md">
+                    No. of Hostelers
+                  </label>
                   <input
                     className="w-full text-black font-normal outline-none pl-3 py-1 rounded-md"
                     type="text"
@@ -165,7 +173,11 @@ export default function Register() {
 
                   {ownerPhotoURL && (
                     <div className="relative mt-3">
-                      <img src={ownerPhotoURL} alt="Owner" className="w-24 h-24 object-cover rounded" />
+                      <img
+                        src={ownerPhotoURL}
+                        alt="Owner"
+                        className="w-24 h-24 object-cover rounded"
+                      />
                       <button
                         type="button"
                         className="absolute top-0 right-0 bg-red-500 text-white h-5 w-5 rounded-full"
@@ -184,7 +196,9 @@ export default function Register() {
                       <button
                         type="button"
                         className="bg-blue-500 text-white p-2 text-sm rounded-md"
-                        onClick={() => document.getElementById('hostelFileUpload').click()}
+                        onClick={() =>
+                          document.getElementById('hostelFileUpload').click()
+                        }
                       >
                         Upload Hostel Photo
                       </button>
@@ -193,7 +207,11 @@ export default function Register() {
 
                   {hostelPhotoURL && (
                     <div className="relative mt-3">
-                      <img src={hostelPhotoURL} alt="Hostel" className="w-24 h-24 object-cover rounded" />
+                      <img
+                        src={hostelPhotoURL}
+                        alt="Hostel"
+                        className="w-24 h-24 object-cover rounded"
+                      />
                       <button
                         type="button"
                         className="absolute top-0 right-0 bg-red-500 text-white h-5 w-5 rounded-full"
@@ -297,4 +315,4 @@ export default function Register() {
       )}
     </>
   );
-}
+};

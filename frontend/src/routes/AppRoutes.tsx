@@ -14,6 +14,7 @@ import { Contact } from '../pages/Contact';
 import { TermsAndCondition } from '../pages/TermsAndCondition';
 import { PrivacyPolicy } from '../pages/PrivacyPolicy';
 import { Search } from '../pages/Search';
+import { Register } from '../pages/Register';
 
 export default function AppRoutes() {
   const location = useLocation();
@@ -63,6 +64,7 @@ export default function AppRoutes() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/termsandcondition" element={<TermsAndCondition />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/register-hostel-owner" element={<Register />} />
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />
       </Routes>
       {!hideNavbarFooter && <Footer />}
