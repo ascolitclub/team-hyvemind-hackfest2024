@@ -91,7 +91,7 @@ export default function PopularHostel() {
                   e.currentTarget.style.boxShadow = "";
                 }}
               >
-                <div className="object-cover bg-red-500">
+                <div className="object-cover">
                   <img
                     src={hostel.img}
                     alt={hostel.title}

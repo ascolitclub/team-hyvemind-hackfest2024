@@ -40,8 +40,11 @@ export default function Footer() {
           <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-10 mt-10">
             <div>
               <p className="mb-3 text-[#3c3c3c]">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Temporibus corrupti libero velit?
+                Discover Your Ideal Hostel and Perfect Roommate with Mero Hostel
+                Mate -{" "}
+                <span className="italic font-semibold">
+                  Where Comfort Meets Community!
+                </span>
               </p>
               <h3 className="text-[18px] font-bold">Call for help</h3>
               <p className="mb-3 text-[--secondary-text] font-bold cursor-pointer">

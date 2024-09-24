@@ -14,8 +14,8 @@ export const Contact = () => {
           Contact Us
         </h2>
         <p className="w-[600px] mx-auto leading-7">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem facilis
-          velit, placeat unde ducimus perferendis.
+          Have questions? Reach out to us for personalized support and
+          assistance. We're here to help you every step of the way.
         </p>
       </div>
       <div className="container mx-auto px-8">
