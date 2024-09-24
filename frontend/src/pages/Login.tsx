@@ -8,6 +8,7 @@
 // } from "@fortawesome/free-brands-svg-icons";
 // import axios from "axios";
 // import Swal from "sweetalert2";
+// import { useNavigate } from "react-router-dom";
 // interface LoginProps {
 //   onClose: () => void; // Define onClose as a function that returns void
 // }
@@ -46,6 +47,7 @@
 //   const handleSignInClick = () => {
 //     setIsSignUpVisible(false);
 //   };
+//   const navigate = useNavigate();
 
 //   const handleSignInSubmit = async () => {
 //     try {
@@ -63,7 +65,7 @@
 //         icon: "success",
 //         title: "Sign In Successful",
 //         text: "Welcome back!",
-//       });
+//       }).then(() => navigate("/dashboard/"))
 
 //       // You can add additional logic here, like redirecting the user
 //     } catch (error) {
@@ -350,7 +352,7 @@ export default function Login({ onClose }: LoginProps) {
         icon: "success",
         title: "Sign In Successful",
         text: "Welcome back!",
-      }).then(() => navigate("/dashboard"));
+      }).then(() => navigate("/dashboard/"));
     } catch (error) {
       console.error("Error during sign-in:", error); // Handle sign-in error
 

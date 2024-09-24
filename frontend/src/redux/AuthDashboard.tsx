@@ -5,14 +5,14 @@ import { useEffect } from "react";
 import DashboardRoutes from "../routes/DashboardRourte"; // Import the new component
 
 const AuthDashboard: React.FC = () => {
-  const isLoggedIn = useSelector((state: any) => state.auth.isLoggedIn);
-  const navigate = useNavigate();
+  // const isLoggedIn = useSelector((state: any) => state.auth.isLoggedIn);
+  // const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      navigate("/login"); // Redirect to login if not authenticated
-    }
-  }, [isLoggedIn, navigate]);
+  // useEffect(() => {
+  //   if (!isLoggedIn) {
+  //     navigate("/"); // Redirect to login if not authenticated
+  //   }
+  // }, [isLoggedIn, navigate]);
 
   return (
     <>
