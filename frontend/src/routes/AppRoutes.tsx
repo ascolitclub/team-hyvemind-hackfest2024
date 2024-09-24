@@ -87,6 +87,7 @@ import { Contact } from "../pages/Contact";
 import { TermsAndCondition } from "../pages/TermsAndCondition";
 import { PrivacyPolicy } from "../pages/PrivacyPolicy";
 import AuthDashboard from "../redux/AuthDashboard";
+import { SearchBY } from "../components/features/SearchBY";
 
 export default function AppRoutes() {
   const location = useLocation();
@@ -130,6 +131,7 @@ export default function AppRoutes() {
         <Route path="/reviewpage" element={<ReviewPage />} />
         <Route path="/faqs" element={<FAQs />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/search" element={<SearchBY />} />
         <Route path="/termsandcondition" element={<TermsAndCondition />} />
 
         {/* Main route for the dashboard */}

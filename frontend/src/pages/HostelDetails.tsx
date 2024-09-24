@@ -24,6 +24,7 @@ import {
   Marker,
   DirectionsRenderer,
 } from "@react-google-maps/api";
+import Login from "./Login";
 
 const mapContainerStyle = {
   width: "100%",
@@ -33,6 +34,7 @@ const mapContainerStyle = {
 const defaultCenter = { lat: 27.7107273, lng: 85.3109501 }; // Default coordinates
 
 export default function HostelDetails() {
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
   const { hostelId } = useParams();
 
   const [hostelItem, setHostelItem] = useState(null);
@@ -78,6 +80,8 @@ export default function HostelDetails() {
       });
     }
   }, [hostelId]);
+
+  const isRegistered = false;
 
   const calculateRoute = async () => {
     if (!hostelItem) return;
@@ -203,8 +207,11 @@ export default function HostelDetails() {
                     )}
                   </div>
                 </div>
-                <div className="buttons-links flex flex-wrap  gap-4 items-center">
-                  <button className=" flex justify-center border border-gray-300 px-8 py-2 rounded-lg font-semibold hover:bg-[--btn-primary] hover:text-white active:translate-y-0.5 transition-all">
+                {/* <div className="buttons-links flex flex-wrap  gap-4 items-center">
+                  <button
+                    onClick={() => setIsLoginOpen(true)} // Open login popup
+                    className="text-white text-lg bg-[--btn-primary] px-6 py-2 rounded-lg font-semibold hover:bg-[--btn-secondary] transition-all active:translate-y-0.5"
+                  >
                     Book
                   </button>
                   <button className=" flex justify-center border border-gray-300 px-8 py-2 rounded-lg font-semibold hover:bg-[--btn-primary] hover:text-white active:translate-y-0.5 transition-all">
@@ -212,6 +219,25 @@ export default function HostelDetails() {
                   </button>
                   <FavoriteIcon
                     className="cursor-pointer"
+                    style={{ color: "var(#F5F7F8)" }}
+                  />
+                </div> */}
+                <div className="buttons-links flex flex-wrap  gap-4 items-center">
+                  <button
+                    onClick={() => setIsLoginOpen(true)} // Open login popup
+                    className="text-white text-lg bg-[--btn-primary] px-6 py-2 rounded-lg font-semibold hover:bg-[--btn-secondary] transition-all active:translate-y-0.5"
+                  >
+                    Book
+                  </button>
+                  <button
+                    className=" flex justify-center border border-gray-300 px-8 py-2 rounded-lg font-semibold hover:bg-[--btn-primary] hover:text-white active:translate-y-0.5 transition-all"
+                    onClick={calculateRoute} // Trigger route calculation
+                  >
+                    Get Direction
+                  </button>
+                  <FavoriteIcon
+                    className="cursor-pointer"
+                    onClick={handleOpenDialog} // Trigger the dialog open
                     style={{ color: "var(#F5F7F8)" }}
                   />
                 </div>
@@ -289,6 +315,28 @@ export default function HostelDetails() {
         ) : (
           <p>Hostel not found</p>
         )}
+        {/* <Dialog open={dialogOpen} onClose={handleCloseDialog}>
+          <DialogTitle>Remove Hostel</DialogTitle>
+          <DialogContent>
+            <Typography>
+              Are you sure you want to remove this hostel from your saved list?
+            </Typography>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleCloseDialog} color="primary">
+              Cancel
+            </Button>
+            <Button
+              onClick={() => {
+                handleRemoveHostel(hostelItem);
+                handleCloseDialog();
+              }}
+              color="secondary"
+            >
+              Remove
+            </Button>
+          </DialogActions>
+        </Dialog> */}
         <Dialog open={dialogOpen} onClose={handleCloseDialog}>
           <DialogTitle>Remove Hostel</DialogTitle>
           <DialogContent>

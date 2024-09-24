@@ -1,65 +1,18 @@
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-
-// const PeoplePage = () => {
-//   const people = [
-//     { name: "Alice Johnson" },
-//     { name: "Charlie Brown" },
-//     { name: "Diana Prince" },
-//     { name: "Fiona Apple" },
-//     { name: "Hannah Montana" },
-//     { name: "Ian McKellen" },
-//     { name: "Kevin Bacon" },
-//     { name: "Liam Neeson" },
-//     { name: "Natalie Portman" },
-//     { name: "Orlando Bloom" },
-//     { name: "Bob Smith" },
-//     { name: "Ethan Hunt" },
-//     { name: "George Lucas" },
-//     { name: "Julia Roberts" },
-//     { name: "Meryl Streep" },
-//     { name: "Penelope Cruz" },
-//   ];
-
-//   return (
-//     <div className="flex h-screen w-full">
-//       <div className="bg-white rounded-lg shadow p-4">
-//         <h2 className="text-xl font-semibold mb-4">People</h2>
-//         <div className="grid grid-cols-4 gap-4 w-full">
-//           {people.map((person, index) => (
-//             <div
-//               key={index}
-//               className="flex items-center gap-2 flex-col justify-center border"
-//             >
-//               <AccountCircleOutlinedIcon />
-//               <span className="text-sm text-gray-700">{person.name}</span>
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default PeoplePage;
-
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 const PeoplePage = () => {
   const people = [
-    { name: "Alice Johnson" },
-    { name: "Charlie Brown" },
-    { name: "Diana Prince" },
-    { name: "Fiona Apple" },
-    { name: "Hannah Montana" },
-    { name: "Ian McKellen" },
-    { name: "Kevin Bacon" },
-    { name: "Liam Neeson" },
-    { name: "Natalie Portman" },
-    { name: "Orlando Bloom" },
-    { name: "Bob Smith" },
-    { name: "Ethan Hunt" },
-    { name: "George Lucas" },
-    { name: "Julia Roberts" },
-    { name: "Meryl Streep" },
-    { name: "Penelope Cruz" },
+    { name: "Suman Sharma", status: true },
+    { name: "Aashish Thapa", status: false },
+    { name: "Binita Adhikari", status: true },
+    { name: "Pradeep Khadka", status: false },
+    { name: "Ritu Poudel", status: true },
+    { name: "Sarita Basnet", status: false },
+    { name: "Deepa Tamang", status: true },
+    { name: "Sneha Sapkota", status: false },
+    { name: "Sunita Gautam", status: true },
+    { name: "Santosh Bhandari", status: false },
+    { name: "Nabin Maharjan", status: true },
+    { name: "Kiran Rai", status: false },
   ];
 
   return (
@@ -71,8 +24,15 @@ const PeoplePage = () => {
               key={index}
               className="flex items-center gap-2 flex-col justify-center rounded-md border p-2 py-12"
             >
-              <AccountCircleOutlinedIcon style={{ fontSize: 60, color:"gray"}}  />
-              <span className="text-lg text-black ">{person.name}</span>
+              <AccountCircleIcon
+                style={{
+                  fontSize: 60,
+                  color: "gray",
+                  border: person.status ? "3px solid green" : "none", // Dynamic border based on status
+                  borderRadius: "50%",
+                }}
+              />
+              <span className="text-lg text-black">{person.name}</span>
             </div>
           ))}
         </div>

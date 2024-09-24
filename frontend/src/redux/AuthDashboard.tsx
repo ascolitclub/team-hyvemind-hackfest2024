@@ -17,6 +17,7 @@ const AuthDashboard: React.FC = () => {
   return (
     <>
       <Sidebar />
+
       <div className="flex p-6 space-x-6">
         <DashboardRoutes />
       </div>

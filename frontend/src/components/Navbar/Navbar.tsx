@@ -6,6 +6,7 @@ import Login from "../../pages/Login";
 
 export const Navbar = () => {
   const [isBlogHover, setIsBlogHover] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false); // State to control login popup
   const blogRef = useRef<HTMLLIElement>(null);
@@ -14,6 +15,9 @@ export const Navbar = () => {
     setIsBlogHover(!isBlogHover);
   };
 
+  const triggerIsOpen = () => {
+    setIsOpen(!isOpen);
+  };
   useEffect(() => {
     const handleScroll = () => {
       const heroSectionHeight = window.innerHeight * 0.01;
@@ -130,9 +134,6 @@ export const Navbar = () => {
                         <NavLink to="/news">News</NavLink>
                       </li>
                       <li className="hover:text-[--primary-color]">
-                        <NavLink to="/reviewpage">Reviews</NavLink>
-                      </li>
-                      <li className="hover:text-[--primary-color]">
                         <NavLink to="/faqs">FAQs</NavLink>
                       </li>
                     </ul>
@@ -176,6 +177,35 @@ export const Navbar = () => {
           {/* Pass close function */}
         </div>
       )}
+
+      <div className="chatbot-part fixed right-0 bottom-0 z-30">
+        <div className="absolute bg-[--primary-color] h-20 w-20 rounded-full -z-10 animate-ping"></div>
+        <div
+          className="chatbot-icon cursor-pointer z-30"
+          onClick={triggerIsOpen}
+        >
+          <img
+            className="h-20 mr-4 mb-4"
+            src="/assets/chatbot-icon.png"
+            alt="chatbot icon"
+          />
+        </div>
+        {isOpen && (
+          <div
+            data-aos={"fade-left"}
+            data-aos-duration="100"
+            className="chatbot-message absolute bottom-24 z-40 h-96 w-max right-0 bg-white shadow-2xl rounded-l-lg"
+          >
+            <iframe
+              style={{ borderRadius: "7px 0" }}
+              width="350"
+              height="380"
+              allow="microphone;"
+              src="https://console.dialogflow.com/api-client/demo/embedded/fe6de2a4-52e7-4e5e-9256-0e40eb65f87c"
+            ></iframe>
+          </div>
+        )}
+      </div>
     </>
   );
 };
