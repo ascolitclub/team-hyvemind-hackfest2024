@@ -17,6 +17,7 @@ def insertSeeder():
 
             map_db = client.get_database('hackathon-db')
             map_collection =  map_db.get_collection('map-collection')
+
             inserted = map_collection.insert_many(jsonData).inserted_ids
     
         

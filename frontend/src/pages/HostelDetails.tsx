@@ -1,22 +1,18 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState, useEffect } from "react";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import { RenderStar } from "../components/dynamic renderer/RenderStar";
 import axios from "axios";
 import {
   Button,
   Typography,
-  Grid,
-  Card,
-  CardContent,
-  CardMedia,
   CircularProgress,
   Dialog,
   DialogTitle,
   DialogActions,
   DialogContent,
+  Card,
+  CardContent,
+  CardHeader,
 } from "@mui/material";
 import {
   GoogleMap,
@@ -24,17 +20,17 @@ import {
   Marker,
   DirectionsRenderer,
 } from "@react-google-maps/api";
-import Login from "./Login";
+import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const mapContainerStyle = {
   width: "100%",
-  height: "100%",
+  height: "400px", // Adjust height as needed
 };
 
-const defaultCenter = { lat: 27.7107273, lng: 85.3109501 }; // Default coordinates
+const defaultCenter = { lat: 27.7107273, lng: 85.3109501 }; // Default center coordinates
 
 export default function HostelDetails() {
-  const [isLoginOpen, setIsLoginOpen] = useState(false);
   const { hostelId } = useParams();
 
   const [hostelItem, setHostelItem] = useState(null);
@@ -49,6 +45,7 @@ export default function HostelDetails() {
 
   useEffect(() => {
     const fetchHostelDetails = async () => {
+      setLoading(true);
       try {
         const response = await axios.get(
           `http://localhost:3002/hostel/${hostelId}`
@@ -57,10 +54,10 @@ export default function HostelDetails() {
 
         if (data) {
           setHostelItem(data);
-          setLoading(false);
         }
       } catch (error) {
         console.error("Error fetching hostel details:", error);
+      } finally {
         setLoading(false);
       }
     };
@@ -81,13 +78,10 @@ export default function HostelDetails() {
     }
   }, [hostelId]);
 
-  const isRegistered = false;
-
   const calculateRoute = async () => {
     if (!hostelItem) return;
 
-    const directionsService = new google.maps.DirectionsService();
-    console.log(hostelItem);
+    const directionsService = new window.google.maps.DirectionsService();
     directionsService.route(
       {
         origin: location,
@@ -95,13 +89,14 @@ export default function HostelDetails() {
           lat: hostelItem.location.latitude,
           lng: hostelItem.location.longitude,
         },
-        travelMode: google.maps.TravelMode.DRIVING,
+        travelMode: window.google.maps.TravelMode.DRIVING,
       },
       (result, status) => {
-        if (status === google.maps.DirectionsStatus.OK) {
+        if (status === window.google.maps.DirectionsStatus.OK) {
           setDirectionsResponse(result);
           setCurrentDistance(result.routes[0].legs[0].distance.text);
           setCurrentDuration(result.routes[0].legs[0].duration.text);
+          handleOpenDialog(); // Open dialog when route is calculated
         } else {
           console.error("Error fetching directions:", result);
         }
@@ -129,35 +124,31 @@ export default function HostelDetails() {
     setDialogOpen(false);
   };
 
-  const renderTabContent = () => {
-    if (activeTab === "description") {
-      return (
-        <Typography variant="body1" gutterBottom>
-          {hostelItem.description || "No description available."}
-        </Typography>
-      );
-    } else {
-      return (
-        <div>
-          <Typography variant="h6">Customer Reviews</Typography>
-          {hostelItem.reviews?.map((review, index) => (
-            <Typography key={index} variant="body2">
-              <strong>{review.author}:</strong> {review.comment}
-            </Typography>
-          )) || <Typography variant="body2">No reviews available.</Typography>}
-        </div>
-      );
-    }
-  };
-
   if (loading) return <CircularProgress />;
 
-  const handleTabChange = (tab: "description" | "reviews") => {
-    setActiveTab(tab);
-  };
+  // Mock reviews
+  const mockReviews = [
+    {
+      user: "Ram Bahadur",
+      comment:
+        "Amazing hostel! The staff were friendly and the facilities were great.",
+      rating: 4,
+    },
+    {
+      user: "Shyam Sundar",
+      comment: "I had a wonderful stay. Clean rooms and a great location!",
+      rating: 5,
+    },
+    {
+      user: "Taranath Poudel",
+      comment: "Good value for money. The atmosphere was lovely!",
+      rating: 4,
+    },
+  ];
+
   return (
     <>
-      <div className="w-full h-20  top-0  bg-[#041E42]"></div>
+      <div className="w-full h-20 bg-[#041E42]"></div>
       <div className="container mx-auto">
         <h2 className="text-center text-5xl font-semibold py-12">
           Hostel <span className="text-[--primary-color]">Details</span>
@@ -177,72 +168,62 @@ export default function HostelDetails() {
                   alt={hostelItem.title}
                 />
               </div>
-              <div className="bg-white p-2  h-full col-span-4">
+              <div className="bg-white p-2 h-full col-span-4">
                 <h2 className="text-3xl font-semibold mb-2">
                   {hostelItem.name}
                 </h2>
                 {RenderStar(hostelItem.rating)}
-                <p className="pt-2 pb-2 text-sm flex ">
+                <p className="pt-2 pb-2 text-sm flex">
                   <LocationOnOutlinedIcon
                     fontSize="small"
                     style={{ color: "var(--primary-color)" }}
                   />
-                  {hostelItem.address}
+                  {hostelItem.vicinity}
                 </p>
                 <div className="flex flex-col gap-y-1 mb-4 border-t border-b py-1 w-max">
-                  <div className="flex gap-2 ">
+                  <div className="flex gap-2">
                     <h3 className="font-medium text-[17px]">Owner Name:</h3>
-                    {hostelItem.owner ? (
-                      <p>{`hostelItem.description`}</p>
-                    ) : (
-                      <p className="italic">No Info</p>
-                    )}
+                    <p>
+                      {hostelItem.owner || (
+                        <span className="italic">No Info</span>
+                      )}
+                    </p>
                   </div>
-                  <div className="flex gap-2 ">
+                  <div className="flex gap-2">
                     <h3 className="font-medium text-[17px]">Hostel Type:</h3>
-                    {hostelItem.type ? (
-                      <p>{`hostelItem.description`}</p>
-                    ) : (
-                      <p className="italic">No Info</p>
-                    )}
+                    <p>
+                      {hostelItem.type || (
+                        <span className="italic">No Info</span>
+                      )}
+                    </p>
+                    <h3 className="font-medium text-[17px]">Hostel Price:</h3>
+                    <p>
+                      {hostelItem.price || (
+                        <span className="italic">No Price</span>
+                      )}
+                    </p>
                   </div>
                 </div>
-                {/* <div className="buttons-links flex flex-wrap  gap-4 items-center">
+                <div className="buttons-links flex flex-wrap gap-4 items-center">
                   <button
-                    onClick={() => setIsLoginOpen(true)} // Open login popup
-                    className="text-white text-lg bg-[--btn-primary] px-6 py-2 rounded-lg font-semibold hover:bg-[--btn-secondary] transition-all active:translate-y-0.5"
+                    className="flex justify-center border border-gray-300 px-8 py-2 rounded-lg font-semibold hover:bg-[--btn-primary] hover:text-white active:translate-y-0.5 transition-all"
+                    onClick={handleSaveHostel}
                   >
-                    Book
-                  </button>
-                  <button className=" flex justify-center border border-gray-300 px-8 py-2 rounded-lg font-semibold hover:bg-[--btn-primary] hover:text-white active:translate-y-0.5 transition-all">
-                    Get Direction
-                  </button>
-                  <FavoriteIcon
-                    className="cursor-pointer"
-                    style={{ color: "var(#F5F7F8)" }}
-                  />
-                </div> */}
-                <div className="buttons-links flex flex-wrap  gap-4 items-center">
-                  <button
-                    onClick={() => setIsLoginOpen(true)} // Open login popup
-                    className="text-white text-lg bg-[--btn-primary] px-6 py-2 rounded-lg font-semibold hover:bg-[--btn-secondary] transition-all active:translate-y-0.5"
-                  >
-                    Book
+                    Save Hostel
                   </button>
                   <button
-                    className=" flex justify-center border border-gray-300 px-8 py-2 rounded-lg font-semibold hover:bg-[--btn-primary] hover:text-white active:translate-y-0.5 transition-all"
-                    onClick={calculateRoute} // Trigger route calculation
+                    className="flex justify-center border border-gray-300 px-8 py-2 rounded-lg font-semibold hover:bg-[--btn-primary] hover:text-white active:translate-y-0.5 transition-all"
+                    onClick={calculateRoute}
                   >
                     Get Direction
                   </button>
                   <FavoriteIcon
                     className="cursor-pointer"
-                    onClick={handleOpenDialog} // Trigger the dialog open
-                    style={{ color: "var(#F5F7F8)" }}
+                    style={{ color: "#F5F7F8" }}
                   />
                 </div>
               </div>
-              <div className="tab-navigation my-10 col-span-3 h-full w-full">
+              <div className="col-span-3 h-full w-full">
                 <LoadScript googleMapsApiKey="AIzaSyChRHG8gb0TwMq2YOdf_djXNkDxtokdAJI">
                   <GoogleMap
                     mapContainerStyle={mapContainerStyle}
@@ -253,7 +234,7 @@ export default function HostelDetails() {
                     <Marker
                       position={{
                         lat: hostelItem.location.latitude,
-                        lng: hostelItem.location.latitude,
+                        lng: hostelItem.location.longitude,
                       }}
                       label={hostelItem.name}
                     />
@@ -264,14 +245,16 @@ export default function HostelDetails() {
                 </LoadScript>
               </div>
             </div>
-            <div className="flex justify-center   gap-10 mb-10">
+
+            {/* Tab Navigation */}
+            <div className="flex justify-center gap-10 mb-10">
               <button
                 className={`px-0 py-2 ${
                   activeTab === "description"
-                    ? " border-b-2 border-[--primary-color]  font-semibold text-[--primary-color]"
+                    ? "border-b-2 border-[--primary-color] font-semibold text-[--primary-color]"
                     : "font-semibold"
                 }`}
-                onClick={() => handleTabChange("description")}
+                onClick={() => setActiveTab("description")}
               >
                 Description
               </button>
@@ -281,81 +264,57 @@ export default function HostelDetails() {
                     ? "border-b-2 border-[--primary-color] font-semibold text-[--primary-color]"
                     : "font-semibold"
                 }`}
-                onClick={() => handleTabChange("reviews")}
+                onClick={() => setActiveTab("reviews")}
               >
                 Reviews
               </button>
             </div>
 
-            <div className="tab-content mt-4 px-12">
-              {activeTab === "description" ? (
-                <div className="description-content">
-                  <h3 className="text-2xl mb-2 font-bold">
-                    Hostel Description
-                  </h3>
-
-                  {hostelItem.description ? (
-                    <p>{`hostelItem.description`}</p>
+            {/* Tab Content */}
+            {activeTab === "description" ? (
+              <div className="px-12 py-4">
+                <h3 className="text-2xl font-semibold mb-2">Description</h3>
+                <p>{hostelItem.description || "No description available."}</p>
+              </div>
+            ) : (
+              <div className="px-12 py-4">
+                <h3 className="text-2xl font-semibold mb-2">Reviews</h3>
+                <div>
+                  {mockReviews.length > 0 ? (
+                    mockReviews.map((review, index) => (
+                      <Card key={index} className="mb-2">
+                        <CardHeader title={review.user} />
+                        <CardContent>
+                          <Typography variant="body2">
+                            {review.comment}
+                          </Typography>
+                          <div className="flex items-center mt-2">
+                            {RenderStar(review.rating)}
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))
                   ) : (
-                    <p className="italic">Description Not Available</p>
+                    <p>No reviews available</p>
                   )}
                 </div>
-              ) : (
-                <div className="reviews-content">
-                  <h3 className="text-2xl mb-2 font-bold">Customer Reviews</h3>
-                  {hostelItem.review ? (
-                    <div>hostelItem.review</div>
-                  ) : (
-                    <p className="italic">Review Not Available</p>
-                  )}
-                </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         ) : (
           <p>Hostel not found</p>
         )}
-        {/* <Dialog open={dialogOpen} onClose={handleCloseDialog}>
-          <DialogTitle>Remove Hostel</DialogTitle>
-          <DialogContent>
-            <Typography>
-              Are you sure you want to remove this hostel from your saved list?
-            </Typography>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleCloseDialog} color="primary">
-              Cancel
-            </Button>
-            <Button
-              onClick={() => {
-                handleRemoveHostel(hostelItem);
-                handleCloseDialog();
-              }}
-              color="secondary"
-            >
-              Remove
-            </Button>
-          </DialogActions>
-        </Dialog> */}
+
+        {/* Directions Dialog */}
         <Dialog open={dialogOpen} onClose={handleCloseDialog}>
-          <DialogTitle>Remove Hostel</DialogTitle>
+          <DialogTitle>Directions to {hostelItem?.name}</DialogTitle>
           <DialogContent>
-            <Typography>
-              Are you sure you want to remove this hostel from your saved list?
-            </Typography>
+            <Typography variant="body1">Distance: {currentDistance}</Typography>
+            <Typography variant="body1">Duration: {currentDuration}</Typography>
           </DialogContent>
           <DialogActions>
             <Button onClick={handleCloseDialog} color="primary">
-              Cancel
-            </Button>
-            <Button
-              onClick={() => {
-                handleRemoveHostel(hostelItem);
-                handleCloseDialog();
-              }}
-              color="secondary"
-            >
-              Remove
+              Close
             </Button>
           </DialogActions>
         </Dialog>

@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
-import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
-import { RenderStar } from "../dynamic renderer/RenderStar";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { Link } from 'react-router-dom';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import { RenderStar } from '../dynamic renderer/RenderStar';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import Image from '../../../public/image2.jpg';
 
 export default function PopularHostel() {
   const [hostelData, setHostelData] = useState([]);
@@ -10,7 +11,7 @@ export default function PopularHostel() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const GOOGLE_MAPS_API_KEY = "AIzaSyChRHG8gb0TwMq2YOdf_djXNkDxtokdAJI";
+        const GOOGLE_MAPS_API_KEY = 'AIzaSyChRHG8gb0TwMq2YOdf_djXNkDxtokdAJI';
         const response = await axios.get(
           `http://localhost:3002/hostel/popular`
         );
@@ -23,7 +24,7 @@ export default function PopularHostel() {
           img:
             hostel.photos.length > 0
               ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${hostel.photos[0].photo_reference}&key=${GOOGLE_MAPS_API_KEY}`
-              : "/path/to/default/image.jpg",
+              : Image,
         }));
         setHostelData(data);
       } catch (err) {
@@ -41,7 +42,7 @@ export default function PopularHostel() {
           <h1
             data-aos="fade-up"
             className="text-[150px] text-gray-100 font-mono font-semibold"
-            style={{ fontFamily: "Oswald" }}
+            style={{ fontFamily: 'Oswald' }}
           >
             HOSTELS
           </h1>
@@ -76,10 +77,10 @@ export default function PopularHostel() {
                 className="shadow-lg border border-gray-200 rounded-2xl cursor-pointer overflow-hidden hover:-translate-y-2 transition-transform"
                 onMouseEnter={(e) => {
                   e.currentTarget.style.boxShadow =
-                    "0px 4px 8px rgba(0, 0, 0, 0.4)";
+                    '0px 4px 8px rgba(0, 0, 0, 0.4)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = "";
+                  e.currentTarget.style.boxShadow = '';
                 }}
               >
                 <div className="object-cover bg-red-500">
@@ -95,7 +96,7 @@ export default function PopularHostel() {
                   <p className="mb-4 text-[#acacac] text-sm mt-1">
                     <LocationOnOutlinedIcon
                       fontSize="small"
-                      style={{ color: "var(--btn-primary)" }}
+                      style={{ color: 'var(--btn-primary)' }}
                     />
                     {hostel.location}
                   </p>

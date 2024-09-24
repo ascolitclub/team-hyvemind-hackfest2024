@@ -8,8 +8,11 @@ from resources.Hostel import blp as HostelBluePrint
 
 
 app = Flask(__name__)
-CORS(app, origins="http://localhost:5173")  # Allow requests from Vite frontend
-
+CORS(app, 
+     origins=["http://localhost:5173"],  # Allow requests from the Vite frontend
+     methods=["GET", "POST"],              # Allow specific HTTP methods
+     allow_headers=["Content-Type", "Authorization"]  # Allow specific headers
+)
 
 app.config['PROPAGATE_EXCEPTIONS'] = True
 app.config['API_TITLE'] = 'Model Rest Api'
