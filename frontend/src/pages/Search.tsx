@@ -170,7 +170,7 @@ export const Search = () => {
               />
 
               <select
-                className="border p-1 rounded-md text-gray-400 outline-none"
+                className="border p-1 rounded-md outline-none"
                 name="faculty-choose"
                 value={faculty}
                 onChange={handleChange} // Handle state change
@@ -205,7 +205,7 @@ export const Search = () => {
                 required
               />
               <select
-                className="border p-1 rounded-md text-gray-400 outline-none"
+                className="border p-1 rounded-md outline-none"
                 name="faculty-choose"
                 value={faculty}
                 onChange={handleChange} // Handle state change

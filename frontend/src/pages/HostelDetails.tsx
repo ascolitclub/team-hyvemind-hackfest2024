@@ -208,7 +208,7 @@ export default function HostelDetails() {
                     className="flex justify-center border border-gray-300 px-8 py-2 rounded-lg font-semibold hover:bg-[--btn-primary] hover:text-white active:translate-y-0.5 transition-all"
                     onClick={handleSaveHostel}
                   >
-                    Save Hostel
+                    Book
                   </button>
                   <button
                     className="flex justify-center border border-gray-300 px-8 py-2 rounded-lg font-semibold hover:bg-[--btn-primary] hover:text-white active:translate-y-0.5 transition-all"
