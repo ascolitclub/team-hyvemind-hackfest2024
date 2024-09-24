@@ -1,6 +1,6 @@
 import pika
 from pika.exchange_type import ExchangeType
-from libs.logger import logger
+
 
 
 def send_to_node_microservice(data):
@@ -16,7 +16,7 @@ def send_to_node_microservice(data):
 
         channel.basic_publish(exchange='map-exchange',routing_key='map-rk',body=data,properties=pika.BasicProperties(delivery_mode=2))
 
-        logger.info(F'Message is send to map-queue')
+        print(F'Message is send to map-queue')
 
 
     except Exception as e:

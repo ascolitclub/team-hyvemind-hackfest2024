@@ -1,8 +1,8 @@
 from database.connect import client
-from libs.logger import logger
+
 
 from database.connect import client
-from libs.logger import logger
+
 from bson import ObjectId
 
 def recommend_hotel_api(recommend_hotels):
@@ -27,5 +27,5 @@ def recommend_hotel_api(recommend_hotels):
         return ordered_data
 
     except Exception as e:
-        logger.error(f'Error in recommend_hotel_api: {e}')
+        print(f'Error in recommend_hotel_api: {e}')
         return []

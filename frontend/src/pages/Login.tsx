@@ -1,33 +1,330 @@
-import { useState, useEffect, useRef } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { useState, useEffect, useRef } from "react";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import {
+//   faGooglePlusG,
+//   faFacebookF,
+//   faGithub,
+//   faLinkedinIn,
+// } from "@fortawesome/free-brands-svg-icons";
+// import axios from "axios";
+// import Swal from "sweetalert2";
+// interface LoginProps {
+//   onClose: () => void; // Define onClose as a function that returns void
+// }
+
+// interface SignInData {
+//   email: string;
+//   password: string;
+// }
+
+// interface SignUpData {
+//   username: string;
+//   phoneNumber: string;
+//   email: string;
+//   password: string;
+// }
+
+// export default function Login({ onClose }: LoginProps) {
+//   const [isSignUpVisible, setIsSignUpVisible] = useState(false);
+//   const [signInData, setSignInData] = useState<SignInData>({
+//     email: "",
+//     password: "",
+//   });
+//   const [signUpData, setSignUpData] = useState<SignUpData>({
+//     username: "",
+//     phoneNumber: "",
+//     email: "",
+//     password: "",
+//   });
+
+//   const loginRef = useRef<HTMLDivElement>(null); // Create a ref for the login div
+
+//   const handleSignUpClick = () => {
+//     setIsSignUpVisible(true);
+//   };
+
+//   const handleSignInClick = () => {
+//     setIsSignUpVisible(false);
+//   };
+
+//   const handleSignInSubmit = async () => {
+//     try {
+//       const response = await axios.post(
+//         "http://localhost:3000/api/user/login",
+//         {
+//           signInData,
+//         }
+//       );
+//       const data = await response.data;
+//       console.log("Sign In Success:", data);
+
+//       // Show success alert
+//       Swal.fire({
+//         icon: "success",
+//         title: "Sign In Successful",
+//         text: "Welcome back!",
+//       });
+
+//       // You can add additional logic here, like redirecting the user
+//     } catch (error) {
+//       console.error("Error during sign-in:", error);
+
+//       // Show error alert
+//       Swal.fire({
+//         icon: "error",
+//         title: "Sign In Failed",
+//         text: "Please check your credentials and try again.",
+//       });
+//     }
+//   };
+
+//   // Handle Sign Up Request
+//   const handleSignUpSubmit = async () => {
+//     try {
+//       console.log(signUpData);
+//       const response = await axios.post(
+//         "http://localhost:3000/api/user/register",
+//         { signUpData }
+//       );
+
+//       const data = await response.data;
+//       console.log("Sign Up Success:", data);
+
+//       // Show success alert
+//       Swal.fire({
+//         icon: "success",
+//         title: "Sign Up Successful",
+//         text: "You can now sign in!",
+//       });
+
+//       // You can add additional logic here, like redirecting the user
+//     } catch (error) {
+//       console.error("Error during sign-up:", error);
+
+//       // Show error alert
+//       Swal.fire({
+//         icon: "error",
+//         title: "Sign Up Failed",
+//         text: "Please try again later.",
+//       });
+//     }
+//   };
+
+//   // Close the login div when clicking outside
+//   useEffect(() => {
+//     const handleClickOutside = (event: MouseEvent) => {
+//       if (
+//         loginRef.current &&
+//         !loginRef.current.contains(event.target as Node)
+//       ) {
+//         onClose(); // Call onClose when clicking outside
+//       }
+//     };
+
+//     document.addEventListener("mousedown", handleClickOutside);
+//     return () => {
+//       document.removeEventListener("mousedown", handleClickOutside);
+//     };
+//   }, [onClose]);
+
+//   return (
+//     <div className="relative flex items-center justify-center h-screen w-screen">
+//       <div
+//         ref={loginRef} // Attach the ref to the main login div
+//         className="relative w-full max-w-4xl h-[500px] rounded-2xl bg-white shadow-lg flex"
+//       >
+//         {/* Sign In Form */}
+//         <div
+//           className={`w-1/2 h-full bg-white flex flex-col rounded-2xl justify-center items-center px-10 transition-all duration-700 ${
+//             isSignUpVisible ? "opacity-0 pointer-events-none" : "opacity-100"
+//           }`}
+//         >
+//           <h1 className="text-3xl font-bold mb-6">Sign In</h1>
+//           <div className="flex space-x-3 mb-6">
+//             <a href="#" className="py-2 px-3 border rounded-full">
+//               <FontAwesomeIcon icon={faGooglePlusG} />
+//             </a>
+//             <a href="#" className="py-2 px-4 border rounded-full">
+//               <FontAwesomeIcon icon={faFacebookF} />
+//             </a>
+//             <a href="#" className="py-2 px-3  border rounded-full">
+//               <FontAwesomeIcon icon={faGithub} />
+//             </a>
+//             <a href="#" className="py-2 px-3  border rounded-full">
+//               <FontAwesomeIcon icon={faLinkedinIn} />
+//             </a>
+//           </div>
+//           <span className="text-sm mb-4">or use your email to sign in</span>
+//           <input
+//             type="email"
+//             placeholder="Email"
+//             className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
+//             value={signInData.email}
+//             onChange={(e) =>
+//               setSignInData({ ...signInData, email: e.target.value })
+//             }
+//           />
+//           <input
+//             type="password"
+//             placeholder="Password"
+//             className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
+//             value={signInData.password}
+//             onChange={(e) =>
+//               setSignInData({ ...signInData, password: e.target.value })
+//             }
+//           />
+//           <a href="#" className="text-sm text-[--primary-color] mb-4">
+//             Forgot Your Password?
+//           </a>
+//           <button
+//             className="bg-[--primary-color] text-white py-2 px-6 rounded-full"
+//             onClick={handleSignInSubmit}
+//           >
+//             Sign In
+//           </button>
+//         </div>
+
+//         {/* Sign Up Form */}
+//         <div
+//           className={`w-1/2 h-full bg-white flex flex-col rounded-2xl justify-center items-center px-10 transition-all duration-700 ${
+//             isSignUpVisible ? "opacity-100" : "opacity-0 pointer-events-none"
+//           }`}
+//         >
+//           <h1 className="text-3xl font-bold mb-6">Create Account</h1>
+//           <div className="flex space-x-3 mb-6">
+//             <a href="#" className="py-2 px-3 border rounded-full">
+//               <FontAwesomeIcon icon={faGooglePlusG} />
+//             </a>
+//             <a href="#" className="py-2 px-4 border rounded-full">
+//               <FontAwesomeIcon icon={faFacebookF} />
+//             </a>
+//             <a href="#" className="py-2 px-3  border rounded-full">
+//               <FontAwesomeIcon icon={faGithub} />
+//             </a>
+//             <a href="#" className="py-2 px-3  border rounded-full">
+//               <FontAwesomeIcon icon={faLinkedinIn} />
+//             </a>
+//           </div>
+//           <span className="text-sm mb-4">
+//             or use your email for registration
+//           </span>
+//           <input
+//             type="text"
+//             placeholder="Name"
+//             className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
+//             value={signUpData.username}
+//             onChange={(e) =>
+//               setSignUpData({ ...signUpData, username: e.target.value })
+//             }
+//           />
+//           <input
+//             type="number"
+//             placeholder="Phone Number"
+//             className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
+//             value={signUpData.phoneNumber}
+//             onChange={(e) =>
+//               setSignUpData({ ...signUpData, phoneNumber: e.target.value })
+//             }
+//           />
+//           <input
+//             type="email"
+//             placeholder="Email"
+//             className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
+//             value={signUpData.email}
+//             onChange={(e) =>
+//               setSignUpData({ ...signUpData, email: e.target.value })
+//             }
+//           />
+//           <input
+//             type="password"
+//             placeholder="Password"
+//             className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
+//             value={signUpData.password}
+//             onChange={(e) =>
+//               setSignUpData({ ...signUpData, password: e.target.value })
+//             }
+//           />
+//           <button
+//             className="bg-[--primary-color] text-white py-2 px-6 rounded-full"
+//             onClick={handleSignUpSubmit}
+//           >
+//             Sign Up
+//           </button>
+//         </div>
+
+//         {/* Overlapping Div */}
+//         <div
+//           className={`absolute right-0 top-0 rounded-2xl w-1/2 h-full bg-[--primary-color] flex flex-col items-center justify-center transition-transform duration-700 ${
+//             isSignUpVisible ? "-translate-x-full" : "translate-x-0"
+//           }`}
+//           style={{ zIndex: 10 }}
+//         >
+//           <h1 className="text-3xl font-bold mb-6 text-white">
+//             {isSignUpVisible ? "Welcome Back!" : "Hello, Friend!"}
+//           </h1>
+//           <p className="mb-4 text-white">
+//             {isSignUpVisible
+//               ? "Sign in to continue your journey!"
+//               : "Don't have an account? Sign up and join us."}
+//           </p>
+//           <button
+//             className="bg-transparent border-white border py-2 px-6 rounded-full"
+//             onClick={isSignUpVisible ? handleSignInClick : handleSignUpClick}
+//           >
+//             {isSignUpVisible ? "Sign In" : "Sign Up"}
+//           </button>
+//         </div>
+//         <button className="absolute top-2 right-4 text-white" onClick={onClose}>
+//           &times;
+//         </button>
+//       </div>
+//     </div>
+//   );
+// }
+
+import { useState, useEffect, useRef } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGooglePlusG,
   faFacebookF,
   faGithub,
   faLinkedinIn,
-} from '@fortawesome/free-brands-svg-icons';
-import axios from 'axios';
-import { USER_BACKEND_URL } from '../services/helper';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { loginReducer } from '../redux/authSlice';
-import Swal from 'sweetalert2';
+} from "@fortawesome/free-brands-svg-icons";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 interface LoginProps {
   onClose: () => void; // Define onClose as a function that returns void
 }
 
+interface SignInData {
+  email: string;
+  password: string;
+}
+
+interface SignUpData {
+  username: string;
+  phoneNumber: string;
+  email: string;
+  password: string;
+}
+
 export default function Login({ onClose }: LoginProps) {
   const [isSignUpVisible, setIsSignUpVisible] = useState(false);
-  const [signInEmail, setSignInEmail] = useState('');
-  const [signInPassword, setSignInPassword] = useState('');
-  const [signUpName, setSignUpName] = useState('');
-  const [signUpPhone, setSignUpPhone] = useState('');
-  const [signUpEmail, setSignUpEmail] = useState('');
-  const [signUpPassword, setSignUpPassword] = useState('');
-  const loginRef = useRef<HTMLDivElement>(null); // Create a ref for the login div
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [signInData, setSignInData] = useState<SignInData>({
+    email: "",
+    password: "",
+  });
+  const [signUpData, setSignUpData] = useState<SignUpData>({
+    username: "",
+    phoneNumber: "",
+    email: "",
+    password: "",
+  });
+
+  const loginRef = useRef<HTMLDivElement>(null); // Create a ref for the login div
 
   const handleSignUpClick = () => {
     setIsSignUpVisible(true);
@@ -35,6 +332,64 @@ export default function Login({ onClose }: LoginProps) {
 
   const handleSignInClick = () => {
     setIsSignUpVisible(false);
+  };
+
+  // Handle Sign In Request
+  const handleSignInSubmit = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/user/login",
+        signInData
+      );
+      const data = response.data;
+
+      console.log("Sign In Success:", data); // Handle successful sign-in
+
+      // Show success alert
+      Swal.fire({
+        icon: "success",
+        title: "Sign In Successful",
+        text: "Welcome back!",
+      }).then(() => navigate("/dashboard"));
+    } catch (error) {
+      console.error("Error during sign-in:", error); // Handle sign-in error
+
+      // Show error alert
+      Swal.fire({
+        icon: "error",
+        title: "Sign In Failed",
+        text: "Please check your credentials and try again.",
+      });
+    }
+  };
+
+  // Handle Sign Up Request
+  const handleSignUpSubmit = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/user/register",
+        signUpData
+      );
+      const data = response.data;
+
+      console.log("Sign Up Success:", data); // Handle successful sign-up
+
+      // Show success alert
+      Swal.fire({
+        icon: "success",
+        title: "Sign Up Successful",
+        text: "You can now sign in!",
+      });
+    } catch (error) {
+      console.error("Error during sign-up:", error); // Handle sign-up error
+
+      // Show error alert
+      Swal.fire({
+        icon: "error",
+        title: "Sign Up Failed",
+        text: "Please try again later.",
+      });
+    }
   };
 
   // Close the login div when clicking outside
@@ -48,96 +403,11 @@ export default function Login({ onClose }: LoginProps) {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [onClose]);
-
-  const handleSignIn = async () => {
-    try {
-      console.log(signInEmail, signInPassword);
-      const response = await axios.post(
-        `http://localhost:3000/api/user/login`,
-        {
-          email: signInEmail,
-          password: signInPassword,
-        }
-      );
-      if (response.data) {
-        dispatch(
-          loginReducer({
-            access_token: response.data.accessToken,
-            user_id: response.data.userId,
-            full_name: response.data.username,
-            user_email: response.data.email,
-          })
-        );
-        Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'You are Logged In SuccessFully',
-          showConfirmButton: false,
-          timer: 1500,
-        });
-
-        navigate('/test');
-      }
-    } catch (error) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: error.message || 'Login Failed!',
-      });
-    }
-  };
-
-  const handleSignUp = async () => {
-    try {
-      const response = await axios.post(
-        `http://localhost:3000/api/user/register`,
-        {
-          username: signUpName,
-          phoneNumber: signUpPhone,
-          email: signUpEmail,
-          password: signUpPassword,
-        }
-      );
-
-      if (response.data) {
-        // Trigger Swal modal for role selection after successful signup
-        Swal.fire({
-          title: 'Continue as?',
-          showDenyButton: true,
-          showCancelButton: true,
-          confirmButtonText: 'User',
-          denyButtonText: 'Hostel Owner',
-          cancelButtonText: 'Cancel',
-        }).then((result) => {
-          if (result.isConfirmed) {
-            // User selected "Continue as User"
-            Swal.fire('Redirecting to login...', '', 'success');
-            navigate('/login'); // Redirect to login page
-          } else if (result.isDenied) {
-            // User selected "Continue as Hostel Owner"
-            Swal.fire(
-              'Redirecting to hostel owner registration...',
-              '',
-              'success'
-            );
-            navigate('/register-hostel-owner'); // Redirect to hostel owner registration
-          }
-        });
-      }
-    } catch (err) {
-      console.error(err);
-      Swal.fire({
-        icon: 'error',
-        title: 'Registration Failed',
-        text: err.response?.data?.message || 'Please try again later!',
-      });
-    }
-  };
 
   return (
     <div className="relative flex items-center justify-center h-screen w-screen">
@@ -148,21 +418,21 @@ export default function Login({ onClose }: LoginProps) {
         {/* Sign In Form */}
         <div
           className={`w-1/2 h-full bg-white flex flex-col rounded-2xl justify-center items-center px-10 transition-all duration-700 ${
-            isSignUpVisible ? 'opacity-0 pointer-events-none' : 'opacity-100'
+            isSignUpVisible ? "opacity-0 pointer-events-none" : "opacity-100"
           }`}
         >
           <h1 className="text-3xl font-bold mb-6">Sign In</h1>
           <div className="flex space-x-3 mb-6">
-            <a href="#" className="p-2 border rounded-full">
+            <a href="#" className="py-2 px-3 border rounded-full">
               <FontAwesomeIcon icon={faGooglePlusG} />
             </a>
-            <a href="#" className="p-2 border rounded-full">
+            <a href="#" className="py-2 px-4 border rounded-full">
               <FontAwesomeIcon icon={faFacebookF} />
             </a>
-            <a href="#" className="p-2 border rounded-full">
+            <a href="#" className="py-2 px-3 border rounded-full">
               <FontAwesomeIcon icon={faGithub} />
             </a>
-            <a href="#" className="p-2 border rounded-full">
+            <a href="#" className="py-2 px-3 border rounded-full">
               <FontAwesomeIcon icon={faLinkedinIn} />
             </a>
           </div>
@@ -171,22 +441,26 @@ export default function Login({ onClose }: LoginProps) {
             type="email"
             placeholder="Email"
             className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
-            value={signInEmail}
-            onChange={(e) => setSignInEmail(e.target.value)}
+            value={signInData.email}
+            onChange={(e) =>
+              setSignInData({ ...signInData, email: e.target.value })
+            }
           />
           <input
             type="password"
             placeholder="Password"
             className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
-            value={signInPassword}
-            onChange={(e) => setSignInPassword(e.target.value)}
+            value={signInData.password}
+            onChange={(e) =>
+              setSignInData({ ...signInData, password: e.target.value })
+            }
           />
           <a href="#" className="text-sm text-[--primary-color] mb-4">
             Forgot Your Password?
           </a>
           <button
             className="bg-[--primary-color] text-white py-2 px-6 rounded-full"
-            onClick={handleSignIn}
+            onClick={handleSignInSubmit}
           >
             Sign In
           </button>
@@ -195,21 +469,21 @@ export default function Login({ onClose }: LoginProps) {
         {/* Sign Up Form */}
         <div
           className={`w-1/2 h-full bg-white flex flex-col rounded-2xl justify-center items-center px-10 transition-all duration-700 ${
-            isSignUpVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
+            isSignUpVisible ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
         >
           <h1 className="text-3xl font-bold mb-6">Create Account</h1>
           <div className="flex space-x-3 mb-6">
-            <a href="#" className="p-2 border rounded-full">
+            <a href="#" className="py-2 px-3 border rounded-full">
               <FontAwesomeIcon icon={faGooglePlusG} />
             </a>
-            <a href="#" className="p-2 border rounded-full">
+            <a href="#" className="py-2 px-4 border rounded-full">
               <FontAwesomeIcon icon={faFacebookF} />
             </a>
-            <a href="#" className="p-2 border rounded-full">
+            <a href="#" className="py-2 px-3 border rounded-full">
               <FontAwesomeIcon icon={faGithub} />
             </a>
-            <a href="#" className="p-2 border rounded-full">
+            <a href="#" className="py-2 px-3 border rounded-full">
               <FontAwesomeIcon icon={faLinkedinIn} />
             </a>
           </div>
@@ -220,33 +494,41 @@ export default function Login({ onClose }: LoginProps) {
             type="text"
             placeholder="Name"
             className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
-            value={signUpName}
-            onChange={(e) => setSignUpName(e.target.value)}
+            value={signUpData.username}
+            onChange={(e) =>
+              setSignUpData({ ...signUpData, username: e.target.value })
+            }
           />
           <input
-            type="tel"
+            type="number"
             placeholder="Phone Number"
             className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
-            value={signUpPhone}
-            onChange={(e) => setSignUpPhone(e.target.value)}
+            value={signUpData.phoneNumber}
+            onChange={(e) =>
+              setSignUpData({ ...signUpData, phoneNumber: e.target.value })
+            }
           />
           <input
             type="email"
             placeholder="Email"
             className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
-            value={signUpEmail}
-            onChange={(e) => setSignUpEmail(e.target.value)}
+            value={signUpData.email}
+            onChange={(e) =>
+              setSignUpData({ ...signUpData, email: e.target.value })
+            }
           />
           <input
             type="password"
             placeholder="Password"
             className="w-full p-3 mb-4 border rounded-lg bg-gray-200"
-            value={signUpPassword}
-            onChange={(e) => setSignUpPassword(e.target.value)}
+            value={signUpData.password}
+            onChange={(e) =>
+              setSignUpData({ ...signUpData, password: e.target.value })
+            }
           />
           <button
             className="bg-[--primary-color] text-white py-2 px-6 rounded-full"
-            onClick={handleSignUp}
+            onClick={handleSignUpSubmit}
           >
             Sign Up
           </button>
@@ -255,40 +537,29 @@ export default function Login({ onClose }: LoginProps) {
         {/* Overlapping Div */}
         <div
           className={`absolute right-0 top-0 rounded-2xl w-1/2 h-full bg-[--primary-color] flex flex-col items-center justify-center transition-transform duration-700 ${
-            isSignUpVisible ? '-translate-x-full' : 'translate-x-0'
+            isSignUpVisible ? "-translate-x-full" : "translate-x-0"
           }`}
           style={{ zIndex: 10 }}
         >
           <h1 className="text-3xl font-bold mb-6 text-white">
-            {isSignUpVisible ? 'Welcome Back!' : 'Hello, Friend!'}
+            {isSignUpVisible ? "Welcome Back!" : "Hello, Friend!"}
           </h1>
           <p className="mb-4 text-white">
             {isSignUpVisible
-              ? 'Sign in to continue your journey!'
+              ? "Sign in to continue your journey!"
               : "Don't have an account? Sign up and join us."}
           </p>
           <button
             className="bg-transparent border-white border py-2 px-6 rounded-full"
             onClick={isSignUpVisible ? handleSignInClick : handleSignUpClick}
           >
-            {isSignUpVisible ? 'Sign In' : 'Sign Up'}
+            {isSignUpVisible ? "Sign In" : "Sign Up"}
           </button>
         </div>
-        <button
-          className="absolute -top-8 -right-10 text-black bg-white h-8 w-8 rounded-full p-1 shadow"
-          onClick={onClose}
-        >
-          X
+        <button className="absolute top-2 right-4 text-white" onClick={onClose}>
+          &times;
         </button>
       </div>
-
-      {/* Close Button */}
-      <button
-        className="absolute top-24 right-64 text-black bg-white h-8 w-8 rounded-full p-1 shadow"
-        onClick={onClose}
-      >
-        X
-      </button>
     </div>
   );
 }

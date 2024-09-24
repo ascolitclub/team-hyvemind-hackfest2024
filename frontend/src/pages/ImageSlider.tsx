@@ -20,14 +20,6 @@ export default function ImageSlider() {
     return () => clearInterval(intervalId); // Cleanup interval on component unmount
   }, []);
 
-//   const handlePrev = () => {
-//     setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-//   };
-
-//   const handleNext = () => {
-//     setCurrentIndex((prev) => (prev + 1) % images.length);
-//   };
-
   return (
     <div className="relative max-w-full h-[700px] mx-auto overflow-hidden">
       <div

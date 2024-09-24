@@ -8,6 +8,7 @@ const auth_service_1 = __importDefault(require("../services/auth.service"));
 const registerUser = async (req, res, next) => {
     try {
         const { email, username, password, phoneNumber, } = req.body;
+        console.log(email, username);
         const userCredential = {
             email,
             username,

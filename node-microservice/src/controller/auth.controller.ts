@@ -15,6 +15,7 @@ export const registerUser = async (
       phoneNumber,
     }: Partial<RegisterUserBody> = req.body;
 
+    console.log(email,username)
     const userCredential = {
       email,
       username,
